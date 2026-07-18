@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <title>Business Category Selection</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts: Inter for clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <style data-purpose="global-styles">
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            touch-action: pan-y;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .cards-wrapper {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+            padding-left: 50%;
+        }
+
+        .slider-card {
+            flex-shrink: 0;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-origin: center center;
+        }
+
+        /* Active Card State */
+        .slider-card.active {
+            transform: scale(1);
+            opacity: 1;
+            z-index: 20;
+        }
+
+        /* Side Card State (Peek Effect) */
+        .slider-card:not(.active) {
+            transform: scale(0.8);
+            opacity: 0.5;
+            z-index: 10;
+        }
+
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+    <style data-purpose="card-gradients">
+        .gradient-blue {
+            background: linear-gradient(135deg, #4facfe 0%, #a29bfe 100%);
+        }
+
+        .gradient-green {
+            background: linear-gradient(135deg, #48d6a3 0%, #29b6a0 100%);
+        }
+
+        .gradient-orange {
+            background: linear-gradient(135deg, #ff5f6d 0%, #ffc371 100%);
+        }
+
+        .gradient-yellow-orange {
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        }
+
+        .gradient-purple-pink {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+        }
+
+        .gradient-cyan-blue {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+        }
+
+        .gradient-pink-red {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+        }
+
+        .gradient-lime-green {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <!-- BEGIN: Status Bar Space (iOS Simulation) -->
+    <div class="h-12 w-full flex items-center justify-between px-8 pt-4" data-purpose="status-bar">
+        <span class="font-bold text-sm">9:41</span>
+        <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+                <path
+                    d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z">
+                </path>
+            </svg>
+            <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+                <path clip-rule="evenodd"
+                    d="M17.707 15.707a1 1 0 01-1.414 0l-3-3a1 1 0 011.414-1.414l3 3a1 1 0 010 1.414zM2 4a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V4z"
+                    fill-rule="evenodd"></path>
+            </svg>
+            <div class="w-6 h-3 border border-black rounded-sm relative">
+                <div class="absolute inset-0.5 bg-black rounded-sm w-3/4"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Status Bar Space -->
+    <main class="flex-grow flex flex-col items-center pt-8 text-center overflow-hidden">
+        <!-- BEGIN: Header Section -->
+        <section class="mb-10 px-6" data-purpose="header">
+            <h1 class="text-3xl font-extrabold text-gray-900 leading-tight mb-3">
+                Select Your<br />Business Category
+            </h1>
+            <p class="text-gray-600 text-[15px] px-6">
+                Choose the role that best describes your dairy operations.
+            </p>
+        </section>
+        <!-- END: Header Section -->
+        <!-- BEGIN: Interactive Slider Section -->
+        <section class="slider-container" id="sliderContainer">
+            <div class="cards-wrapper" id="cardsWrapper">
+                <!-- Card 0: Farmer -->
+                <div class="slider-card gradient-green w-64 h-96 rounded-[40px] flex flex-col items-center justify-center p-8 shadow-xl mx-4 cursor-pointer"
+                    data-index="0">
+                    <div class="bg-white rounded-full w-24 h-24 flex items-center justify-center mb-8 shadow-sm">
+                        <img alt="Farmer" class="w-14 h-14"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuARSnJdaktkf09vcFEgFWQYRzWHCy7WT2kabd7LyEYd3c727Wd54JSv2ZDH0HI-uc208A4QwRF66GuPe9q39TSWsMGJclhi8Dlv7pkq7ZcWY8hTTh0EXMW5JQiDsU_AXdFtQ-kAc1HHyp09r0pYUDE9p735u_K4y0Lhg_6VH_tGa2ZfKA05nTB1BvdV1TYE4rhtWBR4BKfIwf4EEzCQ_inAWsm8tU-GJn8NKoI4wrQRZbDJ0Nm1GR3DM7So9e5C_gy8il8aFjOAx-0e" />
+                    </div>
+                    <h3 class="text-white font-extrabold text-2xl mb-4">Farmer</h3>
+                    <p class="text-white text-[15px] leading-snug">
+                        Track milk production and track herd health daily.
+                    </p>
+                </div>
+                <!-- Card 1: Distributor -->
+                <div class="slider-card gradient-orange active w-64 h-96 rounded-[40px] flex flex-col items-center justify-center p-8 shadow-xl mx-4 cursor-pointer"
+                    data-index="1">
+                    <div class="bg-white rounded-full w-24 h-24 flex items-center justify-center mb-8 shadow-sm">
+                        <img alt="Distributor" class="w-16 h-16"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB3SHvTb6jDRRE0kkNaxGot0AwYbcEIc_6IDA7GVD9lqhnqZW6SdqFntLevPbKifVZhuHj9t17tNUjlAGXk5vbemsP6qSxNHwdgxn00ZZBNlDW48OG24ut_WS9BNQ_1wqsgC9qosNeBfQlDjgj3X04Feu-qUsTJLJvmGr6pjBCagzIEM0RWLPIkP2PT7C9c3vSc7rWeDxMsr7j5J1jluFpdQGLLHvoUNeWVH4ADS64yekQ2oGv15xZ7QpKw16y8R-QOGkZj3P2nOl7" />
+                    </div>
+                    <h3 class="text-white font-extrabold text-2xl mb-4">Distributor</h3>
+                    <p class="text-white text-[15px] leading-snug">
+                        Manage record daily milk deliveries across routes.
+                    </p>
+                </div>
+                <!-- Card 2: Retailer -->
+                <div class="slider-card gradient-yellow-orange w-64 h-96 rounded-[40px] flex flex-col items-center justify-center p-8 shadow-xl mx-4 cursor-pointer"
+                    data-index="2">
+                    <div class="bg-white rounded-full w-24 h-24 flex items-center justify-center mb-8 shadow-sm">
+                        <span class="material-symbols-outlined text-orange-400 text-5xl">shopping_cart</span>
+                    </div>
+                    <h3 class="text-white font-extrabold text-2xl mb-4">Retailer</h3>
+                    <p class="text-white text-[15px] leading-snug">
+                        Manage store inventory and customer sales.
+                    </p>
+                </div>
+                <!-- Card 3: Add Custom (Placeholder for new cards) -->
+                <div class="slider-card gradient-purple-pink w-64 h-96 rounded-[40px] flex flex-col items-center justify-center p-8 shadow-xl mx-4 cursor-pointer"
+                    data-index="3" id="addCardButton">
+                    <div class="bg-white rounded-full w-24 h-24 flex items-center justify-center mb-8 shadow-sm">
+                        <span class="material-symbols-outlined text-purple-400 text-5xl">add</span>
+                    </div>
+                    <h3 class="text-white font-extrabold text-2xl mb-4 text-center">Add Custom</h3>
+                    <p class="text-white text-[15px] leading-snug text-center">
+                        Click to add your own business type.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- END: Interactive Slider Section -->
+        <!-- BEGIN: Pagination Dots -->
+        <div class="flex gap-2.5 mt-4 flex-wrap justify-center" data-purpose="pagination-dots" id="paginationDots">
+            <div class="w-2.5 h-2.5 rounded-full bg-gray-300 transition-colors duration-300" data-dot="0"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f6d] transition-colors duration-300" data-dot="1"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-gray-300 transition-colors duration-300" data-dot="2"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-gray-300 transition-colors duration-300" data-dot="3"></div>
+        </div>
+        <!-- END: Pagination Dots -->
+    </main>
+    <!-- BEGIN: Footer Action -->
+    <footer class="p-8 w-full" data-purpose="footer-button">
+        <button
+            class="w-full bg-[#40b178] hover:bg-[#369966] text-white font-bold py-5 rounded-[24px] text-xl transition-colors shadow-lg active:scale-[0.98]">
+            Continue
+        </button>
+    </footer>
+    <!-- END: Footer Action -->
+    <!-- BEGIN: Modal Overlay -->
+    <div class="hidden fixed inset-0 z-50 flex items-center justify-center px-6 modal-backdrop" id="addModal">
+        <div
+            class="bg-white w-full max-w-sm rounded-[40px] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <h2 class="text-2xl font-extrabold text-gray-900">Add New Category</h2>
+                    <button class="text-gray-400 hover:text-gray-600" onclick="closeModal()">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <div class="space-y-6">
+                    <div class="text-left">
+                        <label class="block text-sm font-bold text-gray-700 mb-2 ml-1" for="category-name">
+                            Category Name
+                        </label>
+                        <input
+                            class="w-full px-5 py-4 bg-gray-50 border-0 focus:ring-2 focus:ring-[#40b178] rounded-[20px] text-gray-900 placeholder-gray-400 text-lg transition-all"
+                            id="category-name" placeholder="e.g., Retailer" type="text" />
+                    </div>
+                    <button
+                        class="w-full bg-[#40b178] text-white font-bold py-5 rounded-[24px] text-lg shadow-lg active:scale-[0.98] transition-transform"
+                        onclick="addNewCategory()">
+                        Add to Slider
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Modal Overlay -->
+    <script>
+        const wrapper = document.getElementById('cardsWrapper');
+        const dots = document.getElementById('paginationDots');
+        const container = document.getElementById('sliderContainer');
+        const addCardButton = document.getElementById('addCardButton');
+
+        let currentIndex = 1;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let isDragging = false;
+        let animationID = 0;
+
+        // Gradient options for new cards
+        const gradients = ['gradient-blue', 'gradient-cyan-blue', 'gradient-pink-red', 'gradient-lime-green'];
+        let gradientIndex = 0;
+
+        function init() {
+            updateSlider(false);
+            attachCardListeners();
+
+            // Touch events
+            container.addEventListener('touchstart', touchStart);
+            container.addEventListener('touchend', touchEnd);
+            container.addEventListener('touchmove', touchMove);
+
+            // Mouse events (for desktop preview)
+            container.addEventListener('mousedown', touchStart);
+            container.addEventListener('mouseup', touchEnd);
+            container.addEventListener('mouseleave', touchEnd);
+            container.addEventListener('mousemove', touchMove);
+        }
+
+        function attachCardListeners() {
+            const cards = document.querySelectorAll('.slider-card');
+            cards.forEach((card, index) => {
+                card.removeEventListener('click', handleCardClick);
+                card.addEventListener('click', handleCardClick);
+            });
+
+            // Special handler for add button
+            addCardButton.addEventListener('click', () => {
+                document.getElementById('addModal').classList.remove('hidden');
+            });
+        }
+
+        function handleCardClick(event) {
+            const card = event.currentTarget;
+            const index = Array.from(document.querySelectorAll('.slider-card')).indexOf(card);
+            if (index !== currentIndex && index !== -1) {
+                currentIndex = index;
+                updateSlider();
+            }
+        }
+
+        function touchStart(event) {
+            isDragging = true;
+            startX = getPositionX(event);
+            animationID = requestAnimationFrame(animation);
+        }
+
+        function touchEnd() {
+            isDragging = false;
+            cancelAnimationFrame(animationID);
+
+            const movedBy = currentTranslate - prevTranslate;
+            const cards = document.querySelectorAll('.slider-card');
+
+            if (movedBy < -100 && currentIndex < cards.length - 1) currentIndex += 1;
+            if (movedBy > 100 && currentIndex > 0) currentIndex -= 1;
+
+            updateSlider();
+        }
+
+        function touchMove(event) {
+            if (isDragging) {
+                const currentPosition = getPositionX(event);
+                currentTranslate = prevTranslate + currentPosition - startX;
+            }
+        }
+
+        function getPositionX(event) {
+            return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        }
+
+        function animation() {
+            if (isDragging) {
+                setSliderPosition();
+                requestAnimationFrame(animation);
+            }
+        }
+
+        function setSliderPosition() {
+            wrapper.style.transform = `translateX(${currentTranslate}px)`;
+        }
+
+        function updateSlider(animate = true) {
+            const cards = document.querySelectorAll('.slider-card');
+            const cardWidth = cards[0].offsetWidth + 32; // card width + mx-4 (16*2)
+            const centerOffset = cardWidth / 2;
+
+            currentTranslate = - (currentIndex * cardWidth) - centerOffset;
+            prevTranslate = currentTranslate;
+
+            if (!animate) {
+                wrapper.style.transition = 'none';
+            } else {
+                wrapper.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+            }
+
+            setSliderPosition();
+
+            // Update visual states
+            cards.forEach((card, i) => {
+                if (i === currentIndex) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+
+            // Update dots
+            const dotsArray = document.querySelectorAll('#paginationDots > div');
+            dotsArray.forEach((dot, i) => {
+                if (i === currentIndex) {
+                    dot.style.backgroundColor = '#ff5f6d';
+                } else {
+                    dot.style.backgroundColor = '#e5e7eb';
+                }
+            });
+        }
+
+        function addNewCategory() {
+            const input = document.getElementById('category-name');
+            const categoryName = input.value.trim();
+
+            if (!categoryName) {
+                alert('Please enter a category name');
+                return;
+            }
+
+            // Create new card element before the "Add Custom" button
+            const newCard = document.createElement('div');
+            const gradient = gradients[gradientIndex % gradients.length];
+            gradientIndex++;
+
+            newCard.className = `slider-card ${gradient} w-64 h-96 rounded-[40px] flex flex-col items-center justify-center p-8 shadow-xl mx-4 cursor-pointer`;
+            newCard.innerHTML = `
+        <div class="bg-white rounded-full w-24 h-24 flex items-center justify-center mb-8 shadow-sm">
+          <span class="material-symbols-outlined text-[#4facfe] text-5xl">business</span>
+        </div>
+        <h3 class="text-white font-extrabold text-2xl mb-4 text-center">${escapeHtml(categoryName)}</h3>
+        <p class="text-white text-[15px] leading-snug text-center">
+          Custom business category
+        </p>
+      `;
+
+            // Insert before the "Add Custom" button
+            wrapper.insertBefore(newCard, addCardButton);
+
+            // Add new dot
+            const newDot = document.createElement('div');
+            newDot.className = 'w-2.5 h-2.5 rounded-full bg-gray-300 transition-colors duration-300';
+            dots.appendChild(newDot);
+
+            // Reset and update
+            input.value = '';
+            closeModal();
+
+            // Reattach listeners to all cards
+            attachCardListeners();
+
+            // Navigate to the new card
+            const cards = document.querySelectorAll('.slider-card');
+            currentIndex = cards.length - 2; // -2 because we don't count the "Add Custom" button as index
+            updateSlider();
+        }
+
+        function closeModal() {
+            document.getElementById('addModal').classList.add('hidden');
+            document.getElementById('category-name').value = '';
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Handle initial sizing
+        window.addEventListener('load', init);
+        window.addEventListener('resize', () => updateSlider(false));
+    </script>
+</body>
+
+</html>

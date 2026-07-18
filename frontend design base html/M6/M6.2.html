@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-container": "#002b5b",
+            "outline-variant": "#c4c6d0",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed": "#001d32",
+            "surface-container-lowest": "#ffffff",
+            "on-background": "#011d35",
+            "on-secondary-fixed-variant": "#3f4752",
+            "surface-variant": "#d1e4ff",
+            "surface-bright": "#f8f9ff",
+            "primary-fixed": "#d6e3ff",
+            "inverse-on-surface": "#e9f1ff",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#7594ca",
+            "secondary-fixed": "#dbe3f1",
+            "on-secondary-fixed": "#141c26",
+            "inverse-surface": "#19324b",
+            "surface-container-low": "#eef4ff",
+            "tertiary-fixed-dim": "#aec9e7",
+            "tertiary-fixed": "#cee5ff",
+            "tertiary-container": "#102e45",
+            "surface-container-high": "#dbe9ff",
+            "surface-tint": "#405f91",
+            "on-surface-variant": "#43474f",
+            "on-primary": "#ffffff",
+            "primary": "#001736",
+            "error": "#ba1a1a",
+            "secondary": "#575f6b",
+            "on-tertiary-fixed-variant": "#2e4962",
+            "tertiary": "#00192c",
+            "surface-container-highest": "#d1e4ff",
+            "surface-container": "#e4efff",
+            "on-primary-fixed": "#001b3d",
+            "primary-fixed-dim": "#a9c7ff",
+            "inverse-primary": "#a9c7ff",
+            "on-tertiary-container": "#7b96b2",
+            "on-surface": "#011d35",
+            "surface": "#f8f9ff",
+            "secondary-fixed-dim": "#bfc7d4",
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed-variant": "#264778",
+            "secondary-container": "#dbe3f1",
+            "surface-dim": "#c4dcfd",
+            "on-error-container": "#93000a",
+            "error-container": "#ffdad6",
+            "background": "#f8f9ff",
+            "on-secondary-container": "#5d6571",
+            "outline": "#747780"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "16px",
+            "stack-lg": "24px",
+            "stack-sm": "8px",
+            "margin-mobile": "20px",
+            "stack-md": "16px",
+            "base-unit": "4px"
+          },
+          "fontFamily": {
+            "label-md": ["Manrope"],
+            "body-lg": ["Manrope"],
+            "label-lg": ["Manrope"],
+            "headline-sm": ["Manrope"],
+            "headline-md": ["Manrope"],
+            "headline-lg": ["Manrope"],
+            "body-sm": ["Manrope"],
+            "body-md": ["Manrope"]
+          },
+          "fontSize": {
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar Component -->
+<header class="bg-surface flex items-center justify-between px-margin-mobile h-16 w-full z-50 sticky top-0 border-b border-outline-variant">
+<div class="flex items-center gap-4"><button class="mr-2 p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="location.href='{{DATA:SCREEN:SCREEN_118}}'"><span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span></button>
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="receipt_long">receipt_long</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">DairyKhata</h1>
+</div>
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-transform active:scale-95" data-icon="help_outline">help_outline</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-margin-mobile pt-stack-lg pb-48">
+<!-- Refined Progress Indicator -->
+<div class="mb-stack-lg">
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-headline-sm font-headline-sm text-primary">Delivery Schedule</h2>
+<span class="text-label-md font-label-md text-primary bg-primary-fixed px-2 py-0.5 rounded-full">Step 3 of 3</span>
+</div>
+<div class="flex gap-2 h-1.5 w-full">
+<div class="flex-1 rounded-full bg-primary"></div>
+<div class="flex-1 rounded-full bg-primary"></div>
+<div class="flex-1 rounded-full bg-primary"></div>
+</div>
+</div>
+<!-- Selection Cards -->
+<div class="space-y-stack-md">
+<!-- Daily Option -->
+<label class="block relative cursor-pointer group" onclick="location.href='{{DATA:SCREEN:SCREEN_57}}'">
+<input class="peer hidden" name="schedule_type" type="radio"/>
+<div class="p-5 rounded-2xl border-2 border-outline-variant bg-surface-container-lowest transition-all duration-200 group-hover:border-primary-container peer-checked:border-primary peer-checked:bg-surface-container-low peer-checked:shadow-md flex items-center gap-4">
+<div class="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center text-primary-container peer-checked:bg-primary peer-checked:text-on-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="calendar_today">calendar_today</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Daily</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Automatic entry every single day</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant peer-checked:border-primary flex items-center justify-center">
+<div class="w-3 h-3 rounded-full bg-primary scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+</div>
+</label>
+<!-- Alternate Option -->
+<label class="block relative cursor-pointer group" onclick="location.href='{{DATA:SCREEN:SCREEN_11}}'">
+<input class="peer hidden" name="schedule_type" type="radio"/>
+<div class="p-5 rounded-2xl border-2 border-outline-variant bg-surface-container-lowest transition-all duration-200 group-hover:border-primary-container peer-checked:border-primary peer-checked:bg-surface-container-low peer-checked:shadow-md flex items-center gap-4">
+<div class="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center text-primary-container peer-checked:bg-primary peer-checked:text-on-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="event_repeat">event_repeat</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Alternate</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Entry every other day (Gap of 1)</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant peer-checked:border-primary flex items-center justify-center">
+<div class="w-3 h-3 rounded-full bg-primary scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+</div>
+</label>
+<!-- Custom Option (Selected) -->
+<label class="block relative cursor-pointer group" onclick="location.href='{{DATA:SCREEN:SCREEN_119}}'">
+<input checked="" class="peer hidden" name="schedule_type" type="radio"/>
+<div class="p-5 rounded-2xl border-2 border-primary bg-surface-container-low shadow-md transition-all duration-200 flex items-center gap-4">
+<div class="w-14 h-14 rounded-xl bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" data-icon="edit_calendar">edit_calendar</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Custom</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Select specific delivery days</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+</div>
+</div>
+</label>
+</div>
+<!-- Day Toggle Chips Section -->
+<div class="mt-stack-lg p-6 bg-surface-container-high rounded-2xl border border-outline-variant">
+<p class="font-label-lg text-label-lg text-on-surface mb-stack-md">Select Delivery Days</p>
+<div class="flex justify-between gap-2">
+<!-- Monday -->
+<button class="w-12 h-12 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold text-lg shadow-md transition-transform active:scale-90" onclick="location.href='{{DATA:SCREEN:SCREEN_119}}'">M</button>
+<!-- Tuesday -->
+<button class="w-12 h-12 rounded-full flex items-center justify-center border-2 border-outline-variant bg-surface text-on-surface-variant font-bold text-lg hover:border-primary transition-all active:scale-90" onclick="location.href='{{DATA:SCREEN:SCREEN_119}}'">T</button>
+<!-- Wednesday -->
+<button class="w-12 h-12 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold text-lg shadow-md transition-transform active:scale-90" onclick="location.href='{{DATA:SCREEN:SCREEN_119}}'">W</button>
+<!-- Thursday -->
+<button class="w-12 h-12 rounded-full flex items-center justify-center border-2 border-outline-variant bg-surface text-on-surface-variant font-bold text-lg hover:border-primary transition-all active:scale-90" onclick="location.href='{{DATA:SCREEN:SCREEN_119}}'">T</button>
+<!-- Friday -->
+<button class="w-12 h-12 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold text-lg shadow-md transition-transform active:scale-90" onclick="location.href='{{DATA:SCREEN:SCREEN_119}}'">F</button>
+<!-- Saturday -->
+<button class="w-12 h-12 rounded-full flex items-center justify-center border-2 border-outline-variant bg-surface text-on-surface-variant font-bold text-lg hover:border-primary transition-all active:scale-90" onclick="location.href='{{DATA:SCREEN:SCREEN_119}}'">S</button>
+<!-- Sunday -->
+<button class="w-12 h-12 rounded-full flex items-center justify-center border-2 border-outline-variant bg-surface text-on-surface-variant font-bold text-lg hover:border-primary transition-all active:scale-90" onclick="location.href='{{DATA:SCREEN:SCREEN_119}}'">S</button>
+</div>
+</div>
+<!-- Mini Calendar Preview -->
+<div class="mt-stack-lg p-5 bg-surface-container rounded-2xl border border-outline-variant">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-lg font-label-lg text-on-surface">November Preview</span>
+<div class="flex gap-2">
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-[10px] text-on-surface-variant">Delivering</span>
+</div>
+</div>
+</div>
+<div class="calendar-grid">
+<!-- Calendar dots representation -->
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<!-- Row 2 -->
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<!-- Row 3 -->
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<!-- Row 4 -->
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-primary"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+<div class="aspect-square flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></div></div>
+</div>
+</div>
+<!-- Summary Section -->
+<div class="mt-stack-lg flex items-center justify-between px-2 bg-primary-container/5 p-4 rounded-xl">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-on-surface-variant">Starts: 24 Oct</span>
+<span class="text-body-md font-bold text-primary">Cycle: 30 Days</span>
+</div>
+<div class="bg-primary text-on-primary px-4 py-2 rounded-full text-label-md font-bold">
+        13 Deliveries total
+      </div>
+</div>
+</main>
+<!-- Bottom Action & Navigation -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-surface border-t border-outline-variant pb-safe shadow-2xl">
+<div class="px-margin-mobile py-4">
+<button class="w-full bg-primary text-on-primary font-headline-sm py-4 rounded-2xl shadow-lg active:scale-[0.98] transition-all duration-200" onclick="location.href='{{DATA:SCREEN:SCREEN_58}}'">
+        Continue
+      </button>
+</div>
+<nav class="flex justify-around items-center h-20 px-2">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="menu_book">menu_book</span>
+<span class="font-label-md text-[10px] mt-0.5">Ledger</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container/10 text-primary rounded-xl px-5 py-2 transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="group">group</span>
+<span class="font-label-md text-[10px] mt-0.5">Customers</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-[10px] mt-0.5">Inventory</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="settings">settings</span>
+<span class="font-label-md text-[10px] mt-0.5">Settings</span>
+</div>
+</nav>
+</footer>
+<!-- Background Decorative Element -->
+<div class="fixed top-32 -right-16 opacity-[0.03] pointer-events-none z-0">
+<img alt="Decorative calendar icon" class="w-72 h-72 rotate-12" data-alt="A large, minimalist line-art illustration of a calendar icon. The style is clean and modern, featuring thin navy blue strokes against a pristine white background. The composition is asymmetrical, with soft ambient light casting a very faint shadow, maintaining a professional and serene business software aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1KcC77XQMVveWlwq-yJr0zPE2fRHP-UUHfAbDjU-jvTuboPsBs3V33Yo59ng0sOVp7tKi8rZmcQ8wRxxxGCQX7o_u3zisagP3xdoEEB_cCzKnLTyR2RQ6qcF00--vTxnkXmqWgu_aSJUmtssIveCGAO0I62Rw9J_uspSKcCTHJj8INm49EjDeS5rwOSSwIV66vbEjk21vW9X_v2gqgRMGCPJzivB4-a3QMeWRf4UNd_hHsoFC65XnQ_e5hmT0R1nHv7Zhh25e2uGL"/>
+</div>
+</body></html>

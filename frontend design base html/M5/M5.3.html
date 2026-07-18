@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DairyKhata - Delete Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#405f91",
+                        "inverse-primary": "#a9c7ff",
+                        "primary": "#001736",
+                        "outline": "#747780",
+                        "on-primary-container": "#7594ca",
+                        "surface-variant": "#d1e4ff",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575f6b",
+                        "outline-variant": "#c4c6d0",
+                        "on-tertiary-fixed-variant": "#2e4962",
+                        "surface-container": "#e4efff",
+                        "surface-container-low": "#eef4ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#141c26",
+                        "tertiary": "#00192c",
+                        "on-tertiary-container": "#7b96b2",
+                        "tertiary-fixed": "#cee5ff",
+                        "on-error": "#ffffff",
+                        "on-background": "#011d35",
+                        "surface-dim": "#c4dcfd",
+                        "surface-container-highest": "#d1e4ff",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed-dim": "#aec9e7",
+                        "secondary-fixed-dim": "#bfc7d4",
+                        "inverse-surface": "#19324b",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#002b5b",
+                        "secondary-fixed": "#dbe3f1",
+                        "on-secondary-container": "#5d6571",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#001b3d",
+                        "on-surface-variant": "#43474f",
+                        "on-secondary-fixed-variant": "#3f4752",
+                        "surface": "#f8f9ff",
+                        "primary-fixed": "#d6e3ff",
+                        "surface-bright": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dbe9ff",
+                        "on-tertiary-fixed": "#001d32",
+                        "secondary-container": "#dbe3f1",
+                        "on-primary-fixed-variant": "#264778",
+                        "tertiary-container": "#102e45",
+                        "on-surface": "#011d35",
+                        "inverse-on-surface": "#e9f1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-lg": "24px",
+                        "base-unit": "4px",
+                        "gutter": "16px",
+                        "margin-mobile": "20px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "label-lg": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="flex items-center justify-between px-margin-mobile h-16 w-full z-50 bg-surface border-b border-outline-variant shadow-sm sticky top-0">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-primary" data-icon="receipt_long">receipt_long</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">DairyKhata</h1>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="p-2 rounded-full hover:bg-surface-container-high active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content (Simulated Customer Detail View) -->
+<main class="flex-grow p-margin-mobile max-w-4xl mx-auto w-full">
+<div class="flex flex-col gap-stack-lg">
+<!-- Breadcrumb / Header Section -->
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Customers &gt; Profiles</p>
+<h2 class="font-headline-lg text-headline-lg text-primary">Rajesh Kumar</h2>
+</div>
+<span class="bg-surface-container-high text-on-surface-variant px-stack-md py-1 rounded-full font-label-md text-label-md">ID: #4492</span>
+</div>
+<!-- Bento Grid Stats (Context for Deletion Weight) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<div class="bg-white border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-primary" data-icon="pending_actions">pending_actions</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Outstanding Balance</p>
+<p class="font-headline-sm text-headline-sm text-primary">₹12,450.00</p>
+</div>
+</div>
+<div class="bg-white border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-primary" data-icon="event_note">event_note</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Last Transaction</p>
+<p class="font-headline-sm text-headline-sm text-primary">24 Oct 2023</p>
+</div>
+</div>
+<div class="bg-white border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-primary" data-icon="local_shipping">local_shipping</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Daily Supply</p>
+<p class="font-headline-sm text-headline-sm text-primary">2.5 Liters</p>
+</div>
+</div>
+</div>
+<!-- Transactions / Records Preview -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-stack-md py-stack-sm border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h3 class="font-label-lg text-label-lg text-primary">Recent Ledger Records</h3>
+<button class="text-primary font-label-md text-label-md">View All</button>
+</div>
+<div class="divide-y divide-outline-variant">
+<div class="p-stack-md flex justify-between items-center">
+<div class="flex gap-stack-md items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="water_drop">water_drop</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Milk Supply (Morning)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">25 Oct • 1.5L</p>
+</div>
+</div>
+<p class="font-label-lg text-label-lg text-primary">₹90.00</p>
+</div>
+<div class="p-stack-md flex justify-between items-center">
+<div class="flex gap-stack-md items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="payments">payments</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Partial Payment</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">22 Oct • Cash</p>
+</div>
+</div>
+<p class="font-label-lg text-label-lg text-on-primary-container">-₹500.00</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Confirmation Bottom Sheet Overlay -->
+<div class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-[60] flex flex-col justify-end">
+<!-- Close trigger background -->
+<div class="flex-grow"></div>
+<!-- Bottom Sheet Container -->
+<div class="bg-white rounded-t-3xl p-margin-mobile shadow-2xl border-t border-outline-variant max-w-2xl mx-auto w-full transition-transform transform translate-y-0">
+<!-- Drag Handle -->
+<div class="flex justify-center mb-6">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full opacity-50"></div>
+</div>
+<!-- Content Area -->
+<div class="flex flex-col items-center text-center space-y-stack-md mb-stack-lg">
+<div class="w-16 h-16 bg-error-container text-error rounded-2xl flex items-center justify-center mb-2">
+<span class="material-symbols-outlined !text-4xl" data-icon="delete_forever" style="font-variation-settings: 'FILL' 0;">delete_forever</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Delete Customer Record?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant px-4">
+                    Are you sure you want to delete <span class="font-bold text-primary">Rajesh Kumar</span>? All records will be permanently removed. This action cannot be undone.
+                </p>
+</div>
+<!-- Illustration Area -->
+<div class="w-full flex justify-center mb-stack-lg">
+<div class="relative w-48 h-32 flex items-center justify-center">
+<div class="absolute inset-0 bg-surface-container-low rounded-xl"></div>
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="flex gap-2">
+<div class="w-12 h-2 bg-outline-variant rounded-full"></div>
+<div class="w-6 h-2 bg-outline-variant rounded-full opacity-40"></div>
+</div>
+<div class="w-24 h-2 bg-outline-variant rounded-full"></div>
+<div class="w-16 h-2 bg-error opacity-20 rounded-full mt-2"></div>
+</div>
+<!-- Minimalist spot illustration -->
+<div class="absolute -right-4 -top-4 w-12 h-12 text-error opacity-20">
+<span class="material-symbols-outlined !text-5xl" data-icon="warning">warning</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3 sm:flex-row-reverse sm:gap-4 pb-safe">
+<button class="w-full sm:flex-1 py-4 px-6 bg-error text-white font-label-lg text-label-lg rounded-xl shadow-sm hover:brightness-110 active:scale-95 transition-all">
+                    Confirm Delete
+                </button>
+<button class="w-full sm:flex-1 py-4 px-6 border border-outline-variant text-primary font-label-lg text-label-lg rounded-xl hover:bg-surface-container-high active:scale-95 transition-all">
+                    Cancel
+                </button>
+</div>
+</div>
+</div>
+<!-- Background Navigation Shell (Suppressed visually by Overlay, but present for structure) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface h-20 px-2 pb-safe border-t border-outline-variant shadow-sm pointer-events-none opacity-20">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined text-xl" data-icon="menu_book">menu_book</span>
+<span class="font-label-md text-label-md">Ledger</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1">
+<span class="material-symbols-outlined text-xl" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Customers</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined text-xl" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</div>
+</nav>
+</body></html>

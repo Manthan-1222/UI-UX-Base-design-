@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#dbe9ff",
+                        "outline-variant": "#c4c6d0",
+                        "primary": "#001736",
+                        "secondary-fixed-dim": "#bfc7d4",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "on-tertiary-fixed-variant": "#2e4962",
+                        "tertiary": "#00192c",
+                        "surface-container": "#e4efff",
+                        "inverse-on-surface": "#e9f1ff",
+                        "inverse-surface": "#19324b",
+                        "on-primary-fixed-variant": "#264778",
+                        "on-secondary-fixed-variant": "#3f4752",
+                        "primary-fixed": "#d6e3ff",
+                        "background": "#f8f9ff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-fixed": "#001d32",
+                        "on-tertiary-container": "#7b96b2",
+                        "surface-variant": "#d1e4ff",
+                        "on-secondary-fixed": "#141c26",
+                        "secondary": "#575f6b",
+                        "on-primary-fixed": "#001b3d",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#dbe3f1",
+                        "on-secondary-container": "#5d6571",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#011d35",
+                        "surface-dim": "#c4dcfd",
+                        "surface-container-highest": "#d1e4ff",
+                        "surface-container-low": "#eef4ff",
+                        "tertiary-container": "#102e45",
+                        "tertiary-fixed": "#cee5ff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#aec9e7",
+                        "primary-container": "#002b5b",
+                        "secondary-container": "#dbe3f1",
+                        "on-background": "#011d35",
+                        "outline": "#747780",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#7594ca",
+                        "on-surface-variant": "#43474f",
+                        "surface-tint": "#405f91",
+                        "inverse-primary": "#a9c7ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "stack-sm": "8px",
+                        "stack-lg": "24px",
+                        "margin-mobile": "20px",
+                        "base-unit": "4px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .semi-circle-btn {
+            border-top-left-radius: 60px;
+            border-top-right-radius: 60px;
+            background: linear-gradient(135deg, #002b5b 0%, #405f91 100%);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface min-h-screen pb-40">
+    <!-- Top App Bar (Shared Component Strategy) -->
+
+    <main class="px-margin-mobile space-y-stack-lg">
+        <!-- Profile Section -->
+        <section class="flex flex-col items-center py-stack-lg">
+            <div class="relative w-24 h-24 mb-stack-md">
+                <img alt="Rajesh Kumar"
+                    class="w-full h-full rounded-full object-cover border-4 border-surface-container-high shadow-sm"
+                    data-alt="A professional portrait of an Indian male dairy farmer named Rajesh, smiling warmly against a soft-focus background of a clean, modern dairy farm facility. The lighting is bright and natural, emphasizing a trustworthy and successful persona. The overall aesthetic is clean and high-fidelity, aligning with a premium minimalist professional app design."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTKgmZqum6sJaInjyb-OZ4IZcyOavVu_F8Ux7cjH88LLNJC3tEpy0OOy4BWeiAd0PeodcDZnKx5OsfAbxKNadTofoyeQbr41zaJaTqHOeX_rrLC6igZxUzA4xCU8WH5sKd0h7bXCNg0fO900G9q_1Y-ldRFm0fMpXaICuzPQIRvsraeLTxY39LGlZkKeNahV9rfo6laHXOLVJq4o0NkTKxXP4MexQIlrup5xkMHyoOGKhlHxtfs1BoEErhRIFRomDACwPNOou7DInW">
+                <div class="absolute bottom-0 right-0 bg-primary-container p-1 rounded-full border-2 border-surface">
+                    <span class="material-symbols-outlined text-on-primary-container text-[18px]"
+                        style="font-variation-settings: 'FILL' 1;">verified</span>
+                </div>
+            </div>
+            <h2 class="font-headline-md text-headline-md text-primary">Rajesh Kumar</h2>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Farm ID: DK-8829 | <span
+                    class="text-on-tertiary-fixed-variant font-semibold">Premium Plan</span></p>
+        </section>
+        <!-- Settings Cards List -->
+        <div class="space-y-stack-md">
+            <!-- Security -->
+            <div
+                class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex items-center justify-between hover:bg-surface-container-low transition-all cursor-pointer">
+                <div class="flex items-center space-x-stack-md">
+                    <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">lock</span>
+                    </div>
+                    <div>
+                        <h3 class="font-label-lg text-label-lg text-on-surface">Edit Login Credentials</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Manage your security</p>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-outline">chevron_right</span>
+            </div>
+            <!-- Notifications -->
+            <a class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex items-center justify-between hover:bg-surface-container-low transition-all cursor-pointer block"
+                href="{{DATA:SCREEN:SCREEN_124}}">
+                <div class="flex items-center space-x-stack-md">
+                    <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">notifications</span>
+                    </div>
+                    <div>
+                        <h3 class="font-label-lg text-label-lg text-on-surface">Notification Settings</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Configure alerts and news</p>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-outline">chevron_right</span>
+            </a>
+            <!-- App Theme -->
+            <div
+                class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex items-center justify-between hover:bg-surface-container-low transition-all cursor-pointer">
+                <div class="flex items-center space-x-stack-md">
+                    <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">palette</span>
+                    </div>
+                    <div>
+                        <h3 class="font-label-lg text-label-lg text-on-surface">App Theme</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Light Mode</p>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-outline">chevron_right</span>
+            </div>
+            <!-- App Language -->
+            <div
+                class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex items-center justify-between hover:bg-surface-container-low transition-all cursor-pointer">
+                <div class="flex items-center space-x-stack-md">
+                    <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">language</span>
+                    </div>
+                    <div>
+                        <h3 class="font-label-lg text-label-lg text-on-surface">App Language</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">English</p>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-outline">chevron_right</span>
+            </div>
+            <!-- Subscription -->
+            <div
+                class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex items-center justify-between hover:bg-surface-container-low transition-all cursor-pointer">
+                <div class="flex items-center space-x-stack-md">
+                    <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary"
+                            style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                    </div>
+                    <div>
+                        <h3 class="font-label-lg text-label-lg text-on-surface">Subscription Plan</h3>
+                        <p class="font-body-sm text-body-sm text-primary font-semibold">Pro Monthly Plan</p>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-outline">chevron_right</span>
+            </div>
+        </div>
+    </main>
+    <!-- Floating Action Area -->
+    <div class="fixed bottom-[88px] left-0 w-full flex justify-center px-margin-mobile z-40">
+        <button
+            class="semi-circle-btn w-full max-w-sm py-5 px-8 flex flex-col items-center justify-center shadow-xl active:scale-95 transition-all duration-150 group">
+            <span class="material-symbols-outlined text-on-primary mb-1">category</span>
+            <span class="font-label-lg text-on-primary text-center">Change Business Category</span>
+        </button>
+    </div>
+    <!-- Bottom Navigation Bar (Shared Component Strategy) -->
+    <nav
+        class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-3 bg-surface-container-lowest border-t border-outline-variant shadow-sm">
+        <div
+            class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container transition-all">
+            <span class="material-symbols-outlined">home</span>
+            <span class="font-label-md text-label-md">Home</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container transition-all">
+            <span class="material-symbols-outlined">local_shipping</span>
+            <span class="font-label-md text-label-md">Deliveries</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container transition-all">
+            <span class="material-symbols-outlined">calendar_month</span>
+            <span class="font-label-md text-label-md">Subscription</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+            <span class="font-label-md text-label-md">Profile</span>
+        </div>
+    </nav>
+
+
+</body>
+
+</html>

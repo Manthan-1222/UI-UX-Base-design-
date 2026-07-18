@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DairyKhata - Master App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f8f9ff;
+            color: #011d35;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Colors */
+        :root {
+            --primary: #001736;
+            --on-primary: #ffffff;
+            --primary-container: #002b5b;
+            --primary-fixed: #d6e3ff;
+            --primary-fixed-dim: #a9c7ff;
+            --surface: #f8f9ff;
+            --surface-variant: #d1e4ff;
+            --surface-container-lowest: #ffffff;
+            --surface-container-low: #eef4ff;
+            --surface-container: #e4efff;
+            --surface-container-high: #dbe9ff;
+            --outline: #747780;
+            --outline-variant: #c4c6d0;
+            --on-surface-variant: #43474f;
+            --secondary: #575f6b;
+            --secondary-fixed: #dbe3f1;
+            --secondary-container: #dbe3f1;
+            --tertiary-fixed: #cee5ff;
+            --error: #ba1a1a;
+            --error-container: #ffdad6;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Manrope', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--on-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-container);
+        }
+
+        .btn-secondary {
+            background: var(--surface-container-high);
+            color: var(--primary);
+            border: 1px solid var(--outline-variant);
+        }
+
+        .btn-secondary:hover {
+            background: var(--surface-container);
+        }
+
+        .btn-danger {
+            background: var(--error);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #8b1414;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .status-active {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .status-paused {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #747780;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 14px;
+        }
+
+        .avatar-1 {
+            background: #d6e3ff;
+            color: #001736;
+        }
+
+        .avatar-2 {
+            background: #dbe3f1;
+            color: #575f6b;
+        }
+
+        .avatar-3 {
+            background: #002b5b;
+            color: white;
+        }
+
+        .avatar-4 {
+            background: #cee5ff;
+            color: #00192c;
+        }
+
+        .avatar-5 {
+            background: #dbe3f1;
+            color: #575f6b;
+        }
+
+        .avatar-6 {
+            background: #d6e3ff;
+            color: #001736;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 23, 54, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-top: 1px solid var(--outline-variant);
+            border-radius: 24px 24px 0 0;
+            padding: 24px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .drag-handle {
+            width: 48px;
+            height: 6px;
+            background: var(--outline-variant);
+            border-radius: 3px;
+            margin: 0 auto 24px;
+            opacity: 0.5;
+        }
+
+        .tab-badge {
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 9999px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 4px;
+        }
+
+        .tab-inactive .tab-badge {
+            background: var(--on-surface-variant);
+        }
+
+        .grid-cols {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-cols {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Views */
+        .view {
+            padding-bottom: 120px;
+        }
+
+        .view.hidden {
+            display: none;
+        }
+
+        /* Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: white;
+            border-top: 1px solid var(--outline-variant);
+            display: flex;
+            justify-content: space-around;
+            z-index: 50;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            border-radius: 12px;
+            margin: 8px;
+            transition: all 0.3s ease;
+            color: var(--on-surface-variant);
+        }
+
+        .nav-item.active {
+            background: var(--secondary-container);
+            color: var(--secondary);
+        }
+
+        .nav-item:hover {
+            background: var(--surface-container-high);
+        }
+
+        .nav-label {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            height: 64px;
+            background: white;
+            border-bottom: 1px solid var(--outline-variant);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 40;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--on-surface-variant);
+        }
+
+        .icon-btn:hover {
+            background: var(--surface-container-high);
+        }
+
+        /* Search Bar */
+        .search-bar {
+            position: relative;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 16px 12px 40px;
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 23, 54, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--on-surface-variant);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            padding: 4px;
+            background: var(--secondary-container);
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 12px;
+            background: transparent;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tab.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab.inactive {
+            color: var(--on-surface-variant);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .badge-fixed {
+            background: var(--surface-variant);
+            color: var(--primary);
+        }
+
+        .badge-ondemand {
+            background: var(--secondary-container);
+            color: var(--on-surface-variant);
+        }
+
+        /* FAB */
+        .fab {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(0, 23, 54, 0.2);
+            transition: all 0.3s ease;
+            z-index: 30;
+            font-size: 28px;
+        }
+
+        .fab:hover {
+            background: var(--primary-container);
+            transform: scale(1.05);
+        }
+
+        .fab:active {
+            transform: scale(0.95);
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            color: var(--outline-variant);
+            margin-bottom: 16px;
+        }
+
+        .empty-text {
+            font-size: 16px;
+            color: var(--on-surface-variant);
+        }
+
+        /* Detail View */
+        .detail-header {
+            background: white;
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detail-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 128px;
+            height: 128px;
+            background: rgba(0, 43, 91, 0.05);
+            border-radius: 0 0 0 128px;
+        }
+
+        .detail-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .detail-header-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .detail-header-title h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .detail-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .detail-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            color: var(--on-surface-variant);
+        }
+
+        .detail-info-item .material-symbols-outlined {
+            flex-shrink: 0;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--on-surface-variant);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .stat-buttons button {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Activity */
+        .activity-list {
+            background: white;
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .activity-header {
+            padding: 12px 16px;
+            background: #f8f9ff;
+            border-bottom: 1px solid var(--outline-variant);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .activity-header h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .activity-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(196, 198, 208, 0.3);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--surface-variant);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #011d35;
+        }
+
+        .activity-desc {
+            font-size: 14px;
+            color: var(--on-surface-variant);
+            margin-top: 4px;
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: var(--on-surface-variant);
+        }
+
+        /* Media Queries */
+        @media (max-width: 640px) {
+            .detail-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .detail-actions button {
+                width: 100%;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                border-radius: 16px 16px 0 0;
+            }
+        }
+
+        .back-btn {
+            padding: 8px 12px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .main-content {
+            padding: 0 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 23, 54, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .modal-overlay.hidden {
+            display: none !important;
+        }
+
+        .modal-content {
+            background: white;
+            border-top: 1px solid var(--outline-variant);
+            border-radius: 24px 24px 0 0;
+            padding: 24px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .drag-handle {
+            width: 48px;
+            height: 6px;
+            background: var(--outline-variant);
+            border-radius: 3px;
+            margin: 0 auto 24px;
+            opacity: 0.5;
+        }
+
+        label input[type="radio"]:checked+.customerTypeOption {
+            border-color: var(--primary);
+            background: rgba(0, 23, 54, 0.05);
+        }
+
+        label input[type="radio"]:checked+.customerTypeOption .material-symbols-outlined {
+            color: var(--primary);
+        }
+
+        label input[type="radio"]:checked+.customerTypeOption p:first-of-type {
+            color: var(--primary);
+        }
+
+        #fullNameInput:focus,
+        #phoneInput:focus,
+        #addressInput:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 4px rgba(0, 23, 54, 0.1) !important;
+        }
+
+        .new-customer-highlight {
+            animation: highlightPulse 2s ease-in-out;
+        }
+
+        @keyframes highlightPulse {
+            0% {
+                background-color: rgba(0, 23, 54, 0.1);
+                border-color: var(--primary);
+                box-shadow: 0 0 16px rgba(0, 23, 54, 0.3);
+            }
+
+            50% {
+                background-color: rgba(0, 23, 54, 0.05);
+                box-shadow: 0 4px 12px rgba(0, 23, 54, 0.2);
+            }
+
+            100% {
+                background-color: transparent;
+                border-color: var(--outline-variant);
+                box-shadow: 0 0px 0px rgba(0, 23, 54, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <button id="backBtn" class="back-btn hidden" onclick="goBack()">←</button>
+            <div class="header-logo">
+                <span style="font-size: 20px;">📝</span>
+                <span>DairyKhata</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="icon-btn" onclick="alert('Search feature')">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+            <button class="icon-btn" style="position: relative;" onclick="alert('Notifications')">
+                <span class="material-symbols-outlined">notifications</span>
+                <div
+                    style="position: absolute; top: 8px; right: 8px; width: 8px; height: 8px; background: #ba1a1a; border-radius: 50%;">
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Customers View -->
+        <div id="customersView" class="view">
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <span class="material-symbols-outlined search-icon">search</span>
+                <input type="text" id="searchInput" placeholder="Search by name or phone..."
+                    onkeyup="filterCustomers()">
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" onclick="setFilter('all')">
+                    All
+                    <span class="tab-badge" id="allCount">6</span>
+                </button>
+                <button class="tab inactive" onclick="setFilter('fixed')">
+                    Fixed
+                    <span class="tab-badge" id="fixedCount">3</span>
+                </button>
+                <button class="tab inactive" onclick="setFilter('ondemand')">
+                    On-Demand
+                    <span class="tab-badge" id="ondemandCount">3</span>
+                </button>
+            </div>
+
+            <!-- Customer Grid -->
+            <div id="customerGrid" class="grid-cols">
+                <!-- Grid items populated by JS -->
+            </div>
+        </div>
+
+        <!-- Customer Detail View -->
+        <div id="detailView" class="view hidden">
+            <!-- Detail content populated by JS -->
+        </div>
+
+        <!-- Edit Customer View -->
+        <div id="editView" class="view hidden" style="padding-bottom: 120px;">
+            <!-- Edit form populated by JS -->
+        </div>
+
+        <!-- Ledger View -->
+        <div id="ledgerView" class="view hidden">
+            <h1 style="font-size: 32px; font-weight: 700; margin-bottom: 24px; color: var(--primary);">Ledger</h1>
+            <div class="empty-state">
+                <div class="empty-icon">📖</div>
+                <div class="empty-text">Ledger entries will appear here</div>
+            </div>
+        </div>
+
+        <!-- Inventory View -->
+        <div id="inventoryView" class="view hidden">
+            <h1 style="font-size: 32px; font-weight: 700; margin-bottom: 24px; color: var(--primary);">Inventory</h1>
+            <div class="empty-state">
+                <div class="empty-icon">📦</div>
+                <div class="empty-text">Inventory management coming soon</div>
+            </div>
+        </div>
+
+        <!-- Settings View -->
+        <div id="settingsView" class="view hidden">
+            <h1 style="font-size: 32px; font-weight: 700; margin-bottom: 24px; color: var(--primary);">Settings</h1>
+            <div class="empty-state">
+                <div class="empty-icon">⚙️</div>
+                <div class="empty-text">Settings and preferences coming soon</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAB Button -->
+    <button class="fab" id="fabBtn" onclick="showAddCustomerModal()">
+        <span class="material-symbols-outlined">add</span>
+    </button>
+
+    <!-- Add Customer Modal -->
+    <div id="addCustomerModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="drag-handle"></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h3 style="font-size: 20px; font-weight: 600; color: #011d35;">Add Customer</h3>
+            </div>
+
+            <form id="addCustomerForm" onsubmit="handleAddCustomer(event)" novalidate
+                style="display: flex; flex-direction: column; gap: 16px;">
+                <!-- Customer Type Selector -->
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                    <!-- Fixed Customer -->
+                    <div id="typeFixed" onclick="selectCustomerType('fixed')"
+                        style="cursor: pointer; padding: 16px; border: 2px solid var(--primary); border-radius: 12px; background: rgba(0,23,54,0.05); transition: all 0.3s ease; display: flex; flex-direction: column; gap: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <span class="material-symbols-outlined" id="iconFixed"
+                                style="color: var(--primary);">calendar_today</span>
+                            <div id="dotFixed"
+                                style="width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--primary); background: var(--primary); display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 6px; height: 6px; background: white; border-radius: 50%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p id="labelFixed" style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">
+                                Fixed Customer</p>
+                            <p style="font-size: 14px; color: var(--on-surface-variant); line-height: 1.3;">Auto daily
+                                entries from delivery setup</p>
+                        </div>
+                    </div>
+
+                    <!-- On-Demand Customer -->
+                    <div id="typeOndemand" onclick="selectCustomerType('ondemand')"
+                        style="cursor: pointer; padding: 16px; border: 2px solid var(--outline-variant); border-radius: 12px; background: white; transition: all 0.3s ease; display: flex; flex-direction: column; gap: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <span class="material-symbols-outlined" id="iconOndemand"
+                                style="color: var(--on-surface-variant);">touch_app</span>
+                            <div id="dotOndemand"
+                                style="width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--outline-variant); display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 6px; height: 6px; background: transparent; border-radius: 50%;">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p id="labelOndemand"
+                                style="font-weight: 600; color: var(--on-surface-variant); margin-bottom: 4px;">
+                                On-Demand</p>
+                            <p style="font-size: 14px; color: var(--on-surface-variant); line-height: 1.3;">Manual entry
+                                creation each day</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hidden radio inputs to carry the value -->
+                <input type="radio" name="customerType" value="fixed" id="radioFixed" checked style="display:none;">
+                <input type="radio" name="customerType" value="ondemand" id="radioOndemand" style="display:none;">
+
+                <!-- Full Name -->
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label
+                        style="font-size: 12px; color: var(--on-surface-variant); font-weight: 600; margin-left: 4px;">Full
+                        Name</label>
+                    <input type="text" id="fullNameInput" placeholder="e.g. Rahul Sharma"
+                        style="width: 100%; background: white; border: 1px solid var(--outline-variant); border-radius: 12px; padding: 12px 16px; font-family: Manrope, sans-serif; font-size: 16px; outline: none; transition: all 0.3s ease;">
+                    <div id="nameError"
+                        style="display: none; color: #ba1a1a; font-size: 12px; margin-top: 4px; align-items: center; gap: 6px;">
+                        <span class="material-symbols-outlined" style="font-size: 16px;">error</span>
+                        <span id="nameErrorMsg"></span>
+                    </div>
+                </div>
+
+                <!-- Phone Number -->
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label
+                        style="font-size: 12px; color: var(--on-surface-variant); font-weight: 600; margin-left: 4px;">Phone
+                        Number</label>
+                    <input type="tel" id="phoneInput" placeholder="+91 98765 43210"
+                        style="width: 100%; background: white; border: 1px solid var(--outline-variant); border-radius: 12px; padding: 12px 16px; font-family: Manrope, sans-serif; font-size: 16px; outline: none; transition: all 0.3s ease;">
+                    <div id="phoneError"
+                        style="display: none; color: #ba1a1a; font-size: 12px; margin-top: 4px; align-items: center; gap: 6px;">
+                        <span class="material-symbols-outlined" style="font-size: 16px;">error</span>
+                        <span id="phoneErrorMsg"></span>
+                    </div>
+                </div>
+
+                <!-- Address -->
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label
+                        style="font-size: 12px; color: var(--on-surface-variant); font-weight: 600; margin-left: 4px;">Address</label>
+                    <textarea id="addressInput" placeholder="Flat No, Wing, Society Name, Area..."
+                        style="width: 100%; background: white; border: 1px solid var(--outline-variant); border-radius: 12px; padding: 12px 16px; font-family: Manrope, sans-serif; font-size: 16px; outline: none; transition: all 0.3s ease; resize: none;"
+                        rows="3"></textarea>
+                    <div id="addressError"
+                        style="display: none; color: #ba1a1a; font-size: 12px; margin-top: 4px; align-items: center; gap: 6px;">
+                        <span class="material-symbols-outlined" style="font-size: 16px;">error</span>
+                        <span id="addressErrorMsg"></span>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+                    <button type="submit"
+                        style="width: 100%; background: var(--primary); color: white; padding: 16px; border-radius: 12px; border: none; font-family: Manrope, sans-serif; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-size: 14px;">
+                        Save Customer Profile
+                    </button>
+                    <button type="button" onclick="closeAddCustomerModal()"
+                        style="width: 100%; background: transparent; color: var(--primary); padding: 12px; border-radius: 12px; border: none; font-family: Manrope, sans-serif; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-size: 14px;">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="switchView('customers')">
+            <span class="material-symbols-outlined">menu_book</span>
+            <span class="nav-label">Ledger</span>
+        </div>
+        <div class="nav-item" onclick="switchView('customers')">
+            <span class="material-symbols-outlined">group</span>
+            <span class="nav-label">Customers</span>
+        </div>
+        <div class="nav-item" onclick="switchView('inventory')">
+            <span class="material-symbols-outlined">inventory_2</span>
+            <span class="nav-label">Inventory</span>
+        </div>
+        <div class="nav-item" onclick="switchView('settings')">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="nav-label">Settings</span>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="drag-handle"></div>
+            <div
+                style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px;">
+                <div
+                    style="width: 64px; height: 64px; background: #ffdad6; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; color: #ba1a1a; font-size: 32px;">
+                    🗑️
+                </div>
+                <h3 style="font-size: 20px; font-weight: 600; color: var(--primary); margin-bottom: 12px;">Delete
+                    Customer Record?</h3>
+                <p style="font-size: 16px; color: var(--on-surface-variant); padding: 0 16px;">
+                    Are you sure you want to delete <span id="deleteCustomerName"
+                        style="font-weight: 600; color: var(--primary);"></span>? All records will be permanently
+                    removed. This action cannot be undone.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div
+                    style="width: 192px; height: 128px; background: #eef4ff; border-radius: 16px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--outline-variant); font-size: 48px;">
+                    ⚠️
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button class="btn btn-danger" style="width: 100%; padding: 16px;" onclick="deleteConfirmed()">
+                    Confirm Delete
+                </button>
+                <button class="btn btn-secondary" style="width: 100%; padding: 16px;" onclick="closeDeleteModal()">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock Data
+        const customersData = [
+            {
+                id: 1,
+                name: 'John Doe',
+                phone: '+91 98765 43210',
+                type: 'fixed',
+                location: 'House No. 42, Green Valley Apartments, Block C, Sector 15',
+                status: 'active',
+                avatar: 'JD',
+                avatarClass: 'avatar-1',
+                balance: 1240,
+                dailySupply: '2.0L',
+                morningSupply: '1.5L',
+                eveningSupply: '0.5L',
+                joined: 'Oct 12, 2023',
+                transactions: [
+                    { type: 'supply', title: 'Delivered: 2.0L Buffalo Milk', desc: 'Morning slot completed by Delivery Boy Arjun', date: 'Today', amount: 90 },
+                    { type: 'payment', title: 'Payment Received: ₹500', desc: 'Via UPI - Transaction ID: #9204910', date: 'Oct 24', amount: -500 }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Rajesh Kumar',
+                phone: '+91 88888 77777',
+                type: 'fixed',
+                location: 'B-402, Skyline Towers, New Town Extension',
+                status: 'paused',
+                avatar: 'RK',
+                avatarClass: 'avatar-2',
+                balance: 12450,
+                dailySupply: '2.5L',
+                morningSupply: '1.5L',
+                eveningSupply: '1.0L',
+                joined: 'Sep 15, 2023',
+                transactions: [
+                    { type: 'supply', title: 'Milk Supply (Morning)', desc: '25 Oct • 1.5L', date: '25 Oct', amount: 90 },
+                    { type: 'payment', title: 'Partial Payment', desc: '22 Oct • Cash', date: '22 Oct', amount: -500 }
+                ]
+            },
+            {
+                id: 3,
+                name: 'Vikram Singh',
+                phone: '+91 99900 11122',
+                type: 'fixed',
+                location: 'Quarter 12, Police Housing Complex, Civil Lines',
+                status: 'active',
+                avatar: 'VS',
+                avatarClass: 'avatar-3',
+                balance: 850,
+                dailySupply: '1.5L',
+                morningSupply: '1.0L',
+                eveningSupply: '0.5L',
+                joined: 'Sep 10, 2023',
+                transactions: [
+                    { type: 'supply', title: 'Delivered: 1.5L Cow Milk', desc: 'Morning slot - Regular delivery', date: 'Today', amount: 75 },
+                    { type: 'payment', title: 'Payment Received: ₹300', desc: 'Via Cash', date: 'Oct 20', amount: -300 }
+                ]
+            },
+            {
+                id: 4,
+                name: 'Suresh Mehra',
+                phone: '+91 98765 00000',
+                type: 'ondemand',
+                location: 'Sector 22, Green Park',
+                status: 'active',
+                avatar: 'SM',
+                avatarClass: 'avatar-4',
+                balance: 650,
+                dailySupply: '1.0L',
+                joined: 'Oct 5, 2023',
+                transactions: [
+                    { type: 'supply', title: 'Delivered: 1.0L Buffalo Milk', desc: 'On-demand order', date: 'Today', amount: 50 }
+                ]
+            },
+            {
+                id: 5,
+                name: 'Priya Das',
+                phone: '+91 90000 11111',
+                type: 'ondemand',
+                location: 'Flat 5A, Sunrise Apts',
+                status: 'active',
+                avatar: 'PD',
+                avatarClass: 'avatar-5',
+                balance: 450,
+                dailySupply: '0.5L',
+                joined: 'Oct 8, 2023',
+                transactions: [
+                    { type: 'supply', title: 'Delivered: 0.5L Cow Milk', desc: 'On-demand order', date: 'Oct 24', amount: 35 }
+                ]
+            },
+            {
+                id: 6,
+                name: 'Rahul Verma',
+                phone: '+91 88888 22222',
+                type: 'ondemand',
+                location: 'House 15, Block B',
+                status: 'active',
+                avatar: 'RV',
+                avatarClass: 'avatar-6',
+                balance: 320,
+                dailySupply: '0.75L',
+                joined: 'Oct 10, 2023',
+                transactions: [
+                    { type: 'supply', title: 'Delivered: 0.75L Cow Milk', desc: 'On-demand order', date: 'Oct 23', amount: 45 }
+                ]
+            }
+        ];
+
+        let customers = [...customersData];
+        let currentFilter = 'all';
+        let currentView = 'customers';
+        let selectedCustomer = null;
+
+        let newCustomerId = null; // Track newly added customer for highlighting
+
+        function renderCustomers() {
+            const filtered = customers.filter(c => {
+                const matchesFilter = currentFilter === 'all' || c.type === currentFilter;
+                const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+                const matchesSearch = c.name.toLowerCase().includes(searchTerm) || c.phone.includes(searchTerm);
+                return matchesFilter && matchesSearch;
+            });
+
+            const grid = document.getElementById('customerGrid');
+            grid.innerHTML = filtered.map(c => `
+                <div class="card ${newCustomerId === c.id ? 'new-customer-highlight' : ''}" onclick="showCustomerDetail(${c.id})" style="cursor: pointer; position: relative;">
+                    ${newCustomerId === c.id ? '<div style="position: absolute; top: 8px; right: 8px; background: #10b981; color: white; padding: 4px 12px; border-radius: 9999px; font-size: 10px; font-weight: 700;">NEW</div>' : ''}
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div class="avatar ${c.avatarClass}">${c.avatar}</div>
+                            <div>
+                                <h3 style="font-size: 20px; font-weight: 600; color: var(--primary); margin-bottom: 4px;">${c.name}</h3>
+                                <p style="font-size: 14px; color: var(--on-surface-variant);">${c.phone}</p>
+                            </div>
+                        </div>
+                        <span class="badge ${c.type === 'fixed' ? 'badge-fixed' : 'badge-ondemand'}">
+                            ${c.type === 'fixed' ? 'FIXED' : 'ON-DEMAND'}
+                        </span>
+                    </div>
+
+                    <div style="display: flex; align-items: flex-start; gap: 8px; padding: 12px 0; margin-bottom: 12px;">
+                        <span class="material-symbols-outlined" style="color: var(--on-surface-variant); font-size: 16px;">location_on</span>
+                        <p style="font-size: 14px; color: var(--on-surface-variant); line-height: 1.4;">${c.location}</p>
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--outline-variant);">
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span class="status-${c.status === 'active' ? 'active' : 'paused'}"></span>
+                            <span style="font-size: 12px; font-weight: 600; color: ${c.status === 'active' ? '#10b981' : '#747780'};">
+                                ${c.status === 'active' ? 'Active' : 'Paused'}
+                            </span>
+                        </div>
+                        ${c.type === 'fixed' ? `<span style="font-size: 11px; font-weight: 600; background: var(--primary-fixed); color: var(--primary); padding: 4px 8px; border-radius: 8px;">${c.dailySupply}</span>` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            // Clear the highlight after animation
+            setTimeout(() => {
+                newCustomerId = null;
+            }, 2000);
+
+            updateCounts();
+        }
+
+        function updateCounts() {
+            document.getElementById('allCount').textContent = customers.length;
+            document.getElementById('fixedCount').textContent = customers.filter(c => c.type === 'fixed').length;
+            document.getElementById('ondemandCount').textContent = customers.filter(c => c.type === 'ondemand').length;
+        }
+
+        function setFilter(filter) {
+            currentFilter = filter;
+
+            // Update tab styling
+            document.querySelectorAll('.tab').forEach(t => {
+                t.classList.remove('active', 'inactive');
+            });
+
+            // Find and activate the correct tab
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(t => {
+                const isFixed = t.textContent.includes('Fixed');
+                const isOnDemand = t.textContent.includes('On-Demand');
+                const isAll = t.textContent.includes('All');
+
+                if ((filter === 'fixed' && isFixed) ||
+                    (filter === 'ondemand' && isOnDemand) ||
+                    (filter === 'all' && isAll)) {
+                    t.classList.add('active');
+                } else {
+                    t.classList.add('inactive');
+                }
+            });
+
+            renderCustomers();
+        }
+
+        function filterCustomers() {
+            renderCustomers();
+        }
+
+        function showCustomerDetail(id) {
+            selectedCustomer = customers.find(c => c.id === id);
+            renderDetailView();
+            switchView('customers');
+            document.getElementById('backBtn').classList.remove('hidden');
+            document.getElementById('customersView').classList.add('hidden');
+            document.getElementById('detailView').classList.remove('hidden');
+            document.getElementById('fabBtn').classList.add('hidden');
+            currentView = 'detail';
+        }
+
+        function renderDetailView() {
+            const c = selectedCustomer;
+            const detailView = document.getElementById('detailView');
+            detailView.innerHTML = `
+                <div class="detail-header">
+                    <div class="detail-header-top">
+                        <div class="detail-header-title">
+                            <h1>${c.name}</h1>
+                            <span class="badge ${c.type === 'fixed' ? 'badge-fixed' : 'badge-ondemand'}" style="font-size: 12px; padding: 6px 12px;">
+                                ${c.type === 'fixed' ? 'Fixed' : 'On-Demand'}
+                            </span>
+                        </div>
+                        <div class="detail-actions">
+                            <button class="btn btn-secondary" onclick="showEditView(${c.id})">
+                                <span class="material-symbols-outlined" style="font-size: 16px;">edit</span>
+                                Edit
+                            </button>
+                            <button class="btn btn-secondary" onclick="showDeleteModal()" style="color: #ba1a1a; border-color: rgba(186, 26, 26, 0.2);">
+                                <span class="material-symbols-outlined" style="font-size: 16px;">delete</span>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="detail-info">
+                        <div class="detail-info-item">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">call</span>
+                            <p>${c.phone}</p>
+                        </div>
+                        <div class="detail-info-item">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">location_on</span>
+                            <p>${c.location}</p>
+                        </div>
+                        <div class="detail-info-item">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">calendar_today</span>
+                            <p>Joined ${c.joined}</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--outline-variant);">
+                        <button style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; font-family: Manrope, sans-serif;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 48px; height: 48px; border-radius: 8px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;">
+                                    <span class="material-symbols-outlined" style="color: white;">local_shipping</span>
+                                </div>
+                                <div style="text-align: left;">
+                                    <p style="font-size: 12px; color: #a9c7ff;">Customer Logistics</p>
+                                    <p style="font-size: 16px; font-weight: 600; color: white;">View Delivery Setup</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined" style="color: white;">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card" style="grid-column: span 2;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <span class="stat-label">Current Balance</span>
+                            <span class="material-symbols-outlined" style="color: var(--primary);">account_balance_wallet</span>
+                        </div>
+                        <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px;">
+                            <span class="stat-value">₹${c.balance}</span>
+                            ${c.balance > 0 ? '<span style="background: #ffdad6; color: #ba1a1a; padding: 4px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600;">Due</span>' : ''}
+                        </div>
+                        <div class="stat-buttons">
+                            <button onclick="recordPayment(${c.id})" style="background: var(--primary); color: white;">Record Payment</button>
+                            <button onclick="alert('Send reminder')" style="background: white; color: var(--primary); border: 1px solid var(--primary);">Send Reminder</button>
+                        </div>
+                    </div>
+
+                    ${c.dailySupply ? `
+                    <div class="stat-card">
+                        <span class="stat-label">Daily Subscription</span>
+                        <div style="margin-bottom: 16px;">
+                            <span class="stat-value">${c.dailySupply}</span>
+                            <p style="font-size: 14px; color: var(--on-surface-variant); margin-top: 4px;">Buffalo Milk</p>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--on-surface-variant);">
+                                <span>Morning</span>
+                                <span style="color: var(--primary); font-weight: 600;">${c.morningSupply}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--on-surface-variant);">
+                                <span>Evening</span>
+                                <span style="color: var(--primary); font-weight: 600;">${c.eveningSupply}</span>
+                            </div>
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
+
+                <div class="activity-list">
+                    <div class="activity-header">
+                        <h3>Recent Activity</h3>
+                        <button style="background: none; border: none; color: var(--primary); cursor: pointer; font-size: 12px; font-weight: 600; text-decoration: underline;">View All</button>
+                    </div>
+                    <div class="activity-body">
+                        ${c.transactions.map(t => `
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">
+                                        ${t.type === 'payment' ? 'account_balance_wallet' : 'local_shipping'}
+                                    </span>
+                                </div>
+                                <div class="activity-content">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span class="activity-title">${t.title}</span>
+                                        <span class="activity-time">${t.date}</span>
+                                    </div>
+                                    <p class="activity-desc">${t.desc}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function recordPayment(id) {
+            const amount = prompt('Enter payment amount (₹)', '500');
+            if (amount && !isNaN(amount)) {
+                const customer = customers.find(c => c.id === id);
+                if (customer) {
+                    customer.balance = Math.max(0, customer.balance - parseInt(amount));
+                    customer.transactions.unshift({
+                        type: 'payment',
+                        title: `Payment Received: ₹${amount}`,
+                        desc: 'Via App',
+                        date: 'Today',
+                        amount: -amount
+                    });
+                    selectedCustomer = customer;
+                    renderDetailView();
+                    alert(`Payment of ₹${amount} recorded successfully!`);
+                }
+            }
+        }
+
+        function showDeleteModal() {
+            document.getElementById('deleteCustomerName').textContent = selectedCustomer.name;
+            document.getElementById('deleteModal').classList.remove('hidden');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.add('hidden');
+        }
+
+        function deleteConfirmed() {
+            customers = customers.filter(c => c.id !== selectedCustomer.id);
+            closeDeleteModal();
+            goBack();
+            renderCustomers();
+            alert('Customer deleted successfully');
+        }
+
+        function switchView(view) {
+            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+            if (view === 'customers') {
+                document.getElementById('customersView').classList.remove('hidden');
+                document.querySelectorAll('.nav-item')[1].classList.add('active');
+                renderCustomers();
+            } else if (view === 'inventory') {
+                document.getElementById('inventoryView').classList.remove('hidden');
+                document.querySelectorAll('.nav-item')[2].classList.add('active');
+            } else if (view === 'settings') {
+                document.getElementById('settingsView').classList.remove('hidden');
+                document.querySelectorAll('.nav-item')[3].classList.add('active');
+            }
+
+            currentView = view;
+            document.getElementById('fabBtn').classList.remove('hidden');
+            document.getElementById('backBtn').classList.add('hidden');
+        }
+
+        function goBack() {
+            if (currentView === 'edit') {
+                // Go back to detail view
+                document.getElementById('editView').classList.add('hidden');
+                document.getElementById('detailView').classList.remove('hidden');
+                currentView = 'detail';
+                document.getElementById('backBtn').classList.remove('hidden');
+                document.getElementById('fabBtn').classList.add('hidden');
+            } else {
+                // Go back to customer list
+                switchView('customers');
+                selectedCustomer = null;
+            }
+        }
+
+        function showEditView(id) {
+            const c = customers.find(cu => cu.id === id);
+            if (!c) return;
+            selectedCustomer = c;
+
+            const editView = document.getElementById('editView');
+            editView.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+
+                    <!-- Customer Type Segmented Control -->
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label style="font-size: 12px; font-weight: 600; color: var(--on-surface-variant); letter-spacing: 0.02em;">Customer Type</label>
+                        <div style="display: flex; padding: 4px; background: var(--surface-container); border-radius: 10px; border: 1px solid var(--surface-container-high); gap: 4px;">
+                            <button id="editTypeFixed" type="button" onclick="selectEditType('fixed')"
+                                style="flex: 1; padding: 10px 8px; font-family: Manrope, sans-serif; font-size: 14px; font-weight: 600; border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s ease;
+                                ${c.type === 'fixed' ? 'background: var(--primary); color: white; box-shadow: 0 1px 4px rgba(0,0,0,0.15);' : 'background: transparent; color: var(--on-surface-variant);'}">
+                                Fixed
+                            </button>
+                            <button id="editTypeOndemand" type="button" onclick="selectEditType('ondemand')"
+                                style="flex: 1; padding: 10px 8px; font-family: Manrope, sans-serif; font-size: 14px; font-weight: 600; border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s ease;
+                                ${c.type === 'ondemand' ? 'background: var(--primary); color: white; box-shadow: 0 1px 4px rgba(0,0,0,0.15);' : 'background: transparent; color: var(--on-surface-variant);'}">
+                                On-Demand
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Full Name -->
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label for="editFullName" style="font-size: 12px; font-weight: 600; color: var(--on-surface-variant); letter-spacing: 0.02em;">Full Name</label>
+                        <input id="editFullName" type="text" value="${c.name}"
+                            style="width: 100%; background: white; border: 1px solid var(--outline-variant); border-radius: 10px; padding: 12px 16px; font-family: Manrope, sans-serif; font-size: 16px; color: var(--on-surface); outline: none; transition: all 0.2s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"
+                            onfocus="this.style.borderColor='var(--primary)'; this.style.boxShadow='0 0 0 3px rgba(0,23,54,0.1)';"
+                            onblur="this.style.borderColor='var(--outline-variant)'; this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)';" />
+                        <div id="editNameError" style="display: none; color: #ba1a1a; font-size: 12px; align-items: center; gap: 6px;">
+                            <span class="material-symbols-outlined" style="font-size: 14px;">error</span>
+                            <span id="editNameErrorMsg"></span>
+                        </div>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label for="editPhone" style="font-size: 12px; font-weight: 600; color: var(--on-surface-variant); letter-spacing: 0.02em;">Phone Number</label>
+                        <div style="position: relative; display: flex; align-items: center;">
+                            <span class="material-symbols-outlined" style="position: absolute; left: 14px; color: var(--on-surface-variant); font-size: 20px;">call</span>
+                            <input id="editPhone" type="tel" value="${c.phone}"
+                                style="width: 100%; background: white; border: 1px solid var(--outline-variant); border-radius: 10px; padding: 12px 16px 12px 44px; font-family: Manrope, sans-serif; font-size: 16px; color: var(--on-surface); outline: none; transition: all 0.2s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"
+                                onfocus="this.style.borderColor='var(--primary)'; this.style.boxShadow='0 0 0 3px rgba(0,23,54,0.1)';"
+                                onblur="this.style.borderColor='var(--outline-variant)'; this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)';" />
+                        </div>
+                        <div id="editPhoneError" style="display: none; color: #ba1a1a; font-size: 12px; align-items: center; gap: 6px;">
+                            <span class="material-symbols-outlined" style="font-size: 14px;">error</span>
+                            <span id="editPhoneErrorMsg"></span>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label for="editAddress" style="font-size: 12px; font-weight: 600; color: var(--on-surface-variant); letter-spacing: 0.02em;">Address</label>
+                        <textarea id="editAddress" rows="3"
+                            style="width: 100%; background: white; border: 1px solid var(--outline-variant); border-radius: 10px; padding: 12px 16px; font-family: Manrope, sans-serif; font-size: 16px; color: var(--on-surface); outline: none; transition: all 0.2s ease; resize: none; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"
+                            onfocus="this.style.borderColor='var(--primary)'; this.style.boxShadow='0 0 0 3px rgba(0,23,54,0.1)';"
+                            onblur="this.style.borderColor='var(--outline-variant)'; this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)';">${c.location}</textarea>
+                        <div id="editAddressError" style="display: none; color: #ba1a1a; font-size: 12px; align-items: center; gap: 6px;">
+                            <span class="material-symbols-outlined" style="font-size: 14px;">error</span>
+                            <span id="editAddressErrorMsg"></span>
+                        </div>
+                    </div>
+
+                    <!-- Account Status Toggle -->
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: white; border: 1px solid var(--outline-variant); border-radius: 14px; padding: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                        <div style="display: flex; flex-direction: column; gap: 2px;">
+                            <span style="font-size: 14px; font-weight: 600; color: var(--on-surface);">Account Status</span>
+                            <span id="editStatusLabel" style="font-size: 13px; font-weight: 600; color: ${c.status === 'active' ? '#10b981' : 'var(--on-surface-variant)'};">
+                                ${c.status === 'active' ? 'Active' : 'Paused'}
+                            </span>
+                        </div>
+                        <!-- Toggle Switch -->
+                        <div onclick="toggleEditStatus()" id="editStatusToggle"
+                            style="width: 52px; height: 28px; border-radius: 9999px; cursor: pointer; position: relative; transition: background 0.3s ease;
+                            background: ${c.status === 'active' ? 'var(--primary)' : 'var(--outline-variant)'};">
+                            <div id="editStatusDot"
+                                style="position: absolute; top: 3px; width: 22px; height: 22px; border-radius: 50%; background: white; box-shadow: 0 1px 4px rgba(0,0,0,0.25); transition: left 0.3s ease;
+                                left: ${c.status === 'active' ? '27px' : '3px'};">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <button onclick="saveEditChanges()" type="button"
+                        style="width: 100%; background: var(--primary); color: white; padding: 16px; border-radius: 12px; border: none; font-family: Manrope, sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px;"
+                        onmouseover="this.style.background='var(--primary-container)'"
+                        onmouseout="this.style.background='var(--primary)'">
+                        <span class="material-symbols-outlined" style="font-size: 20px;">save</span>
+                        Save Changes
+                    </button>
+
+                </div>
+            `;
+
+            // Track edit status state
+            window._editStatus = c.status;
+            window._editType = c.type;
+
+            // Show edit view, hide others
+            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+            document.getElementById('editView').classList.remove('hidden');
+            document.getElementById('backBtn').classList.remove('hidden');
+            document.getElementById('fabBtn').classList.add('hidden');
+            currentView = 'edit';
+        }
+
+        function selectEditType(type) {
+            window._editType = type;
+            const fixedBtn = document.getElementById('editTypeFixed');
+            const ondemandBtn = document.getElementById('editTypeOndemand');
+            if (type === 'fixed') {
+                fixedBtn.style.cssText = fixedBtn.style.cssText.replace(/background:[^;]+;/, 'background: var(--primary);').replace(/color:[^;]+;/, 'color: white;');
+                fixedBtn.style.background = 'var(--primary)';
+                fixedBtn.style.color = 'white';
+                fixedBtn.style.boxShadow = '0 1px 4px rgba(0,0,0,0.15)';
+                ondemandBtn.style.background = 'transparent';
+                ondemandBtn.style.color = 'var(--on-surface-variant)';
+                ondemandBtn.style.boxShadow = 'none';
+            } else {
+                ondemandBtn.style.background = 'var(--primary)';
+                ondemandBtn.style.color = 'white';
+                ondemandBtn.style.boxShadow = '0 1px 4px rgba(0,0,0,0.15)';
+                fixedBtn.style.background = 'transparent';
+                fixedBtn.style.color = 'var(--on-surface-variant)';
+                fixedBtn.style.boxShadow = 'none';
+            }
+        }
+
+        function toggleEditStatus() {
+            window._editStatus = window._editStatus === 'active' ? 'paused' : 'active';
+            const isActive = window._editStatus === 'active';
+            document.getElementById('editStatusToggle').style.background = isActive ? 'var(--primary)' : 'var(--outline-variant)';
+            document.getElementById('editStatusDot').style.left = isActive ? '27px' : '3px';
+            document.getElementById('editStatusLabel').textContent = isActive ? 'Active' : 'Paused';
+            document.getElementById('editStatusLabel').style.color = isActive ? '#10b981' : 'var(--on-surface-variant)';
+        }
+
+        function saveEditChanges() {
+            const name = document.getElementById('editFullName').value.trim();
+            const phone = document.getElementById('editPhone').value.trim();
+            const address = document.getElementById('editAddress').value.trim();
+
+            // Reset errors
+            document.getElementById('editNameError').style.display = 'none';
+            document.getElementById('editPhoneError').style.display = 'none';
+            document.getElementById('editAddressError').style.display = 'none';
+
+            let hasError = false;
+
+            if (!name) {
+                document.getElementById('editNameErrorMsg').textContent = 'Please enter a full name';
+                const el = document.getElementById('editNameError');
+                el.style.display = 'flex'; el.style.alignItems = 'center';
+                hasError = true;
+            }
+
+            const cleanPhone = phone.replace(/\D/g, '');
+            if (!cleanPhone || cleanPhone.length < 10) {
+                document.getElementById('editPhoneErrorMsg').textContent = 'Please enter a valid 10-digit phone number';
+                const el = document.getElementById('editPhoneError');
+                el.style.display = 'flex'; el.style.alignItems = 'center';
+                hasError = true;
+            }
+
+            if (!address) {
+                document.getElementById('editAddressErrorMsg').textContent = 'Please enter an address';
+                const el = document.getElementById('editAddressError');
+                el.style.display = 'flex'; el.style.alignItems = 'center';
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Update customer data
+            const c = customers.find(cu => cu.id === selectedCustomer.id);
+            const oldType = c.type;
+            c.name = name;
+            c.phone = phone.startsWith('+91') ? phone : '+91 ' + cleanPhone;
+            c.location = address;
+            c.status = window._editStatus;
+            c.type = window._editType;
+            c.avatar = name.split(' ').map(n => n[0]).join('').toUpperCase();
+
+            // If type changed, update supply fields
+            if (oldType !== c.type) {
+                if (c.type === 'fixed') {
+                    c.dailySupply = '2.0L';
+                    c.morningSupply = '1.0L';
+                    c.eveningSupply = '1.0L';
+                } else {
+                    c.dailySupply = null;
+                    c.morningSupply = null;
+                    c.eveningSupply = null;
+                }
+            }
+
+            selectedCustomer = c;
+
+            showSuccessSnackbar(`${name} updated successfully!`);
+
+            setTimeout(() => {
+                // Go back to detail view
+                document.getElementById('editView').classList.add('hidden');
+                document.getElementById('detailView').classList.remove('hidden');
+                currentView = 'detail';
+                renderDetailView();
+                renderCustomers();
+            }, 1000);
+        }
+
+        function selectCustomerType(type) {
+            // Update hidden radio inputs
+            document.getElementById('radioFixed').checked = (type === 'fixed');
+            document.getElementById('radioOndemand').checked = (type === 'ondemand');
+
+            // Fixed card styling
+            const fixedCard = document.getElementById('typeFixed');
+            const ondemandCard = document.getElementById('typeOndemand');
+
+            if (type === 'fixed') {
+                fixedCard.style.border = '2px solid var(--primary)';
+                fixedCard.style.background = 'rgba(0,23,54,0.05)';
+                document.getElementById('iconFixed').style.color = 'var(--primary)';
+                document.getElementById('labelFixed').style.color = 'var(--primary)';
+                document.getElementById('dotFixed').style.border = '2px solid var(--primary)';
+                document.getElementById('dotFixed').style.background = 'var(--primary)';
+
+                ondemandCard.style.border = '2px solid var(--outline-variant)';
+                ondemandCard.style.background = 'white';
+                document.getElementById('iconOndemand').style.color = 'var(--on-surface-variant)';
+                document.getElementById('labelOndemand').style.color = 'var(--on-surface-variant)';
+                document.getElementById('dotOndemand').style.border = '2px solid var(--outline-variant)';
+                document.getElementById('dotOndemand').style.background = 'transparent';
+            } else {
+                ondemandCard.style.border = '2px solid var(--primary)';
+                ondemandCard.style.background = 'rgba(0,23,54,0.05)';
+                document.getElementById('iconOndemand').style.color = 'var(--primary)';
+                document.getElementById('labelOndemand').style.color = 'var(--primary)';
+                document.getElementById('dotOndemand').style.border = '2px solid var(--primary)';
+                document.getElementById('dotOndemand').style.background = 'var(--primary)';
+
+                fixedCard.style.border = '2px solid var(--outline-variant)';
+                fixedCard.style.background = 'white';
+                document.getElementById('iconFixed').style.color = 'var(--on-surface-variant)';
+                document.getElementById('labelFixed').style.color = 'var(--on-surface-variant)';
+                document.getElementById('dotFixed').style.border = '2px solid var(--outline-variant)';
+                document.getElementById('dotFixed').style.background = 'transparent';
+            }
+        }
+
+        function showAddCustomerModal() {
+            document.getElementById('addCustomerModal').classList.remove('hidden');
+            document.getElementById('addCustomerForm').reset();
+            // Reset customer type selection to Fixed
+            selectCustomerType('fixed');
+            // Reset error messages
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('phoneError').style.display = 'none';
+            document.getElementById('addressError').style.display = 'none';
+        }
+
+        function closeAddCustomerModal() {
+            document.getElementById('addCustomerModal').classList.add('hidden');
+        }
+
+        function handleAddCustomer(event) {
+            event.preventDefault();
+
+            // Get form values
+            const fullName = document.getElementById('fullNameInput').value.trim();
+            const phone = document.getElementById('phoneInput').value.trim();
+            const address = document.getElementById('addressInput').value.trim();
+            const customerType = document.getElementById('radioFixed').checked ? 'fixed' : 'ondemand';
+
+            // Reset error messages
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('phoneError').style.display = 'none';
+            document.getElementById('addressError').style.display = 'none';
+
+            let hasError = false;
+
+            // Validate
+            if (!fullName) {
+                document.getElementById('nameErrorMsg').textContent = 'Please enter a full name';
+                const ne = document.getElementById('nameError');
+                ne.style.display = 'flex';
+                ne.style.alignItems = 'center';
+                hasError = true;
+            }
+
+            // Clean phone and validate
+            const cleanPhone = phone.replace(/\D/g, '');
+            if (!cleanPhone || cleanPhone.length < 10) {
+                document.getElementById('phoneErrorMsg').textContent = 'Please enter a valid 10-digit phone number';
+                const pe = document.getElementById('phoneError');
+                pe.style.display = 'flex';
+                pe.style.alignItems = 'center';
+                document.getElementById('phoneInput').style.borderColor = '#ba1a1a';
+                hasError = true;
+            } else {
+                document.getElementById('phoneInput').style.borderColor = 'var(--outline-variant)';
+            }
+
+            if (!address) {
+                document.getElementById('addressErrorMsg').textContent = 'Please enter an address';
+                const ae = document.getElementById('addressError');
+                ae.style.display = 'flex';
+                ae.style.alignItems = 'center';
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Create new customer object
+            const avatarColors = ['avatar-1', 'avatar-2', 'avatar-3', 'avatar-4', 'avatar-5', 'avatar-6'];
+            const randomAvatarColor = avatarColors[Math.floor(Math.random() * avatarColors.length)];
+            const initials = fullName.split(' ').map(n => n[0]).join('').toUpperCase();
+
+            const newCustomer = {
+                id: Math.max(...customers.map(c => c.id), 0) + 1,
+                name: fullName,
+                phone: '+91 ' + cleanPhone,
+                type: customerType,
+                location: address,
+                status: 'active',
+                avatar: initials,
+                avatarClass: randomAvatarColor,
+                balance: 0,
+                dailySupply: customerType === 'fixed' ? '2.0L' : null,
+                morningSupply: customerType === 'fixed' ? '1.0L' : null,
+                eveningSupply: customerType === 'fixed' ? '1.0L' : null,
+                joined: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+                transactions: []
+            };
+
+            // Add customer to list
+            customers.push(newCustomer);
+
+            // Mark this customer for highlighting
+            newCustomerId = newCustomer.id;
+
+            // Show success snackbar
+            showSuccessSnackbar(`${fullName} added successfully!`);
+
+            // Close modal and update display with filtered view
+            setTimeout(() => {
+                closeAddCustomerModal();
+
+                // Filter to show the newly added customer type
+                setFilter(customerType);
+
+                // Render customers with new highlight
+                renderCustomers();
+            }, 1500);
+        }
+
+        function showSuccessSnackbar(message) {
+            const snackbar = document.createElement('div');
+            snackbar.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #10b981;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 9999px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-weight: 600;
+                animation: slideUp 0.3s ease;
+            `;
+            snackbar.innerHTML = '<span class="material-symbols-outlined" style="font-size: 20px;">check_circle</span>' + message;
+            document.body.appendChild(snackbar);
+
+            setTimeout(() => {
+                snackbar.remove();
+            }, 2000);
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function (e) {
+            const modal = document.getElementById('addCustomerModal');
+            if (e.target === modal) {
+                closeAddCustomerModal();
+            }
+        });
+
+        // Initial render
+        renderCustomers();
+    </script>
+</body>
+
+</html>

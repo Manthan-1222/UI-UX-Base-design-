@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#cee5ff",
+                        "primary-fixed": "#d6e3ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#d1e4ff",
+                        "surface-tint": "#405f91",
+                        "outline": "#747780",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed": "#dbe3f1",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#d1e4ff",
+                        "primary-container": "#002b5b",
+                        "on-tertiary-fixed": "#001d32",
+                        "inverse-on-surface": "#e9f1ff",
+                        "on-secondary-fixed": "#141c26",
+                        "secondary": "#575f6b",
+                        "on-primary-container": "#7594ca",
+                        "error": "#ba1a1a",
+                        "surface-container": "#e4efff",
+                        "surface-container-high": "#dbe9ff",
+                        "surface-container-low": "#eef4ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#5d6571",
+                        "on-tertiary-container": "#7b96b2",
+                        "inverse-surface": "#19324b",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "on-background": "#011d35",
+                        "on-secondary-fixed-variant": "#3f4752",
+                        "on-primary-fixed": "#001b3d",
+                        "background": "#f8f9ff",
+                        "tertiary": "#00192c",
+                        "secondary-container": "#dbe3f1",
+                        "on-surface-variant": "#43474f",
+                        "surface-dim": "#c4dcfd",
+                        "surface": "#f8f9ff",
+                        "tertiary-fixed-dim": "#aec9e7",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#2e4962",
+                        "secondary-fixed-dim": "#bfc7d4",
+                        "primary": "#001736",
+                        "on-surface": "#011d35",
+                        "inverse-primary": "#a9c7ff",
+                        "outline-variant": "#c4c6d0",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#102e45",
+                        "on-primary-fixed-variant": "#264778"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "margin-mobile": "20px",
+                        "stack-sm": "8px",
+                        "gutter": "16px",
+                        "base-unit": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "label-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-sm": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d1e4ff;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background font-body-md text-on-background">
+<div class="relative flex min-h-screen w-full max-w-[430px] mx-auto flex-col bg-surface shadow-2xl overflow-x-hidden">
+<!-- Header Section -->
+<header class="sticky top-0 z-20 bg-surface/95 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center px-margin-mobile py-4 justify-between">
+<div class="flex items-center gap-4">
+<button class="text-primary flex size-10 items-center justify-center rounded-full hover:bg-surface-container transition-colors" data-icon="arrow_back">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-headline-sm text-primary">Modify Entry</h1>
+</div>
+<button class="text-on-surface-variant p-2" data-icon="info">
+<span class="material-symbols-outlined">info</span>
+</button>
+</div>
+<!-- Customer Summary Card -->
+<div class="px-margin-mobile pb-stack-md pt-stack-sm">
+<div class="flex items-start gap-stack-md">
+<div class="size-14 rounded-full border-2 border-primary-fixed bg-cover bg-center shrink-0" data-alt="A professional headshot of a middle-aged South Asian man with a friendly expression. He is wearing a clean, collared shirt. The background is a soft-focus office setting with warm, natural morning light filtering through a window, maintaining a high-fidelity and professional minimalist aesthetic." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDRh_9nVaWqIx7JFZWCJZZRSAQ3aiR_emYUe08rUtfFRn2j_oBH-7eOVKzudUlo5WVUmvS_TvkpYgniOAorccgdqJnO_PSo8W4mDz5OIS361BfWFida9mmSyyBr-fmPUjpyOwtYKt7gwXKEINZEgsn-yCAWyMzvqxG8ahlJ6k8UXFWUuXfOYLBDp99AqAPLgP2COHP3MSJYOQaZTXKvEsCaIEFek0_Wnplj5uCZZ_7rL1JTPNLHIP0dRntTWHKmtI3c08YOEZ2IE6Px");'>
+</div>
+<div class="flex flex-col gap-1 flex-1">
+<div class="flex items-center justify-between">
+<span class="text-body-lg font-bold text-primary">Rajesh Kumar</span>
+<div class="flex gap-2">
+<span class="bg-primary-fixed text-on-primary-fixed text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full">Auto-generated</span>
+</div>
+</div>
+<p class="text-body-sm text-secondary font-medium">+91 98765 43210</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_today</span>
+<p class="text-label-md text-on-surface-variant">Oct 24, 2023</p>
+<span class="ml-auto bg-surface-container-highest text-on-primary-fixed-variant text-label-md px-3 py-0.5 rounded-full border border-primary-fixed">Pending</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Product List Section -->
+<main class="flex-1 px-margin-mobile py-stack-lg custom-scrollbar overflow-y-auto pb-40">
+<div class="flex items-center justify-between mb-stack-md">
+<h3 class="text-label-lg uppercase tracking-widest text-secondary">Items Ordered</h3>
+<span class="text-label-md text-on-surface-variant">3 Items</span>
+</div>
+<div class="flex flex-col gap-stack-md">
+<!-- Product Card: Buffalo Milk -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md flex flex-col gap-stack-sm">
+<div class="flex justify-between items-start">
+<div class="flex gap-stack-md">
+<div class="size-12 rounded-lg bg-surface-container flex items-center justify-center text-primary" data-icon="water_drop">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<div class="flex flex-col">
+<p class="text-body-md font-bold text-primary">Buffalo Milk</p>
+<p class="text-label-md text-secondary">Rate: ₹60/L</p>
+</div>
+</div>
+<button class="text-error p-1 rounded-full hover:bg-error-container/20 transition-colors bg-error-container/10 active:scale-90" data-icon="delete" onclick="const card = this.closest('.bg-surface-container-lowest'); card.style.transition = 'all 0.3s ease'; card.style.opacity = '0'; card.style.transform = 'translateX(20px)'; setTimeout(() =&gt; { card.remove(); updateTotals(); }, 300);">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="flex items-center justify-between mt-2">
+<div class="flex items-center bg-surface-container-low rounded-lg p-1 border border-outline-variant/30">
+<button class="size-8 flex items-center justify-center text-primary font-bold hover:bg-surface-dim rounded-md transition-all">-</button>
+<input class="w-12 text-center bg-transparent border-none focus:ring-0 text-body-md font-bold text-primary" readonly="" type="text" value="2.5"/>
+<button class="size-8 flex items-center justify-center text-primary font-bold hover:bg-surface-dim rounded-md transition-all">+</button>
+</div>
+<div class="text-right">
+<p class="text-label-md text-secondary">Litre</p>
+<p class="text-body-lg font-bold text-primary">₹150.00</p>
+</div>
+</div>
+</div>
+<!-- Product Card: Paneer (Fresh) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md flex flex-col gap-stack-sm relative overflow-hidden">
+<div class="absolute top-0 right-0">
+<div class="bg-amber-100 text-amber-800 text-[10px] font-bold px-3 py-1 rounded-bl-xl border-l border-b border-amber-200">EXTRA</div>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex gap-stack-md">
+<div class="size-12 rounded-lg bg-surface-container flex items-center justify-center text-primary" data-icon="layers">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">layers</span>
+</div>
+<div class="flex flex-col">
+<p class="text-body-md font-bold text-primary">Paneer (Fresh)</p>
+<p class="text-label-md text-secondary">Rate: ₹480/Kg</p>
+</div>
+</div>
+<button class="text-error p-1 mt-4 rounded-full hover:bg-error-container/20 transition-colors bg-error-container/10 active:scale-90" data-icon="delete" onclick="const card = this.closest('.bg-surface-container-lowest'); card.style.transition = 'all 0.3s ease'; card.style.opacity = '0'; card.style.transform = 'translateX(20px)'; setTimeout(() =&gt; { card.remove(); updateTotals(); }, 300);">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="flex items-center justify-between mt-2">
+<div class="flex items-center bg-surface-container-low rounded-lg p-1 border border-outline-variant/30">
+<button class="size-8 flex items-center justify-center text-primary font-bold hover:bg-surface-dim rounded-md transition-all">-</button>
+<input class="w-12 text-center bg-transparent border-none focus:ring-0 text-body-md font-bold text-primary" readonly="" type="text" value="0.5"/>
+<button class="size-8 flex items-center justify-center text-primary font-bold hover:bg-surface-dim rounded-md transition-all">+</button>
+</div>
+<div class="text-right">
+<p class="text-label-md text-secondary">Kg</p>
+<p class="text-body-lg font-bold text-primary">₹240.00</p>
+</div>
+</div>
+</div>
+<!-- Product Card: Curd Cup -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md flex flex-col gap-stack-sm">
+<div class="flex justify-between items-start">
+<div class="flex gap-stack-md">
+<div class="size-12 rounded-lg bg-surface-container flex items-center justify-center text-primary" data-icon="ice_skating">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">ice_skating</span>
+</div>
+<div class="flex flex-col">
+<p class="text-body-md font-bold text-primary">Curd Cup</p>
+<p class="text-label-md text-secondary">Rate: ₹30/pc</p>
+</div>
+</div>
+<button class="text-error p-1 rounded-full hover:bg-error-container/20 transition-colors bg-error-container/10 active:scale-90" data-icon="delete" onclick="const card = this.closest('.bg-surface-container-lowest'); card.style.transition = 'all 0.3s ease'; card.style.opacity = '0'; card.style.transform = 'translateX(20px)'; setTimeout(() =&gt; { card.remove(); updateTotals(); }, 300);">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="flex items-center justify-between mt-2">
+<div class="flex items-center bg-surface-container-low rounded-lg p-1 border border-outline-variant/30">
+<button class="size-8 flex items-center justify-center text-primary font-bold hover:bg-surface-dim rounded-md transition-all">-</button>
+<input class="w-12 text-center bg-transparent border-none focus:ring-0 text-body-md font-bold text-primary" readonly="" type="text" value="2"/>
+<button class="size-8 flex items-center justify-center text-primary font-bold hover:bg-surface-dim rounded-md transition-all">+</button>
+</div>
+<div class="text-right">
+<p class="text-label-md text-secondary">Pcs</p>
+<p class="text-body-lg font-bold text-primary">₹60.00</p>
+</div>
+</div>
+</div>
+<!-- Add Product Button -->
+<button class="w-full flex items-center justify-center gap-2 py-4 border-2 border-dashed border-outline-variant rounded-xl text-secondary hover:text-primary hover:border-primary transition-all active:scale-[0.98]" onclick="document.getElementById('product-sheet-scrim').classList.remove('hidden'); document.getElementById('product-sheet').classList.remove('hidden'); setTimeout(() =&gt; { document.getElementById('product-sheet').classList.remove('translate-y-full'); }, 10);">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-bold">Add another product</span>
+</button>
+</div>
+</main>
+<!-- Sticky Bottom Section -->
+<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-surface/90 backdrop-blur-xl border-t border-outline-variant p-margin-mobile flex flex-col gap-stack-md z-30">
+<!-- Total Bar with Highlight Pulse -->
+<div class="flex items-center justify-between bg-primary-container p-stack-md rounded-xl shadow-inner relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-[pulse_3s_infinite]"></div>
+<span class="text-on-primary-container font-medium uppercase tracking-widest text-label-md">Total Amount</span>
+<span class="text-headline-sm text-surface-container-lowest font-bold">₹450.00</span>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-stack-md">
+<button class="flex-1 border border-primary text-primary font-bold py-4 rounded-xl hover:bg-primary-fixed transition-colors active:scale-95">
+                    Reset
+                </button>
+<button class="flex-[2] bg-primary text-on-primary font-bold py-4 rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all active:scale-95">
+                    Save Changes
+                </button>
+</div>
+</footer>
+</div>
+<script>
+function updateTotals() {
+    const cards = document.querySelectorAll('main .bg-surface-container-lowest');
+    let total = 0;
+    cards.forEach(card => {
+        const priceText = card.querySelector('.text-body-lg.font-bold').textContent;
+        const price = parseFloat(priceText.replace('₹', ''));
+        total += price;
+    });
+    document.querySelector('.text-headline-sm.text-surface-container-lowest').textContent = '₹' + total.toFixed(2);
+    document.querySelector('span.text-label-md.text-on-surface-variant').textContent = cards.length + ' Items';
+}
+</script><!-- Scrim / Dimmer Overlay -->
+<div class="hidden fixed inset-0 bg-primary/20 backdrop-blur-sm z-[60]" id="product-sheet-scrim" onclick="document.getElementById('product-sheet').classList.add('translate-y-full'); setTimeout(() =&gt; { document.getElementById('product-sheet').classList.add('hidden'); document.getElementById('product-sheet-scrim').classList.add('hidden'); }, 300);"></div>
+<!-- Bottom Sheet Interface -->
+<div class="hidden fixed inset-x-0 bottom-0 z-[70] flex flex-col bg-surface-container-lowest rounded-t-[28px] shadow-lg max-h-[795px] transform translate-y-full transition-transform duration-300 ease-in-out" id="product-sheet">
+<!-- Handle -->
+<div class="flex justify-center py-4">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full"></div>
+</div>
+<!-- Sheet Header -->
+<div class="px-margin-mobile flex justify-between items-center pb-stack-md border-b border-outline-variant/30">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Add Extra Product</h3>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container hover:bg-surface-container-high transition-colors" onclick="document.getElementById('product-sheet').classList.add('translate-y-full'); setTimeout(() =&gt; { document.getElementById('product-sheet').classList.add('hidden'); document.getElementById('product-sheet-scrim').classList.add('hidden'); }, 300);">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Search Bar -->
+<div class="px-margin-mobile pt-stack-md">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl py-3 pl-10 pr-4 font-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Search product (e.g. Ghee, Lassi)" type="text"/>
+</div>
+</div>
+<!-- Product List -->
+<div class="flex-1 overflow-y-auto px-margin-mobile py-stack-md space-y-stack-sm custom-scrollbar">
+<!-- Active/Selected Product -->
+<button class="w-full bg-primary-fixed border-2 border-primary rounded-xl p-stack-md flex items-center justify-between text-left transition-all">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-white">
+<img alt="Ghee" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD16UxQAAoAXZG8EgNftkHB4pv2pHgu1F4wq3971ecY7nV1KTQ07kAIESSATf0ilag1p0gi1StW52vSRbiXbKYZjy00fd8_YxBieqnuCqqkY0Br_DqPXC5qKa4GEUoi6GHkMMeZd5C4t20Sf9MWYEE7BloysK9fpKPJ_XldnWhLg92WZbvb8VMFXjst9zviPY0W0VSTKw4LZ36sVC9Dd8Iwl7zgZo0B5a69hTJ7zj6Pqlt9z0V0VkOm0P4OC8LYGY-jfbTjVlnZGE2U"/>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-primary-fixed">Pure Cow Ghee</p>
+<p class="font-label-md text-label-md text-on-primary-fixed-variant">1 kg • ₹650.00/unit</p>
+</div>
+</div>
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[18px]" data-icon="check">check</span>
+</div>
+</button>
+<!-- Unselected Product -->
+<button class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md flex items-center justify-between text-left hover:bg-surface-container transition-all">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-variant">
+<img alt="Lassi" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEOaf1h4VEw8z_94yOPWlAzVv-8j5P55J04jX1KB_9gz2m4p8Vnk7EOirnH5pMcEOjwf-h1GPsIahFH74RnqTOtP3nR6IR9qEyrIawY8ax7T1kPeHZbSLziMux9gmFtnVRfT1BNJlR6xWhuTDG-VHfBbf6zDEwldl9YxhW84LB6yNOsXedYLXW1Bs5AQCrg0PIeXXsPiiT2tRZ2Sg26OQpXeqH12cwyOC7FtLLPuWS3rhdu30Nt51FVgVZwe9YgwGrksqThBRlbVjm"/>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Sweet Lassi</p>
+<p class="font-label-md text-label-md text-on-surface-variant">500 ml • ₹45.00/unit</p>
+</div>
+</div>
+</button>
+<!-- Unselected Product -->
+<button class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md flex items-center justify-between text-left hover:bg-surface-container transition-all">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-variant">
+<img alt="Butter" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOmI_KHUu2ME9oPsTwo2XKP7K2kCuGzRBouMVqapmXqXn4HrQ6vxyfBpQP_FJTzBLnKMdJdtqK72vPN2xWdeUzEn3TJ658KopBPJDR3byIs2dLcbpE9A07IVBe4bt2KZBCtubOtkXwAL_-pUL1zbBCrB81YBvIZU9Zq-IyR_gifrstHTzp_67idwJoHu-DCqa4ue_Sx1F_Avrri54HIXzl9pRnIC5WXKTmgDb_9P_ow9z9P1mc9OZbbyjSHlNzHwTYHAv6U9P2job-"/>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Salted Butter</p>
+<p class="font-label-md text-label-md text-on-surface-variant">500 g • ₹280.00/unit</p>
+</div>
+</div>
+</button>
+</div>
+<!-- Controls & Total Section -->
+<div class="bg-surface-container-low border-t border-outline-variant p-margin-mobile space-y-stack-md rounded-t-[24px]">
+<div class="flex items-center justify-between">
+<div class="flex flex-col gap-base-unit">
+<p class="font-label-md text-label-md text-on-surface-variant">Quantity</p>
+<div class="flex items-center gap-stack-md">
+<button class="w-10 h-10 rounded-lg border border-outline bg-white flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+<input class="w-16 h-10 text-center font-headline-sm border-none bg-transparent focus:ring-0" type="number" value="2"/>
+<button class="w-10 h-10 rounded-lg border border-outline bg-white flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<div class="text-right flex flex-col gap-base-unit">
+<p class="font-label-md text-label-md text-on-surface-variant">Line Amount</p>
+<p class="font-headline-sm text-headline-sm text-primary">₹1,300.00</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-lg text-label-lg py-4 rounded-xl flex items-center justify-center gap-stack-sm active:scale-[0.98] transition-transform shadow-md">
+<span class="material-symbols-outlined text-[20px]" data-icon="add_shopping_cart">add_shopping_cart</span>
+            Add to Entry
+        </button>
+</div>
+</div></body></html>

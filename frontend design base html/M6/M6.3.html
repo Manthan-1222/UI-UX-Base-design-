@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9ff",
+                        "outline": "#747780",
+                        "surface-bright": "#f8f9ff",
+                        "primary": "#001736",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#405f91",
+                        "on-surface-variant": "#43474f",
+                        "surface-container-highest": "#d1e4ff",
+                        "on-tertiary-fixed-variant": "#2e4962",
+                        "inverse-primary": "#a9c7ff",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#575f6b",
+                        "tertiary-fixed-dim": "#aec9e7",
+                        "on-secondary-container": "#5d6571",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#102e45",
+                        "on-primary-fixed-variant": "#264778",
+                        "on-secondary-fixed": "#141c26",
+                        "on-primary-container": "#7594ca",
+                        "inverse-surface": "#19324b",
+                        "secondary-fixed-dim": "#bfc7d4",
+                        "surface-container-low": "#eef4ff",
+                        "surface-dim": "#c4dcfd",
+                        "on-secondary-fixed-variant": "#3f4752",
+                        "secondary-container": "#dbe3f1",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#d1e4ff",
+                        "on-tertiary-container": "#7b96b2",
+                        "tertiary": "#00192c",
+                        "on-surface": "#011d35",
+                        "surface-container": "#e4efff",
+                        "secondary-fixed": "#dbe3f1",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#001d32",
+                        "on-error": "#ffffff",
+                        "on-background": "#011d35",
+                        "on-primary-fixed": "#001b3d",
+                        "tertiary-fixed": "#cee5ff",
+                        "surface-container-high": "#dbe9ff",
+                        "primary-fixed": "#d6e3ff",
+                        "inverse-on-surface": "#e9f1ff",
+                        "primary-container": "#002b5b",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c4c6d0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "stack-sm": "8px",
+                        "stack-lg": "24px",
+                        "gutter": "16px",
+                        "stack-md": "16px",
+                        "base-unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "label-lg": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="bg-surface border-b border-outline-variant shadow-sm flex items-center justify-between px-margin-mobile h-16 w-full z-50 sticky top-0">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-primary" data-icon="receipt_long">receipt_long</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">DairyKhata</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="close">close</span>
+</button>
+</header>
+<main class="flex-grow p-margin-mobile max-w-md mx-auto w-full">
+<!-- Progress Indicator -->
+<div class="mb-stack-lg">
+<div class="flex justify-between items-center mb-stack-sm">
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Setup Progress</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">Step 3 of 3</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+<!-- Headline -->
+<div class="mb-stack-lg">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-1">Set Delivery Schedule</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Choose how often deliveries should be recorded.</p>
+</div>
+<!-- Selection Cards Stack -->
+<div class="space-y-stack-md mb-stack-lg">
+<!-- Selected: Daily -->
+<div class="relative bg-surface-container-low border-2 border-primary p-stack-md rounded-xl shadow-sm flex items-start gap-stack-md cursor-pointer" onclick="location.href='{{DATA:SCREEN:SCREEN_57}}'">
+<div class="bg-primary-container p-2 rounded-lg">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="calendar_today">calendar_today</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-label-lg text-label-lg text-primary font-bold">Daily</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Daily - Automatic entry every single day</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+</div>
+</div>
+<!-- Option: Alternate -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer flex items-start gap-stack-md" onclick="location.href='{{DATA:SCREEN:SCREEN_11}}'">
+<div class="bg-surface-container p-2 rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="event_repeat">event_repeat</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-label-lg text-label-lg text-primary">Alternate</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Every other day delivery cycle</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant"></div>
+</div>
+<!-- Option: Custom -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer flex items-start gap-stack-md" onclick="location.href='{{DATA:SCREEN:SCREEN_119}}'">
+<div class="bg-surface-container p-2 rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="edit_calendar">edit_calendar</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-label-lg text-label-lg text-primary">Custom</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Select specific days of the week</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant"></div>
+</div>
+</div>
+<!-- Calendar Preview -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md mb-stack-lg">
+<div class="flex justify-between items-center mb-stack-md">
+<h4 class="font-label-lg text-label-lg text-primary font-bold">November 2024 Preview</h4>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-body-md" data-icon="chevron_left">chevron_left</span>
+<span class="material-symbols-outlined text-on-surface-variant text-body-md" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 text-center mb-2">
+<div class="font-label-md text-label-md text-outline">S</div>
+<div class="font-label-md text-label-md text-outline">M</div>
+<div class="font-label-md text-label-md text-outline">T</div>
+<div class="font-label-md text-label-md text-outline">W</div>
+<div class="font-label-md text-label-md text-outline">T</div>
+<div class="font-label-md text-label-md text-outline">F</div>
+<div class="font-label-md text-label-md text-outline">S</div>
+</div>
+<div class="grid grid-cols-7 gap-y-3">
+<!-- Row 1 (Empty starts) -->
+<div class="p-1"></div><div class="p-1"></div><div class="p-1"></div><div class="p-1"></div><div class="p-1"></div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">1</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">2</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<!-- Row 2 -->
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">3</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">4</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">5</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">6</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">7</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">8</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">9</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<!-- ... Row 3 Sample ... -->
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">10</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">11</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm font-bold text-primary">12</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">13</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">14</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">15</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-body-sm text-body-sm">16</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+</div>
+<p class="mt-stack-md text-center font-label-md text-label-md text-primary-container italic">
+                Entries will be recorded daily at 7:00 AM
+            </p>
+</div>
+</main>
+<!-- Bottom Actions -->
+<footer class="p-margin-mobile bg-surface-container-lowest border-t border-outline-variant space-y-3 z-40 sticky bottom-0">
+<button class="w-full bg-primary text-on-primary py-4 rounded-xl font-label-lg text-label-lg font-bold shadow-md active:scale-[0.98] transition-transform" onclick="location.href='{{DATA:SCREEN:SCREEN_58}}'">
+            Continue
+        </button>
+<button class="w-full bg-transparent text-primary border border-primary py-4 rounded-xl font-label-lg text-label-lg font-bold active:bg-surface-container-high transition-colors" onclick="location.href='{{DATA:SCREEN:SCREEN_56}}'">
+            Back
+        </button>
+</footer>
+</body></html>

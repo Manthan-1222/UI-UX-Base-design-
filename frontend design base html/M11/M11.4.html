@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#c4dcfd",
+                        "on-tertiary-fixed": "#001d32",
+                        "tertiary-fixed": "#cee5ff",
+                        "secondary-container": "#dbe3f1",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "inverse-on-surface": "#e9f1ff",
+                        "on-tertiary-fixed-variant": "#2e4962",
+                        "on-secondary-fixed": "#141c26",
+                        "on-primary-container": "#7594ca",
+                        "secondary-fixed-dim": "#bfc7d4",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#102e45",
+                        "surface-container": "#e4efff",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed": "#dbe3f1",
+                        "on-secondary-fixed-variant": "#3f4752",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#264778",
+                        "surface-tint": "#405f91",
+                        "background": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#43474f",
+                        "primary-container": "#002b5b",
+                        "on-background": "#011d35",
+                        "tertiary": "#00192c",
+                        "outline-variant": "#c4c6d0",
+                        "on-tertiary-container": "#7b96b2",
+                        "on-primary-fixed": "#001b3d",
+                        "surface-variant": "#d1e4ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#d1e4ff",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#dbe9ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575f6b",
+                        "outline": "#747780",
+                        "on-secondary-container": "#5d6571",
+                        "surface-container-low": "#eef4ff",
+                        "on-primary": "#ffffff",
+                        "primary": "#001736",
+                        "tertiary-fixed-dim": "#aec9e7",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#d6e3ff",
+                        "on-surface": "#011d35",
+                        "inverse-surface": "#19324b",
+                        "inverse-primary": "#a9c7ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "margin-mobile": "20px",
+                        "base-unit": "4px",
+                        "gutter": "16px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-lg": ["Manrope"],
+                        "mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(116, 119, 128, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-background flex justify-between items-center px-margin-mobile h-14">
+<div class="flex items-center gap-stack-md">
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-container-low transition-colors duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Payment Details</h1>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-colors duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+<button class="text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-colors duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="print">print</span>
+</button>
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-margin-mobile py-stack-lg flex flex-col gap-stack-lg">
+<!-- Payment Success Hero Section -->
+<section class="flex flex-col items-center text-center py-stack-lg gap-stack-md">
+<div class="w-20 h-20 rounded-full bg-secondary-container flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined text-4xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="space-y-1">
+<p class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Total Amount Paid</p>
+<h2 class="font-headline-lg text-headline-lg text-primary">₹2,000.00</h2>
+</div>
+<div class="px-4 py-1.5 bg-surface-container-high rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-primary-fixed-variant" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md text-on-primary-fixed-variant">Payment Confirmed via UPI</span>
+</div>
+</section>
+<!-- Details Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Transaction Reference Card -->
+<div class="glass-card p-stack-md rounded-xl flex flex-col gap-stack-sm">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="fingerprint">fingerprint</span>
+<span class="font-label-md text-label-md uppercase">Transaction ID</span>
+</div>
+<p class="font-mono text-body-md text-primary font-semibold tracking-tight">PAY-2024-05-012</p>
+</div>
+<!-- Customer Card -->
+<div class="glass-card p-stack-md rounded-xl flex flex-col gap-stack-sm">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="person">person</span>
+<span class="font-label-md text-label-md uppercase">Customer</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-primary">Rajesh Kumar</p>
+</div>
+<!-- Full Width Timing Info -->
+<div class="md:col-span-2 glass-card p-stack-md rounded-xl grid grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-stack-sm">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-md text-label-md uppercase">Date</span>
+</div>
+<p class="font-body-lg text-body-lg text-primary font-semibold">05 May 2024</p>
+</div>
+<div class="flex flex-col gap-stack-sm border-l border-outline-variant pl-gutter">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="schedule">schedule</span>
+<span class="font-label-md text-label-md uppercase">Timestamp</span>
+</div>
+<p class="font-body-lg text-body-lg text-primary font-semibold">10:30 AM</p>
+</div>
+</div>
+<!-- Linked Invoice -->
+<a class="md:col-span-2 group glass-card p-stack-md rounded-xl flex justify-between items-center hover:bg-surface-container-low transition-all duration-200 border-primary/5" href="#">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Linked Invoice</span>
+<span class="font-body-md text-body-md text-primary font-bold">#INV-2024-04-001</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+<!-- Footer Note -->
+<div class="mt-stack-lg p-stack-md rounded-xl bg-surface-container-low border border-dashed border-outline-variant flex gap-3 items-start">
+<span class="material-symbols-outlined text-outline text-body-md mt-0.5" data-icon="info">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Payments are permanent and cannot be modified. If there is a dispute or error in the amount, please contact support for a refund adjustment.
+            </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-stack-sm mt-stack-md">
+<button class="w-full bg-primary-container text-on-primary text-body-md font-bold py-4 rounded-xl shadow-sm active:scale-[0.98] transition-transform">
+                Download Receipt
+            </button>
+<button class="w-full bg-transparent border border-outline text-on-surface-variant text-body-md font-semibold py-4 rounded-xl hover:bg-surface-container-low transition-colors">
+                Email Customer
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Hidden if detail view implies task-focused sub-page as per rule) -->
+<!-- Suppressed to prioritize detail content canvas -->
+<!-- Decorative Illustration -->
+<div class="fixed bottom-0 right-0 opacity-10 -z-10 pointer-events-none">
+<svg fill="none" height="400" viewbox="0 0 400 400" width="400" xmlns="http://www.w3.org/2000/svg">
+<circle cx="200" cy="200" r="180" stroke="#405f91" stroke-dasharray="10 10" stroke-width="2"></circle>
+<rect height="200" rx="20" stroke="#405f91" stroke-width="2" width="200" x="100" y="100"></rect>
+<path d="M150 200L190 240L250 160" stroke="#405f91" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+</svg>
+</div>
+</body></html>

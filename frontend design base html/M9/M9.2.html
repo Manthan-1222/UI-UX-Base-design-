@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-dim": "#E6EFF5",
+                "tertiary": "#009688",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary-fixed-variant": "#004D40",
+                "surface-variant": "#E0E7ED",
+                "inverse-surface": "#001E2F",
+                "primary-container": "#00325B",
+                "primary-fixed": "#D1E4FF",
+                "on-secondary-container": "#004D40",
+                "error": "#BA1A1A",
+                "surface-container-highest": "#D9E3EB",
+                "outline-variant": "#C2C7CE",
+                "inverse-primary": "#96CCFF",
+                "on-secondary-fixed-variant": "#005047",
+                "surface-container-low": "#F0F4F8",
+                "on-error-container": "#93000A",
+                "background": "#F8FAFC",
+                "on-surface": "#1A1C1E",
+                "tertiary-fixed-dim": "#80CBC4",
+                "outline": "#72777F",
+                "secondary-fixed-dim": "#80CBC4",
+                "on-tertiary": "#ffffff",
+                "surface": "#F8FAFC",
+                "on-tertiary-container": "#00201A",
+                "on-background": "#1A1C1E",
+                "surface-container": "#EFF4F9",
+                "surface-bright": "#F8FAFC",
+                "error-container": "#FFDAD6",
+                "tertiary-container": "#B2DFDB",
+                "surface-tint": "#0061A4",
+                "primary": "#0D2E4F", /* Navy from ref */
+                "on-tertiary-fixed": "#00201A",
+                "on-secondary": "#ffffff",
+                "secondary": "#20A39E", /* Teal from ref */
+                "on-primary-fixed-variant": "#004A77",
+                "on-primary-fixed": "#001D35",
+                "on-surface-variant": "#42474E",
+                "inverse-on-surface": "#F0F0F3",
+                "surface-container-high": "#E9F0F6",
+                "on-primary-container": "#D1E4FF",
+                "on-error": "#ffffff",
+                "secondary-container": "#CEE9E7",
+                "primary-fixed-dim": "#96CCFF",
+                "on-primary": "#ffffff",
+                "secondary-fixed": "#B2DFDB",
+                "on-secondary-fixed": "#00201A",
+                "tertiary-fixed": "#B2DFDB"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "1rem",
+                "2xl": "1.5rem",
+                "3xl": "2rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "stack-sm": "8px",
+                "stack-md": "16px",
+                "stack-lg": "24px",
+                "gutter": "16px",
+                "margin-mobile": "20px",
+                "base-unit": "4px"
+            },
+            "fontFamily": {
+                "headline": ["Plus Jakarta Sans"],
+                "display": ["Plus Jakarta Sans"],
+                "body": ["Work Sans"],
+                "label": ["Work Sans"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            min-height: 100dvh;
+        }
+        .glass-sheet {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .custom-shadow {
+            box-shadow: 0 -12px 48px -10px rgba(13, 46, 79, 0.15);
+        }
+        .nav-item-active {
+            color: #20A39E;
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background antialiased">
+<!-- Main Background View (Behind Overlay) -->
+<div class="flex flex-col min-h-screen w-full bg-surface-container-low">
+<header class="flex items-center px-margin-mobile py-stack-md bg-white border-b border-outline-variant/30">
+<button class="p-2 -ml-2 text-primary active:opacity-60 transition-opacity">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="ml-stack-sm text-lg font-headline font-bold text-primary">Daily Records</h1>
+</header>
+<main class="flex-1 p-margin-mobile space-y-stack-md opacity-40">
+<!-- Background content blurred/dimmed by overlay -->
+<div class="p-stack-md bg-white border border-outline-variant/50 rounded-xl flex items-center justify-between">
+<div>
+<p class="text-sm font-label font-semibold text-on-surface">Route 01 - Downtown</p>
+<p class="text-xs text-on-surface-variant">Pending Deliveries: 2</p>
+</div>
+<span class="material-symbols-outlined text-secondary">pending_actions</span>
+</div>
+<div class="p-stack-md bg-white border border-outline-variant/50 rounded-xl">
+<div class="flex items-center gap-stack-md">
+<div class="h-10 w-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold">Rajesh Kumar</p>
+<p class="text-xs text-on-surface-variant">2L Buffalo Milk</p>
+</div>
+<p class="text-sm font-bold">₹150.00</p>
+</div>
+</div>
+</main>
+</div>
+<!-- Overlay and Navy/Teal Bottom Sheet -->
+<div class="fixed inset-0 z-50 flex flex-col justify-end bg-primary/40 backdrop-blur-[6px]">
+<div class="glass-sheet custom-shadow relative flex h-auto w-full flex-col rounded-t-3xl overflow-hidden">
+<!-- Handle Indicator -->
+<div class="flex h-8 w-full items-center justify-center">
+<div class="h-1.5 w-12 rounded-full bg-outline-variant/40"></div>
+</div>
+<div class="flex-1 max-h-[85vh] flex flex-col">
+<!-- Header section with Navy tone -->
+<div class="px-margin-mobile pt-2 pb-5">
+<h2 class="text-[26px] leading-tight font-display font-extrabold text-primary">
+                    Confirm <span class="text-secondary">2</span> Deliveries
+                </h2>
+<p class="text-sm text-on-surface-variant/80 mt-1">Review the list before finalizing records</p>
+</div>
+<!-- Summary List -->
+<div class="overflow-y-auto px-margin-mobile py-2">
+<div class="bg-white rounded-2xl border border-outline-variant/30 overflow-hidden divide-y divide-outline-variant/10">
+<!-- Item 1 -->
+<div class="flex items-center gap-4 p-4 justify-between active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div>
+<p class="text-on-surface font-semibold leading-tight">Rajesh Kumar</p>
+<p class="text-xs text-on-surface-variant">Buffalo Milk • 2L</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold">₹150.00</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-4 p-4 justify-between active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div>
+<p class="text-on-surface font-semibold leading-tight">Vikram Singh</p>
+<p class="text-xs text-on-surface-variant">Cow Milk • 1L</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold">₹90.00</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Total Amount Card - Professional Navy -->
+<div class="px-margin-mobile pt-6">
+<div class="flex justify-between items-center bg-primary text-white rounded-2xl p-5 shadow-lg shadow-primary/20">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-widest font-bold opacity-70">FINAL TOTAL</span>
+<span class="text-xs opacity-60">Inc. all taxes</span>
+</div>
+<p class="text-2xl font-display font-extrabold">₹240.00</p>
+</div>
+</div>
+<!-- Actions Section -->
+<div class="p-margin-mobile flex flex-col gap-4">
+<!-- Mark All as Delivered - Teal Primary -->
+<button class="relative w-full h-14 bg-secondary text-white rounded-xl flex items-center justify-center gap-3 font-bold text-base shadow-lg shadow-secondary/20 active:scale-[0.97] transition-all">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    Mark All Delivered
+                </button>
+<div class="flex gap-3">
+<!-- Skip All Selected -->
+<button class="flex-1 h-12 border-2 border-primary/10 bg-white text-primary rounded-xl flex items-center justify-center gap-2 font-bold text-sm active:scale-[0.97] transition-all">
+<span class="material-symbols-outlined text-[18px]">block</span>
+                        Skip All
+                    </button>
+<!-- Close -->
+<button class="flex-1 h-12 bg-surface-container-highest/60 text-on-surface-variant rounded-xl flex items-center justify-center font-bold text-sm active:scale-[0.97] transition-all">
+                        Close
+                    </button>
+</div>
+</div>
+<!-- Safe Area Bottom -->
+<div class="h-8"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Visible as background context) -->
+<nav class="fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-outline-variant/30 flex items-center justify-around px-4 z-40 opacity-30">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-[10px] font-bold">HOME</span>
+</div>
+<div class="flex flex-col items-center gap-1 nav-item-active">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+<span class="text-[10px] font-bold">DELIVERIES</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[24px]">group</span>
+<span class="text-[10px] font-bold">CUSTOMERS</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[24px]">bar_chart</span>
+<span class="text-[10px] font-bold">REPORTS</span>
+</div>
+</nav>
+</body></html>

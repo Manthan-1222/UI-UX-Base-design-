@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Select Subscription Plan</title>
+    <!-- Google Fonts for Typography -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#4facfe',
+                            blue: '#4181f0',
+                            dark: '#1d3fbb',
+                            button: '#1a3fb5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style data-purpose="custom-layout">
+        body {
+            background-color: #ffffff;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+
+        /* Custom gradient for the card */
+        .card-gradient {
+            background: linear-gradient(135deg, #4da4f7 0%, #3e81ef 100%);
+        }
+
+        /* Hide scrollbar for the horizontal slider */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="font-sans antialiased text-slate-900 min-h-screen flex flex-col max-w-[390px] mx-auto overflow-x-hidden relative">
+    <!-- BEGIN: Status Bar -->
+    <header class="w-full px-6 pt-4 pb-2 flex justify-between items-center text-sm font-semibold"
+        data-purpose="status-bar">
+        <div class="flex-1">
+            <span>9:41</span>
+        </div>
+        <div class="flex items-center space-x-1.5">
+            <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+                <path
+                    d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z">
+                </path>
+            </svg>
+            <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+                <path clip-rule="evenodd"
+                    d="M3 5a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm11 1H6v8l4-2 4 2V6z"
+                    fill-rule="evenodd"></path>
+            </svg>
+            <svg class="w-7 h-7" fill="currentColor" viewbox="0 0 24 24">
+                <path d="M17 6H7a2 2 0 00-2 2v8a2 2 0 002 2h10a2 2 0 002-2V8a2 2 0 00-2-2zM7 8h10v8H7V8z"></path>
+            </svg>
+        </div>
+    </header>
+    <!-- END: Status Bar -->
+    <!-- BEGIN: Main Content Area -->
+    <main class="flex-grow flex flex-col">
+        <!-- BEGIN: Title Section -->
+        <section class="px-8 mt-6 text-center" data-purpose="header-section">
+            <h1 class="text-[32px] leading-tight font-serif font-bold text-[#1c243d]">
+                Select Your<br />Subscription Plan
+            </h1>
+            <p class="mt-3 text-[#6b7280] text-[15px] leading-relaxed max-w-[280px] mx-auto">
+                Choose the best plan to power your dairy business.
+            </p>
+        </section>
+        <!-- END: Title Section -->
+        <!-- BEGIN: Plan Carousel -->
+        <section class="mt-10 overflow-hidden" data-purpose="carousel-section">
+            <div class="flex overflow-x-auto no-scrollbar snap-x snap-mandatory px-[32px] space-x-4">
+                <!-- Trial Card (Main) -->
+                <div class="flex-shrink-0 w-[326px] snap-center" data-purpose="trial-plan-card">
+                    <div
+                        class="card-gradient rounded-[40px] p-10 text-white shadow-2xl shadow-blue-400/50 min-h-[440px] flex flex-col justify-between">
+                        <div class="text-center">
+                            <h2 class="text-3xl font-bold tracking-tight">Trial</h2>
+                            <p class="text-white/80 text-sm mt-2">Experience the core features</p>
+                            <div class="mt-8 flex flex-col items-center"><span
+                                    class="text-[80px] font-bold leading-none">₹0</span><span
+                                    class="text-[15px] italic text-[#e0e7ff] mt-2 font-light">14 Days Free</span></div>
+                        </div>
+                        <div class="mt-12 space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none"
+                                        stroke="currentColor" viewbox="0 0 24 24">
+                                        <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2.5"></path>
+                                    </svg></div><span class="text-base font-medium">Basic Herd Tracking</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none"
+                                        stroke="currentColor" viewbox="0 0 24 24">
+                                        <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2.5"></path>
+                                    </svg></div><span class="text-base font-medium">Daily Milk Records</span>
+                            </div>
+                        </div>
+                        <div class="mt-12 h-[2px] w-[85%] mx-auto bg-white/20 rounded-full"></div>
+                    </div>
+                </div>
+                <!-- Basic Card -->
+                <div class="flex-shrink-0 w-[326px] snap-center" data-purpose="basic-plan-card">
+                    <div
+                        class="bg-brand-blue rounded-[40px] p-10 text-white shadow-2xl shadow-blue-400/50 min-h-[440px] flex flex-col justify-between">
+                        <div class="text-center">
+                            <h2 class="text-3xl font-bold tracking-tight">Basic</h2>
+                            <p class="text-white/80 text-sm mt-2">Scale your daily operations</p>
+                            <div class="mt-8 flex flex-col items-center"><span
+                                    class="text-[56px] font-bold leading-none">₹499</span><span
+                                    class="text-[15px] italic text-[#e0e7ff] mt-2 font-light">Per Month</span></div>
+                        </div>
+                        <div class="mt-12 space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none"
+                                        stroke="currentColor" viewbox="0 0 24 24">
+                                        <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2.5"></path>
+                                    </svg></div><span class="text-base font-medium">Advanced Herd Tracking</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none"
+                                        stroke="currentColor" viewbox="0 0 24 24">
+                                        <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2.5"></path>
+                                    </svg></div><span class="text-base font-medium">Milk &amp; Feed Records</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none"
+                                        stroke="currentColor" viewbox="0 0 24 24">
+                                        <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2.5"></path>
+                                    </svg></div><span class="text-base font-medium">Financial Reports</span>
+                            </div>
+                        </div>
+                        <div class="mt-12 h-[2px] w-[85%] mx-auto bg-white/20 rounded-full"></div>
+                    </div>
+                </div>
+                <!-- Pro Card -->
+                <div class="flex-shrink-0 w-[326px] snap-center" data-purpose="pro-plan-card">
+                    <div
+                        class="bg-brand-dark rounded-[40px] p-10 text-white shadow-2xl shadow-blue-900/40 min-h-[440px] flex flex-col justify-between">
+                        <div class="text-center">
+                            <h2 class="text-3xl font-bold tracking-tight">Pro</h2>
+                            <p class="text-white/80 text-sm mt-2">Ultimate management tools</p>
+                            <div class="mt-8 flex flex-col items-center"><span
+                                    class="text-[56px] font-bold leading-none">₹999</span><span
+                                    class="text-[15px] italic text-[#e0e7ff] mt-2 font-light">Per Month</span></div>
+                        </div>
+                        <div class="mt-12 space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none"
+                                        stroke="currentColor" viewbox="0 0 24 24">
+                                        <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2.5"></path>
+                                    </svg></div><span class="text-base font-medium">All Basic Features</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none"
+                                        stroke="currentColor" viewbox="0 0 24 24">
+                                        <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2.5"></path>
+                                    </svg></div><span class="text-base font-medium">AI Health Insights</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none"
+                                        stroke="currentColor" viewbox="0 0 24 24">
+                                        <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2.5"></path>
+                                    </svg></div><span class="text-base font-medium">Priority Support</span>
+                            </div>
+                        </div>
+                        <div class="mt-12 h-[2px] w-[85%] mx-auto bg-white/20 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END: Plan Carousel -->
+        <!-- BEGIN: Pagination Indicators -->
+        <section class="mt-10 mb-8 flex justify-center items-center space-x-2" data-purpose="pagination-dots">
+            <div class="w-10 h-2.5 rounded-full bg-brand-blue"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-gray-200"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-gray-200"></div>
+        </section>
+        <!-- END: Pagination Indicators -->
+    </main>
+    <!-- END: Main Content Area -->
+    <!-- BEGIN: Footer Action -->
+    <footer class="p-6 pb-10 mt-auto sticky bottom-0 bg-white" data-purpose="footer-navigation">
+        <button
+            class="w-full bg-brand-button text-white py-5 rounded-[28px] text-lg font-bold shadow-lg active:scale-[0.98] transition-transform duration-100"
+            id="continue-btn">
+            Continue
+        </button>
+    </footer>
+    <!-- END: Footer Action -->
+    <!-- BEGIN: Interaction Handling -->
+    <script data-purpose="event-handlers">
+        document.addEventListener('DOMContentLoaded', () => {
+            const continueBtn = document.getElementById('continue-btn');
+
+            // Basic feedback on click
+            continueBtn.addEventListener('click', () => {
+                console.log('Navigating to checkout or next step...');
+            });
+
+            // Smooth horizontal scroll behavior is native on iOS with snap-x
+        });
+    </script>
+    <!-- END: Interaction Handling -->
+</body>
+
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DairyKhata Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#747780",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#dbe9ff",
+                        "secondary-fixed": "#dbe3f1",
+                        "primary-fixed": "#d6e3ff",
+                        "on-tertiary-fixed-variant": "#2e4962",
+                        "surface-container": "#e4efff",
+                        "tertiary": "#00192c",
+                        "outline-variant": "#c4c6d0",
+                        "surface-variant": "#d1e4ff",
+                        "tertiary-container": "#102e45",
+                        "on-surface-variant": "#43474f",
+                        "tertiary-fixed-dim": "#aec9e7",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-container": "#5d6571",
+                        "surface-container-highest": "#d1e4ff",
+                        "on-tertiary-container": "#7b96b2",
+                        "on-surface": "#011d35",
+                        "surface-container-low": "#eef4ff",
+                        "secondary-container": "#dbe3f1",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#001d32",
+                        "tertiary-fixed": "#cee5ff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#405f91",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#141c26",
+                        "on-secondary-fixed-variant": "#3f4752",
+                        "inverse-on-surface": "#e9f1ff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#c4dcfd",
+                        "secondary-fixed-dim": "#bfc7d4",
+                        "secondary": "#575f6b",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001b3d",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#19324b",
+                        "surface": "#f8f9ff",
+                        "primary-container": "#002b5b",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#264778",
+                        "primary": "#001736",
+                        "on-primary-container": "#7594ca",
+                        "on-background": "#011d35",
+                        "inverse-primary": "#a9c7ff",
+                        "whatsapp-green": "#25D366"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "margin-mobile": "20px",
+                        "gutter": "16px",
+                        "base-unit": "4px",
+                        "stack-lg": "24px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-lg": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pulsing-dot {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-on-tertiary-fixed flex items-center justify-between px-margin-mobile h-16 w-full docked full-width top-0 border-b border-outline-variant dark:border-outline fixed z-50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim cursor-pointer active:scale-95 transition-transform duration-200">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">DairyKhata</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="A professional headshot avatar of a dairy business administrator, rendered in a clean minimalist vector style. The character has a friendly expression, wearing professional attire against a soft blue background. The overall aesthetic is modern, high-contrast, and fits perfectly within a premium light-mode UI design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7SGnTxl6TXsG8E3lbB1xh_vH9-RNI6ZqgCZTYG9bYjHsF_ctOcd04YibiCufGJgZIJOfZDMO9nt0p1HkS4MpeTkF7kdgT8eKnA1DWzBVSHwaHaOUwHWHQupEceaRH49yQrBFEX1fCxKMPxukQslxFdpSl3_XHq4R8l-_lyjmSIUo0Bxi-30bt2KbmwtBFhfJ-L-SO4nlzyhBqALEFAZOdWf53HYiQJffg3qonfn_3cHRI-ptcKfAcm0Dtsjo7Ml1sguNu4plS50R6"/>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile max-w-2xl mx-auto space-y-stack-lg">
+<!-- WhatsApp Status Banner -->
+<div class="bg-whatsapp-green/10 border border-whatsapp-green/20 rounded-xl p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative flex h-3 w-3">
+<span class="pulsing-dot absolute inline-flex h-full w-full rounded-full bg-whatsapp-green opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-whatsapp-green"></span>
+</div>
+<span class="font-label-lg text-on-surface font-bold">WhatsApp Notifications Active</span>
+</div>
+<span class="material-symbols-outlined text-whatsapp-green">verified_user</span>
+</div>
+<!-- Quick Stats Strip -->
+<div class="grid grid-cols-3 gap-stack-sm">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col items-center">
+<span class="text-label-md font-label-md text-secondary uppercase tracking-wider">Sent Today</span>
+<span class="text-headline-sm font-headline-sm text-primary mt-1">142</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col items-center">
+<span class="text-label-md font-label-md text-secondary uppercase tracking-wider">Failed</span>
+<span class="text-headline-sm font-headline-sm text-error mt-1">3</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col items-center">
+<span class="text-label-md font-label-md text-secondary uppercase tracking-wider">Month</span>
+<span class="text-headline-sm font-headline-sm text-primary mt-1">4.2k</span>
+</div>
+</div>
+<!-- Action Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex justify-between items-start mb-stack-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Send Today's Delivery Summary</h2>
+<p class="text-body-sm text-on-surface-variant mt-1">Broadcast morning deliveries to all customers</p>
+</div>
+<div class="bg-surface-container rounded-lg px-3 py-1 flex items-center gap-2 border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="font-label-md">Today</span>
+</div>
+</div>
+<button class="w-full bg-whatsapp-green hover:bg-opacity-90 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all active:scale-95 shadow-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+<span class="font-label-lg uppercase tracking-wide">Send Now</span>
+</button>
+<div class="mt-4 flex items-center justify-center gap-2 text-body-sm text-secondary">
+<span class="material-symbols-outlined text-[16px]">history</span>
+<span>Last sent at 6:00 PM yesterday</span>
+</div>
+</section>
+<!-- Recent Notifications List -->
+<section class="space-y-stack-md">
+<div class="flex justify-between items-end">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Recent Activity</h3>
+<a class="text-primary font-label-lg hover:underline transition-all" href="#">View All</a>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl divide-y divide-outline-variant overflow-hidden">
+<!-- Item 1 -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="font-label-lg text-on-surface">Rajesh Kumar</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_shipping</span> DELIVERY
+                                </span>
+<span class="text-label-md text-secondary">06:15 AM</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-whatsapp-green" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Item 2 -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="font-label-lg text-on-surface">Sunit's Cafe</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_shipping</span> DELIVERY
+                                </span>
+<span class="text-label-md text-secondary">06:12 AM</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-whatsapp-green" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Item 3 -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="font-label-lg text-on-surface">Meena Sharma</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_shipping</span> DELIVERY
+                                </span>
+<span class="text-label-md text-secondary">06:08 AM</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-whatsapp-green" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Item 4 -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="font-label-lg text-on-surface">Amit Patel</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_shipping</span> DELIVERY
+                                </span>
+<span class="text-label-md text-secondary">06:05 AM</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">error</span>
+</div>
+<!-- Item 5 -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="font-label-lg text-on-surface">Preeti Verma</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_shipping</span> DELIVERY
+                                </span>
+<span class="text-label-md text-secondary">06:01 AM</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-whatsapp-green" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</section>
+<!-- Settings Shortcut Card -->
+<section class="bg-surface-container-high border border-outline-variant rounded-xl p-4 flex items-center justify-between group cursor-pointer active:scale-95 transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+</div>
+<div>
+<h4 class="font-label-lg text-on-surface">Notification Settings</h4>
+<p class="text-body-sm text-on-surface-variant">Scheduled for 6:00 PM | <span class="text-whatsapp-green font-bold uppercase text-[12px]">Active</span></p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe bg-surface-container dark:bg-on-tertiary-fixed border-t border-outline-variant dark:border-outline rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-variant transition-all active:scale-90">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-tertiary-container text-on-secondary-container dark:text-on-tertiary-container rounded-full px-5 py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-md text-label-md font-bold">History</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-variant transition-all active:scale-90">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</button>
+</nav>
+</body></html>

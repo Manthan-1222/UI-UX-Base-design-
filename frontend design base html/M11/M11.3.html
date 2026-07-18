@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customer Payment History - DairyKhata</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#c4dcfd",
+                    "on-tertiary-fixed": "#001d32",
+                    "tertiary-fixed": "#cee5ff",
+                    "secondary-container": "#dbe3f1",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "inverse-on-surface": "#e9f1ff",
+                    "on-tertiary-fixed-variant": "#2e4962",
+                    "on-secondary-fixed": "#141c26",
+                    "on-primary-container": "#7594ca",
+                    "secondary-fixed-dim": "#bfc7d4",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#102e45",
+                    "surface-container": "#e4efff",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed": "#dbe3f1",
+                    "on-secondary-fixed-variant": "#3f4752",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#264778",
+                    "surface-tint": "#405f91",
+                    "background": "#f8f9ff",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#43474f",
+                    "primary-container": "#002b5b",
+                    "on-background": "#011d35",
+                    "tertiary": "#00192c",
+                    "outline-variant": "#c4c6d0",
+                    "on-tertiary-container": "#7b96b2",
+                    "on-primary-fixed": "#001b3d",
+                    "surface-variant": "#d1e4ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#d1e4ff",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#dbe9ff",
+                    "surface-bright": "#f8f9ff",
+                    "on-error-container": "#93000a",
+                    "secondary": "#575f6b",
+                    "outline": "#747780",
+                    "on-secondary-container": "#5d6571",
+                    "surface-container-low": "#eef4ff",
+                    "on-primary": "#ffffff",
+                    "primary": "#001736",
+                    "tertiary-fixed-dim": "#aec9e7",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#d6e3ff",
+                    "on-surface": "#011d35",
+                    "inverse-surface": "#19324b",
+                    "inverse-primary": "#a9c7ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "24px",
+                    "margin-mobile": "20px",
+                    "base-unit": "4px",
+                    "gutter": "16px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "headline-sm": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "label-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .timeline-line {
+            background-image: linear-gradient(to bottom, #747780 50%, transparent 50%);
+            background-size: 1px 8px;
+            background-repeat: repeat-y;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopAppBar Shell -->
+<header class="w-full top-0 sticky z-50 bg-surface flex justify-between items-center px-margin-mobile h-14 transition-colors duration-200 ease-in-out">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-primary cursor-pointer">arrow_back</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">DairyKhata</h1>
+</div>
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-margin-mobile py-stack-lg pb-32">
+<!-- Customer Profile Header -->
+<section class="mb-stack-lg bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-stack-md">
+<div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold text-headline-sm">RK</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Rajesh Kumar</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+91 98765 43210</p>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-stack-md py-stack-sm rounded-lg font-label-lg flex items-center gap-base-unit">
+<span class="material-symbols-outlined text-[18px]">add</span> Record Payment
+                </button>
+</div>
+</section>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md mb-stack-lg">
+<div class="bg-surface-container-low p-stack-md rounded-xl border border-outline-variant flex flex-col gap-base-unit">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Paid</span>
+<span class="font-headline-lg text-headline-lg text-primary">₹8,400</span>
+<div class="flex items-center gap-base-unit text-on-tertiary-fixed-variant font-label-md mt-base-unit">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>12 Payments successful</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded-xl border border-outline-variant flex flex-col gap-base-unit">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Outstanding</span>
+<span class="font-headline-lg text-headline-lg text-error">₹1,200</span>
+<div class="flex items-center gap-base-unit text-on-surface-variant font-label-md mt-base-unit">
+<span class="material-symbols-outlined text-[14px]">history</span>
+<span>Last invoice due in 4 days</span>
+</div>
+</div>
+</div>
+<!-- Payment History Timeline -->
+<section>
+<div class="flex items-center justify-between mb-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Payment History</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">filter_list</span>
+</div>
+<div class="relative">
+<!-- Timeline Vertical Dotted Line -->
+<div class="absolute left-6 top-4 bottom-4 w-px timeline-line opacity-30"></div>
+<div class="space-y-stack-lg">
+<!-- History Item 1 -->
+<div class="relative flex gap-stack-md pl-14">
+<div class="absolute left-4 top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-surface"></div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex items-center justify-between transition-colors hover:bg-surface-container-low">
+<div class="flex flex-col gap-base-unit">
+<div class="flex items-center gap-stack-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">₹2,100</span>
+<span class="px-stack-sm py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-label-md">UPI</span>
+</div>
+<div class="flex items-center gap-stack-sm text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Oct 24, 2023 • 09:45 AM</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<a class="font-label-md text-label-md text-primary flex items-center gap-base-unit" href="#">
+                                        INV-2991 <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+<!-- History Item 2 -->
+<div class="relative flex gap-stack-md pl-14">
+<div class="absolute left-4 top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-surface"></div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex items-center justify-between transition-colors hover:bg-surface-container-low">
+<div class="flex flex-col gap-base-unit">
+<div class="flex items-center gap-stack-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">₹1,500</span>
+<span class="px-stack-sm py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-label-md">Cash</span>
+</div>
+<div class="flex items-center gap-stack-sm text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Oct 12, 2023 • 06:20 PM</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<a class="font-label-md text-label-md text-primary flex items-center gap-base-unit" href="#">
+                                        INV-2842 <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+<!-- History Item 3 -->
+<div class="relative flex gap-stack-md pl-14">
+<div class="absolute left-4 top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-surface"></div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex items-center justify-between transition-colors hover:bg-surface-container-low">
+<div class="flex flex-col gap-base-unit">
+<div class="flex items-center gap-stack-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">₹2,400</span>
+<span class="px-stack-sm py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-label-md">Net Banking</span>
+</div>
+<div class="flex items-center gap-stack-sm text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Sep 30, 2023 • 10:15 AM</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<a class="font-label-md text-label-md text-primary flex items-center gap-base-unit" href="#">
+                                        INV-2711 <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+<!-- History Item 4 (Older Month) -->
+<div class="relative flex gap-stack-md pl-14">
+<div class="absolute left-4 top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-surface"></div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex items-center justify-between transition-colors hover:bg-surface-container-low">
+<div class="flex flex-col gap-base-unit">
+<div class="flex items-center gap-stack-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">₹2,400</span>
+<span class="px-stack-sm py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-label-md">UPI</span>
+</div>
+<div class="flex items-center gap-stack-sm text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Sep 01, 2023 • 08:00 AM</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<a class="font-label-md text-label-md text-primary flex items-center gap-base-unit" href="#">
+                                        INV-2598 <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-stack-lg text-center">
+<button class="font-label-lg text-primary border border-primary px-stack-lg py-stack-sm rounded-full transition-colors hover:bg-surface-container-low">
+                    Load Older Payments
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container-lowest shadow-[0_-1px_0_0_rgba(0,0,0,0.05)] flex justify-around items-center px-2 py-3 transition-transform duration-150">
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant p-2 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant p-2 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-md text-label-md">Deliveries</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-md text-label-md">Customers</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant p-2 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Payments</span>
+</a>
+</nav>
+</body></html>

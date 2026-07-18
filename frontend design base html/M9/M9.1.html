@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DairyKhata Delivery Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#2a9d8f", // Teal
+                        "on-primary": "#ffffff",
+                        "secondary": "#264653", // Navy
+                        "on-secondary": "#ffffff",
+                        "surface": "#f8fdfe", // Very light teal/white
+                        "surface-variant": "#e0f2f1", // Light teal background
+                        "background": "#f0f7f8", // Soft cool background
+                        "on-surface": "#1d3557", // Deep navy for text
+                        "on-surface-variant": "#457b9d", // Muted navy/blue
+                        "outline": "#a8dadc", // Soft teal border
+                        "outline-variant": "#e0f2f1",
+                        "error": "#e63946"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.25rem",
+                        "3xl": "2rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: #f0f7f8;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 20px -2px rgba(38, 70, 83, 0.08);
+        }
+        .selection-gradient {
+            background: linear-gradient(135deg, #1d3557 0%, #264653 100%);
+        }
+    </style>
+</head>
+<body class="text-on-surface min-h-screen pb-32">
+<!-- Sticky Selection Bar (Navy Palette) -->
+<div class="sticky top-0 z-50 px-4 py-3">
+<div class="selection-gradient text-white rounded-3xl shadow-xl flex items-center justify-between px-5 py-4 ring-1 ring-white/10">
+<div class="flex items-center gap-3">
+<button class="size-9 flex items-center justify-center rounded-full hover:bg-white/10 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-white">close</span>
+</button>
+<div class="flex flex-col">
+<p class="text-[10px] font-bold text-white/60 uppercase tracking-widest">Selection Mode</p>
+<p class="text-sm font-bold">2 items selected</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="bg-primary text-white px-5 py-2.5 rounded-2xl text-xs font-extrabold shadow-lg flex items-center gap-1.5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    Confirm All
+                </button>
+</div>
+</div>
+</div>
+<main class="max-w-md mx-auto px-4">
+<!-- Date Navigator: Navy/Teal Styling -->
+<header class="mt-4 mb-6">
+<div class="bg-secondary text-white rounded-[2.5rem] p-2 flex items-center justify-between card-shadow">
+<button class="size-14 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 active:scale-90 transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="text-center">
+<h1 class="text-headline font-bold text-lg">Monday, 27 April</h1>
+<p class="text-[10px] text-primary font-black uppercase tracking-widest mt-0.5">Today</p>
+</div>
+<button class="size-14 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 active:scale-90 transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</header>
+<!-- Daily Progress: Professional Teal Card -->
+<section class="mb-8">
+<div class="bg-surface-variant/50 border border-outline/50 rounded-3xl p-6 flex items-center gap-6">
+<div class="relative size-20 flex items-center justify-center">
+<svg class="size-full transform -rotate-90">
+<circle class="text-white" cx="40" cy="40" fill="transparent" r="34" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary" cx="40" cy="40" fill="transparent" r="34" stroke="currentColor" stroke-dasharray="213.6" stroke-dashoffset="85.44" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<span class="absolute text-sm font-black text-on-surface">60%</span>
+</div>
+<div class="flex-1">
+<h3 class="font-display font-bold text-on-surface text-lg">Daily Progress</h3>
+<p class="text-sm text-on-surface-variant font-medium">3 of 5 deliveries confirmed</p>
+<div class="flex gap-1.5 mt-3">
+<div class="h-1.5 w-6 rounded-full bg-primary"></div>
+<div class="h-1.5 w-6 rounded-full bg-primary"></div>
+<div class="h-1.5 w-6 rounded-full bg-primary"></div>
+<div class="h-1.5 w-6 rounded-full bg-white"></div>
+<div class="h-1.5 w-6 rounded-full bg-white"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Filters: Pill Buttons -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-8">
+<button class="px-6 py-3 rounded-full bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 whitespace-nowrap active:scale-95 transition-transform">All Deliveries</button>
+<button class="px-6 py-3 rounded-full bg-secondary text-white text-sm font-bold shadow-md shadow-secondary/10 whitespace-nowrap active:scale-95 transition-transform">Pending</button>
+<button class="px-6 py-3 rounded-full bg-secondary text-white text-sm font-bold shadow-md shadow-secondary/10 whitespace-nowrap active:scale-95 transition-transform">Completed</button>
+</div>
+<!-- Delivery List -->
+<div class="space-y-6">
+<!-- Rajesh Kumar: Pending -->
+<div class="relative group">
+<div class="bg-white border border-outline rounded-[2rem] p-6 card-shadow transition-all group-active:scale-[0.98]">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-4">
+<div class="size-7 rounded-xl border-2 border-primary/40 flex items-center justify-center mt-0.5">
+<div class="size-3 rounded-sm bg-transparent"></div>
+</div>
+<div>
+<h4 class="font-display font-bold text-on-surface text-lg">Rajesh Kumar</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs text-on-surface-variant font-semibold">2.5L Cow Milk</span>
+<span class="size-1 rounded-full bg-primary"></span>
+<span class="text-xs font-bold text-primary">Pending</span>
+</div>
+</div>
+</div>
+<div class="px-3 py-1 bg-surface-variant text-[10px] font-black text-on-surface-variant rounded-full uppercase tracking-wider">Home 402</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-2xl text-sm font-black shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+                            Confirm
+                        </button>
+<button class="flex items-center justify-center gap-2 border-2 border-outline text-on-surface-variant py-4 rounded-2xl text-sm font-black active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-xl">block</span>
+                            Skip
+                        </button>
+</div>
+</div>
+</div>
+<!-- Vikram Singh: Selected -->
+<div class="relative">
+<div class="bg-surface-variant border-2 border-primary rounded-[2rem] p-6 shadow-inner transition-all">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="size-7 rounded-xl bg-primary flex items-center justify-center mt-0.5 shadow-md shadow-primary/30">
+<span class="material-symbols-outlined text-white text-lg font-bold">check</span>
+</div>
+<div>
+<h4 class="font-display font-bold text-on-surface text-lg">Vikram Singh</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs text-on-surface-variant font-semibold">1.5L Cow Milk</span>
+<span class="size-1 rounded-full bg-primary/40"></span>
+<span class="text-xs font-bold text-primary">Selected</span>
+</div>
+</div>
+</div>
+<div class="px-3 py-1 bg-primary/10 text-[10px] font-black text-primary rounded-full uppercase tracking-wider">Home 102</div>
+</div>
+</div>
+</div>
+<!-- Anita Sharma: Delivered -->
+<div class="relative opacity-60">
+<div class="bg-white border border-outline/30 rounded-[2rem] p-6">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="size-7 rounded-xl bg-primary/10 flex items-center justify-center mt-0.5">
+<span class="material-symbols-outlined text-primary text-lg font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<h4 class="font-display font-bold text-on-surface text-lg">Anita Sharma</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs text-on-surface-variant font-semibold">1.0L Buffalo Milk</span>
+</div>
+</div>
+</div>
+<div class="px-3 py-1 bg-surface-variant text-[10px] font-black text-primary rounded-full uppercase tracking-wider">Delivered</div>
+</div>
+<div class="mt-4 flex items-center gap-1.5 text-xs text-on-surface-variant/80 font-medium italic">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                        Confirmed at 06:45 AM
+                    </div>
+</div>
+</div>
+<!-- Sunil Mehra: Selected -->
+<div class="relative">
+<div class="bg-surface-variant border-2 border-primary rounded-[2rem] p-6 shadow-inner transition-all">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="size-7 rounded-xl bg-primary flex items-center justify-center mt-0.5 shadow-md shadow-primary/30">
+<span class="material-symbols-outlined text-white text-lg font-bold">check</span>
+</div>
+<div>
+<h4 class="font-display font-bold text-on-surface text-lg">Sunil Mehra</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs text-on-surface-variant font-semibold">0.5L Buffalo Milk</span>
+<span class="size-1 rounded-full bg-primary/40"></span>
+<span class="text-xs font-bold text-primary">Selected</span>
+</div>
+</div>
+</div>
+<div class="px-3 py-1 bg-primary/10 text-[10px] font-black text-primary rounded-full uppercase tracking-wider">Villa 12</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<div class="fixed bottom-28 right-6 z-40">
+<button class="bg-secondary text-white flex items-center gap-4 px-7 h-16 rounded-3xl shadow-[0_12px_30px_-5px_rgba(38,70,83,0.4)] active:scale-95 active:shadow-lg transition-all ring-2 ring-white/10">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'wght' 600;">done_all</span>
+<span class="font-display font-bold text-base">Confirm Selected</span>
+<div class="bg-primary size-8 rounded-full flex items-center justify-center text-sm font-black shadow-inner">2</div>
+</button>
+</div>
+<!-- Bottom Navigation: Styled for Navy/Teal Identity -->
+<nav class="fixed bottom-0 w-full bg-white border-t border-outline/30 px-6 pt-4 pb-10 z-50 rounded-t-[3rem] shadow-[0_-15px_40px_-10px_rgba(38,70,83,0.1)]">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1.5 text-on-surface-variant/60 hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined text-[28px]">home</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 text-primary" href="#">
+<div class="bg-primary/10 px-6 py-2.5 rounded-2xl mb-0.5">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<span class="text-[10px] font-black uppercase tracking-widest">Deliveries</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 text-on-surface-variant/60 hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined text-[28px]">group</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Customers</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 text-on-surface-variant/60 hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined text-[28px]">bar_chart</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Reports</span>
+</a>
+</div>
+</nav>
+</body></html>

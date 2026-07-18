@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Invoice Detail - DairyKhata</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#cee5ff",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "secondary-container": "#dbe3f1",
+                    "tertiary": "#00192c",
+                    "surface": "#f8f9ff",
+                    "surface-container-low": "#eef4ff",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-container": "#e4efff",
+                    "primary-container": "#002b5b",
+                    "on-error": "#ffffff",
+                    "outline": "#747780",
+                    "on-tertiary-container": "#7b96b2",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#bfc7d4",
+                    "secondary-fixed": "#dbe3f1",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#102e45",
+                    "primary": "#001736",
+                    "on-secondary-fixed": "#141c26",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#7594ca",
+                    "surface-variant": "#d1e4ff",
+                    "on-primary-fixed": "#001b3d",
+                    "on-background": "#011d35",
+                    "on-surface-variant": "#43474f",
+                    "on-surface": "#011d35",
+                    "tertiary-fixed-dim": "#aec9e7",
+                    "on-tertiary-fixed": "#001d32",
+                    "inverse-primary": "#a9c7ff",
+                    "outline-variant": "#c4c6d0",
+                    "surface-dim": "#c4dcfd",
+                    "surface-tint": "#405f91",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#575f6b",
+                    "on-primary-fixed-variant": "#264778",
+                    "on-secondary-container": "#5d6571",
+                    "inverse-surface": "#19324b",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#2e4962",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary-fixed-variant": "#3f4752",
+                    "surface-container-high": "#dbe9ff",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d1e4ff",
+                    "inverse-on-surface": "#e9f1ff",
+                    "background": "#f8f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "stack-lg": "24px",
+                    "margin-mobile": "20px",
+                    "base-unit": "4px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "label-lg": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "headline-sm": ["Manrope"],
+                    "label-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- Top Navigation Shell -->
+<header class="flex justify-between items-center w-full px-margin-mobile h-16 bg-surface border-b border-outline-variant transition-colors duration-200">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-primary cursor-pointer">arrow_back</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">DairyKhata</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container p-2 rounded-full">notifications</span>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-label-md">
+                BP
+            </div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-margin-mobile pt-stack-lg space-y-stack-lg">
+<!-- Invoice Header Card -->
+<section class="bg-surface-container-lowest p-stack-lg rounded-xl border border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-start gap-stack-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">INV-2023-0892</h2>
+<p class="font-body-md text-on-surface-variant mt-1">Billing Period: Oct 01 - Oct 31, 2023</p>
+<div class="flex items-center gap-2 mt-stack-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">calendar_today</span>
+<span class="font-label-md text-on-surface-variant">Issued: Nov 02, 2023</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label-lg uppercase tracking-wider">Paid</span>
+<div class="text-right">
+<p class="font-label-md text-on-surface-variant">Total Balance</p>
+<p class="font-headline-md text-headline-md text-primary">₹0.00</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Customer & Summary -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-lg">
+<!-- Customer Info -->
+<section class="md:col-span-2 bg-surface-container-lowest p-stack-lg rounded-xl border border-outline-variant space-y-stack-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Customer Details</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-stack-md">
+<div>
+<p class="font-label-md text-on-surface-variant">Name</p>
+<p class="font-body-lg text-on-surface font-semibold">Rajesh Kumar Sharma</p>
+</div>
+<div>
+<p class="font-label-md text-on-surface-variant">Phone</p>
+<p class="font-body-lg text-on-surface">+91 98765-43210</p>
+</div>
+<div class="sm:col-span-2">
+<p class="font-label-md text-on-surface-variant">Address</p>
+<p class="font-body-md text-on-surface">Villa 42, Green Meadows Colony, Sector 18, Chandigarh, 160018</p>
+</div>
+</div>
+</section>
+<!-- Quick Stats/Brand Stamp -->
+<section class="bg-primary-container text-on-primary-container p-stack-lg rounded-xl flex flex-col justify-between relative overflow-hidden">
+<div class="z-10">
+<h3 class="font-headline-sm text-headline-sm text-on-primary-container opacity-80">Verified Receipt</h3>
+<p class="font-body-sm mt-2">This is a digitally generated invoice for dairy deliveries via DairyKhata.</p>
+</div>
+<div class="z-10 mt-stack-lg">
+<div class="w-16 h-16 border-4 border-on-primary-container/20 rounded-full flex items-center justify-center rotate-12">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<!-- Abstract visual element -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-on-primary-container/5 rounded-full"></div>
+</section>
+</div>
+<!-- Line Items Table -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="p-stack-md border-b border-outline-variant bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-primary">Delivery Summary</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-md uppercase tracking-tight">
+<th class="px-margin-mobile py-4">Date</th>
+<th class="px-4 py-4">Product</th>
+<th class="px-4 py-4 text-center">Qty</th>
+<th class="px-4 py-4 text-center">Rate</th>
+<th class="px-margin-mobile py-4 text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="font-body-md">
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors">
+<td class="px-margin-mobile py-4 font-semibold">Oct 01</td>
+<td class="px-4 py-4">Full Cream Milk</td>
+<td class="px-4 py-4 text-center">2 L</td>
+<td class="px-4 py-4 text-center">₹64</td>
+<td class="px-margin-mobile py-4 text-right">₹128.00</td>
+</tr>
+<tr class="bg-surface-container-low/30 border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors">
+<td class="px-margin-mobile py-4 font-semibold">Oct 02</td>
+<td class="px-4 py-4">Paneer (Fresh)</td>
+<td class="px-4 py-4 text-center">0.5 kg</td>
+<td class="px-4 py-4 text-center">₹400</td>
+<td class="px-margin-mobile py-4 text-right">₹200.00</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors">
+<td class="px-margin-mobile py-4 font-semibold">Oct 03</td>
+<td class="px-4 py-4">Cow Milk</td>
+<td class="px-4 py-4 text-center">1.5 L</td>
+<td class="px-4 py-4 text-center">₹58</td>
+<td class="px-margin-mobile py-4 text-right">₹87.00</td>
+</tr>
+<tr class="bg-surface-container-low/30 border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors">
+<td class="px-margin-mobile py-4 font-semibold">Oct 04</td>
+<td class="px-4 py-4">Full Cream Milk</td>
+<td class="px-4 py-4 text-center">2 L</td>
+<td class="px-4 py-4 text-center">₹64</td>
+<td class="px-margin-mobile py-4 text-right">₹128.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Summary Section -->
+<div class="p-stack-lg flex flex-col items-end space-y-2">
+<div class="w-full md:w-1/3 space-y-2">
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<span>Subtotal</span>
+<span>₹543.00</span>
+</div>
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<span>Taxes (GST 0%)</span>
+<span>₹0.00</span>
+</div>
+<div class="pt-2 border-t border-outline-variant flex justify-between items-center">
+<span class="font-headline-sm text-primary">Total</span>
+<span class="font-headline-lg text-primary">₹543.00</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Actions Floating -->
+<section class="fixed bottom-20 left-0 w-full px-margin-mobile z-40 md:static md:px-0 md:mt-stack-lg">
+<div class="max-w-4xl mx-auto flex flex-col sm:flex-row gap-4">
+<button class="flex-1 bg-primary text-on-primary py-4 rounded-xl font-label-lg flex items-center justify-center gap-2 shadow-lg hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">download</span>
+                    Download PDF
+                    <span class="w-4 h-4 border-2 border-on-primary/30 border-t-on-primary rounded-full animate-spin ml-2"></span>
+</button>
+<button class="flex-1 bg-surface-container-lowest text-primary border border-primary py-4 rounded-xl font-label-lg flex items-center justify-center gap-2 hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined">share</span>
+                    Share Invoice
+                </button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container border-t border-outline-variant shadow-md">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="font-label-md text-label-md">Deliveries</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Customers</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-md text-label-md">Billing</span>
+</a>
+</nav>
+</body></html>

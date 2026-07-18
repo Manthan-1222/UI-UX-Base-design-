@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Generate Invoice - DairyKhata</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#cee5ff",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "secondary-container": "#dbe3f1",
+                        "tertiary": "#00192c",
+                        "surface": "#f8f9ff",
+                        "surface-container-low": "#eef4ff",
+                        "primary-fixed": "#d6e3ff",
+                        "surface-container": "#e4efff",
+                        "primary-container": "#002b5b",
+                        "on-error": "#ffffff",
+                        "outline": "#747780",
+                        "on-tertiary-container": "#7b96b2",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#bfc7d4",
+                        "secondary-fixed": "#dbe3f1",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#102e45",
+                        "primary": "#001736",
+                        "on-secondary-fixed": "#141c26",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#7594ca",
+                        "surface-variant": "#d1e4ff",
+                        "on-primary-fixed": "#001b3d",
+                        "on-background": "#011d35",
+                        "on-surface-variant": "#43474f",
+                        "on-surface": "#011d35",
+                        "tertiary-fixed-dim": "#aec9e7",
+                        "on-tertiary-fixed": "#001d32",
+                        "inverse-primary": "#a9c7ff",
+                        "outline-variant": "#c4c6d0",
+                        "surface-dim": "#c4dcfd",
+                        "surface-tint": "#405f91",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#575f6b",
+                        "on-primary-fixed-variant": "#264778",
+                        "on-secondary-container": "#5d6571",
+                        "inverse-surface": "#19324b",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#2e4962",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#3f4752",
+                        "surface-container-high": "#dbe9ff",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d1e4ff",
+                        "inverse-on-surface": "#e9f1ff",
+                        "background": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "stack-lg": "24px",
+                        "margin-mobile": "20px",
+                        "base-unit": "4px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-lg": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "label-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .bottom-sheet-gradient {
+            background: linear-gradient(to top, rgba(0, 23, 54, 0.05), transparent);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top App Bar (Shared Component) -->
+<header class="flex justify-between items-center w-full px-margin-mobile h-16 bg-surface dark:bg-primary border-b border-outline-variant dark:border-outline fixed top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-label-md">
+                BP
+            </div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">DairyKhata</h1>
+</div>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">notifications</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-20 pb-32 px-margin-mobile">
+<!-- Dashboard Background Context (Faded) -->
+<div class="opacity-30 pointer-events-none select-none">
+<div class="mb-stack-lg">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-stack-sm">Billing Overview</h2>
+<div class="grid grid-cols-2 gap-stack-md">
+<div class="p-stack-md bg-surface-container rounded-xl border border-outline-variant">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-1">Total Outstanding</span>
+<span class="font-headline-sm text-headline-sm text-primary">₹ 42,850</span>
+</div>
+<div class="p-stack-md bg-surface-container rounded-xl border border-outline-variant">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-1">Pending Invoices</span>
+<span class="font-headline-sm text-headline-sm text-primary">12</span>
+</div>
+</div>
+</div>
+</div>
+<!-- The Workflow Container: Success State Overlay (Simulated Final Step) -->
+<!-- In a real app, this would be a transition. Here we show the complete UI story. -->
+<div class="fixed inset-0 bg-primary/20 backdrop-blur-sm z-[60] flex items-end">
+<!-- Overlay to dim background -->
+<div aria-hidden="true" class="absolute inset-0"></div>
+<!-- Bottom Sheet -->
+<div class="w-full bg-surface-container-lowest rounded-t-[32px] shadow-2xl relative z-70 border-t border-outline-variant max-h-[795px] overflow-y-auto">
+<!-- Pull Handle -->
+<div class="w-12 h-1.5 bg-outline-variant rounded-full mx-auto mt-4 mb-6"></div>
+<div class="px-margin-mobile pb-12">
+<!-- Header -->
+<div class="flex justify-between items-start mb-stack-lg">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Generate Invoices</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Review settings before final generation.</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface">close</span>
+</button>
+</div>
+<!-- Step-by-Step Flow Content -->
+<div class="space-y-stack-lg">
+<!-- Step 1: Month Picker -->
+<section>
+<label class="font-label-lg text-label-lg text-primary mb-stack-sm block">1. Select Billing Period</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="py-3 px-2 rounded-xl border border-outline-variant text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">May 2024</button>
+<button class="py-3 px-2 rounded-xl border border-outline-variant text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">Jun 2024</button>
+<button class="py-3 px-2 rounded-xl bg-primary-container border border-primary-container text-on-primary-container font-label-md text-label-md shadow-sm">Jul 2024</button>
+</div>
+<p class="mt-2 font-body-sm text-body-sm text-on-surface-variant/70 italic">Restricted to current or past months only.</p>
+</section>
+<!-- Step 2: Customer Selection -->
+<section>
+<label class="font-label-lg text-label-lg text-primary mb-stack-sm block">2. Customer Scope</label>
+<div class="flex bg-surface-container-low p-1 rounded-xl mb-stack-sm">
+<button class="flex-1 py-2 text-label-md font-label-md rounded-lg bg-surface-container-lowest text-primary shadow-sm">All Customers</button>
+<button class="flex-1 py-2 text-label-md font-label-md text-on-surface-variant">Specific Customer</button>
+</div>
+<!-- Searchable Dropdown (Simulated focus state) -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-xl text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" disabled="" placeholder="Search customer name or ID..." type="text" value="All 124 Active Customers"/>
+</div>
+</section>
+<!-- Step 3: Preview Card -->
+<section class="bg-surface-container-low rounded-2xl p-stack-md border border-primary/5">
+<div class="flex items-center gap-2 mb-stack-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">analytics</span>
+<h3 class="font-label-lg text-label-lg text-primary uppercase tracking-wider">Preview Summary</h3>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<span class="text-label-md font-label-md text-on-surface-variant block">Month</span>
+<span class="text-body-md font-bold text-primary">July 2024</span>
+</div>
+<div class="space-y-1">
+<span class="text-label-md font-label-md text-on-surface-variant block">Customers</span>
+<span class="text-body-md font-bold text-primary">124</span>
+</div>
+<div class="space-y-1">
+<span class="text-label-md font-label-md text-on-surface-variant block">Est. Entries</span>
+<span class="text-body-md font-bold text-primary">3,844</span>
+</div>
+<div class="space-y-1">
+<span class="text-label-md font-label-md text-on-surface-variant block">Total Volume</span>
+<span class="text-body-md font-bold text-primary">1,240 Liters</span>
+</div>
+</div>
+</section>
+<!-- Action Button -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-2xl font-headline-sm text-headline-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform">
+                            Generate Now
+                            <span class="material-symbols-outlined">bolt</span>
+</button>
+</div>
+<!-- Success State (Hidden by default, shown for the prompt) -->
+<div class="mt-stack-lg pt-stack-lg border-t border-outline-variant/30">
+<div class="bg-surface-bright border-2 border-primary-fixed rounded-2xl p-6 text-center">
+<div class="w-16 h-16 bg-primary-fixed-dim rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-primary text-[32px]" data-weight="fill">check_circle</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-1">Invoices Generated!</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">124 invoices have been created and moved to the billing queue for July 2024.</p>
+<div class="flex flex-col gap-3">
+<a class="w-full bg-primary-container text-on-primary-container py-3 rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-2" href="#">
+                                    View Invoices
+                                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<button class="text-primary font-label-lg text-label-lg py-2">Download Summary PDF</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Component) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container dark:bg-primary border-t border-outline-variant dark:border-outline shadow-md dark:shadow-none">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-transform active:scale-90">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-transform active:scale-90">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-md text-label-md">Deliveries</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-transform active:scale-90">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Customers</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-container text-on-primary-container dark:text-primary-fixed rounded-full px-4 py-1 transition-transform active:scale-90">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Billing</span>
+</button>
+</nav>
+<!-- Floating Action Button (FAB) - Suppressed as per context rules for Billing/Flow screens -->
+</body></html>

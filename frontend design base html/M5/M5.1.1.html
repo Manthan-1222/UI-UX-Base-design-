@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#405f91",
+                        "inverse-primary": "#a9c7ff",
+                        "primary": "#001736",
+                        "outline": "#747780",
+                        "on-primary-container": "#7594ca",
+                        "surface-variant": "#d1e4ff",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575f6b",
+                        "outline-variant": "#c4c6d0",
+                        "on-tertiary-fixed-variant": "#2e4962",
+                        "surface-container": "#e4efff",
+                        "surface-container-low": "#eef4ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#141c26",
+                        "tertiary": "#00192c",
+                        "on-tertiary-container": "#7b96b2",
+                        "tertiary-fixed": "#cee5ff",
+                        "on-error": "#ffffff",
+                        "on-background": "#011d35",
+                        "surface-dim": "#c4dcfd",
+                        "surface-container-highest": "#d1e4ff",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed-dim": "#aec9e7",
+                        "secondary-fixed-dim": "#bfc7d4",
+                        "inverse-surface": "#19324b",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#002b5b",
+                        "secondary-fixed": "#dbe3f1",
+                        "on-secondary-container": "#5d6571",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#001b3d",
+                        "on-surface-variant": "#43474f",
+                        "on-secondary-fixed-variant": "#3f4752",
+                        "surface": "#f8f9ff",
+                        "primary-fixed": "#d6e3ff",
+                        "surface-bright": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dbe9ff",
+                        "on-tertiary-fixed": "#001d32",
+                        "secondary-container": "#dbe3f1",
+                        "on-primary-fixed-variant": "#264778",
+                        "tertiary-container": "#102e45",
+                        "on-surface": "#011d35",
+                        "inverse-on-surface": "#e9f1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-lg": "24px",
+                        "base-unit": "4px",
+                        "gutter": "16px",
+                        "margin-mobile": "20px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "label-lg": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top AppBar -->
+<header class="flex items-center justify-between px-margin-mobile h-16 w-full z-50 bg-surface border-b border-outline-variant shadow-sm sticky top-0">
+<div class="flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-primary" data-icon="receipt_long">receipt_long</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">DairyKhata</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high active:scale-95 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high active:scale-95 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile pt-stack-lg pb-32">
+<!-- Search Bar Section -->
+<div class="mb-stack-lg">
+<div class="relative flex items-center w-full">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Search by name or phone..." type="text"/>
+</div>
+</div>
+<!-- Toggle Tabs -->
+<div class="flex p-1 bg-secondary-container rounded-xl mb-stack-lg">
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-primary shadow-sm active:scale-95 transition-all text-on-secondary-container"><span class="font-label-lg text-label-lg">Fixed</span>
+<span class="px-2 py-0.5 bg-on-secondary-container text-surface rounded-full text-[10px] font-bold">124</span></button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg hover:bg-surface-container-high active:scale-95 transition-all bg-surface-container-lowest text-primary"><span class="font-label-lg text-label-lg">On-Demand</span>
+<span class="px-2 py-0.5 bg-primary text-on-primary rounded-full text-[10px] font-bold">42</span></button>
+</div>
+<!-- Customer Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-md"><!-- Customer Card 1: Suresh Mehra -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm flex flex-col gap-3 group hover:border-primary transition-colors">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary font-bold text-headline-sm">
+                            SM
+                        </div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Suresh Mehra</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+91 98765 00000</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[11px] font-bold tracking-wider uppercase">ON-DEMAND</span>
+</div>
+<div class="flex items-start gap-2 py-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mt-0.5" data-icon="location_on">location_on</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Sector 22, Green Park</p>
+</div>
+<div class="flex items-center justify-between mt-2 pt-3 border-t border-outline-variant">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="font-label-md text-label-md text-emerald-600">Active</span>
+</div>
+<div class="flex items-center gap-2">
+</div>
+</div>
+</div>
+<!-- Customer Card 2: Priya Das -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm flex flex-col gap-3 group hover:border-primary transition-colors">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold text-headline-sm">
+                            PD
+                        </div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Priya Das</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+91 90000 11111</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[11px] font-bold tracking-wider uppercase">ON-DEMAND</span>
+</div>
+<div class="flex items-start gap-2 py-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mt-0.5" data-icon="location_on">location_on</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Flat 5A, Sunrise Apts</p>
+</div>
+<div class="flex items-center justify-between mt-2 pt-3 border-t border-outline-variant">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="font-label-md text-label-md text-emerald-600">Active</span>
+</div>
+<div class="flex items-center gap-2">
+</div>
+</div>
+</div>
+<!-- Customer Card 3: Rahul Verma -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm flex flex-col gap-3 group hover:border-primary transition-colors">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-headline-sm">
+                            RV
+                        </div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Rahul Verma</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+91 88888 22222</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[11px] font-bold tracking-wider uppercase">ON-DEMAND</span>
+</div>
+<div class="flex items-start gap-2 py-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mt-0.5" data-icon="location_on">location_on</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">House 15, Block B</p>
+</div>
+<div class="flex items-center justify-between mt-2 pt-3 border-t border-outline-variant">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="font-label-md text-label-md text-emerald-600">Active</span>
+</div>
+<div class="flex items-center gap-2">
+</div>
+</div>
+</div></div>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-lg flex items-center justify-center z-50 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface border-t border-outline-variant h-20 px-2 pb-safe">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="menu_book">menu_book</span>
+<span class="font-label-md text-label-md">Ledger</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Customers</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</div>
+</nav>
+</body></html>

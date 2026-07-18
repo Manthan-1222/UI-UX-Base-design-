@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DairyKhata - Notifications</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#747780",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#dbe9ff",
+                        "secondary-fixed": "#dbe3f1",
+                        "primary-fixed": "#d6e3ff",
+                        "on-tertiary-fixed-variant": "#2e4962",
+                        "surface-container": "#e4efff",
+                        "tertiary": "#00192c",
+                        "outline-variant": "#c4c6d0",
+                        "surface-variant": "#d1e4ff",
+                        "tertiary-container": "#102e45",
+                        "on-surface-variant": "#43474f",
+                        "tertiary-fixed-dim": "#aec9e7",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-container": "#5d6571",
+                        "surface-container-highest": "#d1e4ff",
+                        "on-tertiary-container": "#7b96b2",
+                        "on-surface": "#011d35",
+                        "surface-container-low": "#eef4ff",
+                        "secondary-container": "#dbe3f1",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#001d32",
+                        "tertiary-fixed": "#cee5ff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#405f91",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#141c26",
+                        "on-secondary-fixed-variant": "#3f4752",
+                        "inverse-on-surface": "#e9f1ff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#c4dcfd",
+                        "secondary-fixed-dim": "#bfc7d4",
+                        "secondary": "#575f6b",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001b3d",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#19324b",
+                        "surface": "#f8f9ff",
+                        "primary-container": "#002b5b",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#264778",
+                        "primary": "#001736",
+                        "on-primary-container": "#7594ca",
+                        "on-background": "#011d35",
+                        "inverse-primary": "#a9c7ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "margin-mobile": "20px",
+                        "gutter": "16px",
+                        "base-unit": "4px",
+                        "stack-lg": "24px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-lg": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            min-height: 100dvh;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Screen management */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Pulsing WhatsApp dot */
+        .pulsing-dot {
+            animation: pulse-wa 2s infinite;
+        }
+
+        @keyframes pulse-wa {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* WhatsApp bubble tail */
+        .wa-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: -8px;
+            border-width: 0 10px 10px 0;
+            border-style: solid;
+            border-color: transparent #DCF8C6 transparent transparent;
+        }
+
+        /* Toggle */
+        .toggle-track {
+            transition: background 0.25s;
+        }
+
+        .toggle-thumb {
+            transition: transform 0.25s;
+        }
+
+        /* Sticky date headers in history */
+        .date-header {
+            position: sticky;
+            top: 56px;
+            z-index: 20;
+        }
+
+        /* Filter chip active */
+        .chip-active {
+            background: #002b5b !important;
+            color: #7594ca !important;
+            border-color: #002b5b !important;
+        }
+
+        /* Toast notification */
+        #toast {
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .toast-show {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        .toast-hide {
+            opacity: 0 !important;
+            transform: translateY(20px) !important;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface min-h-screen">
+
+    <!-- ═══════════════════════════════════════════════════
+     TOP NAV BAR (shared, always visible)
+════════════════════════════════════════════════════ -->
+    <header
+        class="bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile h-14 w-full fixed top-0 z-50">
+        <!-- Left: back arrow (hidden on home) + title -->
+        <div class="flex items-center gap-3">
+            <button id="backBtn" onclick="goBack()"
+                class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors cursor-pointer hidden">
+                <span class="material-symbols-outlined text-primary">arrow_back</span>
+            </button>
+            <h1 id="navTitle" class="font-headline-md text-headline-md font-bold text-primary">DairyKhata</h1>
+        </div>
+        <!-- Right: contextual actions -->
+        <div class="flex items-center gap-2">
+            <button id="searchBtn" onclick="focusSearch()"
+                class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors cursor-pointer hidden">
+                <span class="material-symbols-outlined text-secondary">search</span>
+            </button>
+            <div class="w-9 h-9 rounded-full overflow-hidden border border-outline-variant flex-shrink-0">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDePKYNCYQXvs1Z1b5_XyrOqsqXNDyG7ju69CWvNDHRqauzbbk8R5NI0FJv5gj0XsxXfc79FI6Nm_mom83iw7IRhBMZ8YAqQEk4JdWx0uCtxrP8TXEiT0qyXikN-BEbJykAJIxW-VNhKrMqZm7UwMCdWPE8h7Qtwzv_09ALvloiuNzroofqiAseMAzfF-1Hcvvm5B4XbruWj0mNyqD9tdRxp3wbWG1HNudb1SqpuY24NmQsIhUDcCzC8tkvtijKyZ8NiY8G1rGqFoV1"
+                    alt="Profile" class="w-full h-full object-cover" />
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════
+     SCREEN 1 — NOTIFICATIONS DASHBOARD (Home)
+════════════════════════════════════════════════════ -->
+    <div id="screen1" class="screen active pt-20 pb-6 px-margin-mobile max-w-2xl mx-auto space-y-stack-lg">
+
+        <!-- WhatsApp Status Banner -->
+        <div id="waBanner" class="bg-green-50 border border-green-200 rounded-xl p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="relative flex h-3 w-3">
+                    <span
+                        class="pulsing-dot absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </div>
+                <span id="waBannerText" class="font-label-lg text-on-surface font-bold">WhatsApp Notifications
+                    Active</span>
+            </div>
+            <span id="waBannerIcon" class="material-symbols-outlined text-green-500"
+                style="font-variation-settings:'FILL' 1;">verified_user</span>
+        </div>
+
+        <!-- Quick Stats Strip -->
+        <div class="grid grid-cols-3 gap-stack-sm">
+            <div
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col items-center">
+                <span class="text-label-md font-label-md text-secondary uppercase tracking-wider">Sent Today</span>
+                <span id="statSent" class="text-headline-sm font-headline-sm text-primary mt-1">142</span>
+            </div>
+            <div
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col items-center">
+                <span class="text-label-md font-label-md text-secondary uppercase tracking-wider">Failed</span>
+                <span id="statFailed" class="text-headline-sm font-headline-sm text-error mt-1">3</span>
+            </div>
+            <div
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col items-center">
+                <span class="text-label-md font-label-md text-secondary uppercase tracking-wider">Pending</span>
+                <span class="text-headline-sm font-headline-sm text-on-surface mt-1">8</span>
+            </div>
+        </div>
+
+        <!-- Broadcast Card -->
+        <section
+            class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md space-y-stack-md shadow-sm">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Broadcast Delivery Summary</h3>
+                    <p class="text-body-sm text-on-surface-variant mt-1">Broadcast morning deliveries to all customers
+                    </p>
+                </div>
+                <div
+                    class="bg-surface-container rounded-lg px-3 py-1 flex items-center gap-2 border border-outline-variant text-sm">
+                    <span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                    <span class="font-label-md">Today</span>
+                </div>
+            </div>
+            <button onclick="sendBroadcast()"
+                class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all active:scale-95 shadow-md cursor-pointer">
+                <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">send</span>
+                <span class="font-label-lg uppercase tracking-wide">Send Now</span>
+            </button>
+            <div class="flex items-center justify-center gap-2 text-body-sm text-secondary">
+                <span class="material-symbols-outlined text-[16px]">history</span>
+                <span id="lastSentLabel">Last sent at 6:00 PM yesterday</span>
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section class="space-y-stack-md">
+            <div class="flex justify-between items-end">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface">Recent Activity</h3>
+                <button onclick="switchScreen('history')"
+                    class="text-primary font-label-lg hover:underline transition-all">View All</button>
+            </div>
+            <div id="recentList"
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl divide-y divide-outline-variant overflow-hidden">
+            </div>
+        </section>
+
+        <!-- Settings Shortcut -->
+        <section onclick="switchScreen('settings')"
+            class="bg-surface-container-high border border-outline-variant rounded-xl p-4 flex items-center justify-between group cursor-pointer active:scale-95 transition-transform">
+            <div class="flex items-center gap-4">
+                <div
+                    class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center border border-outline-variant">
+                    <span class="material-symbols-outlined text-primary">notifications_active</span>
+                </div>
+                <div>
+                    <h4 class="font-label-lg text-on-surface">Notification Settings</h4>
+                    <p id="settingsShortcutSub" class="text-body-sm text-on-surface-variant">Scheduled for 6:00 PM |
+                        <span class="text-green-500 font-bold uppercase text-[12px]">Active</span></p>
+                </div>
+            </div>
+            <span
+                class="material-symbols-outlined text-secondary group-hover:translate-x-1 transition-transform">chevron_right</span>
+        </section>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════
+     SCREEN 2 — NOTIFICATION HISTORY
+════════════════════════════════════════════════════ -->
+    <div id="screenHistory" class="screen pt-20 pb-6">
+
+        <!-- Stats Row -->
+        <section class="px-margin-mobile py-stack-lg max-w-2xl mx-auto">
+            <div class="grid grid-cols-3 gap-gutter">
+                <div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm">
+                    <p class="font-label-md text-label-md text-secondary">Sent</p>
+                    <p id="histStatSent" class="font-headline-sm text-headline-sm text-primary mt-1">139</p>
+                    <p class="font-label-md text-label-md text-green-500 mt-1 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">trending_up</span> 97.9%
+                    </p>
+                </div>
+                <div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm">
+                    <p class="font-label-md text-label-md text-secondary">Failed</p>
+                    <p id="histStatFailed" class="font-headline-sm text-headline-sm text-error mt-1">3</p>
+                    <p class="font-label-md text-label-md text-error mt-1 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">trending_down</span> 2.1%
+                    </p>
+                </div>
+                <div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm">
+                    <p class="font-label-md text-label-md text-secondary">Total</p>
+                    <p id="histStatTotal" class="font-headline-sm text-headline-sm text-on-surface mt-1">142</p>
+                    <p class="font-label-md text-label-md text-secondary mt-1">This week</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Bar -->
+        <section class="px-margin-mobile mb-stack-md max-w-2xl mx-auto">
+            <div class="flex flex-col gap-stack-sm">
+                <!-- Search -->
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                        <span class="material-symbols-outlined text-outline text-[18px]">search</span>
+                    </div>
+                    <input id="histSearch" type="text" placeholder="Search customer or type…" oninput="filterHistory()"
+                        class="w-full pl-9 pr-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg font-label-lg focus:outline-none focus:border-primary text-on-surface" />
+                </div>
+                <!-- Date range display -->
+                <div
+                    class="flex items-center justify-between bg-surface-container-low p-2 px-4 rounded-lg border border-outline-variant">
+                    <div class="flex items-center gap-2 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-sm">calendar_today</span>
+                        <span class="font-label-lg text-label-lg">Oct 12 – Oct 19, 2023</span>
+                    </div>
+                    <span class="material-symbols-outlined text-secondary">expand_more</span>
+                </div>
+                <!-- Filter chips -->
+                <div class="flex gap-2 overflow-x-auto pb-1">
+                    <button onclick="setHistFilter('all')" id="chip-all"
+                        class="chip-active bg-primary-container text-on-primary-container px-4 py-1.5 rounded-full font-label-md border border-primary whitespace-nowrap transition-colors cursor-pointer">All</button>
+                    <button onclick="setHistFilter('sent')" id="chip-sent"
+                        class="bg-surface-container-lowest text-secondary px-4 py-1.5 rounded-full font-label-md border border-outline-variant hover:bg-surface-variant whitespace-nowrap transition-colors cursor-pointer">Sent</button>
+                    <button onclick="setHistFilter('failed')" id="chip-failed"
+                        class="bg-surface-container-lowest text-secondary px-4 py-1.5 rounded-full font-label-md border border-outline-variant hover:bg-surface-variant whitespace-nowrap transition-colors cursor-pointer">Failed</button>
+                    <button onclick="setHistFilter('delivery')" id="chip-delivery"
+                        class="bg-surface-container-lowest text-secondary px-4 py-1.5 rounded-full font-label-md border border-outline-variant hover:bg-surface-variant whitespace-nowrap transition-colors cursor-pointer">Delivery</button>
+                    <button onclick="setHistFilter('billing')" id="chip-billing"
+                        class="bg-surface-container-lowest text-secondary px-4 py-1.5 rounded-full font-label-md border border-outline-variant hover:bg-surface-variant whitespace-nowrap transition-colors cursor-pointer">Billing</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- History List -->
+        <div id="historyList" class="max-w-2xl mx-auto"></div>
+
+        <!-- Load More -->
+        <div class="p-stack-lg flex flex-col items-center gap-stack-sm max-w-2xl mx-auto">
+            <p id="histCount" class="font-label-md text-label-md text-secondary">Showing 4 of 126 entries</p>
+            <button onclick="loadMore()"
+                class="bg-surface-container-low text-primary px-6 py-2 rounded-lg font-label-lg border border-outline-variant hover:bg-surface-variant transition-all cursor-pointer">
+                Load More
+            </button>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════
+     SCREEN 3 — NOTIFICATION SETTINGS
+════════════════════════════════════════════════════ -->
+    <div id="screenSettings" class="screen pt-20 pb-8 px-margin-mobile max-w-2xl mx-auto">
+
+        <div class="py-stack-lg">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface">Notification Settings</h2>
+            <p class="font-body-sm text-on-surface-variant">Manage how and when you receive delivery updates.</p>
+        </div>
+
+        <div class="space-y-stack-md">
+
+            <!-- WhatsApp Master Toggle -->
+            <div
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md flex items-center justify-between shadow-sm">
+                <div class="flex items-center gap-stack-md">
+                    <div
+                        class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-green-500">
+                        <span class="material-symbols-outlined text-[28px]">chat</span>
+                    </div>
+                    <div>
+                        <span class="block font-label-lg text-label-lg text-on-surface">Enable WhatsApp
+                            Notifications</span>
+                        <span class="block font-body-sm text-on-surface-variant">Real-time alerts via WhatsApp</span>
+                    </div>
+                </div>
+                <button id="waToggle" onclick="toggleSetting('wa')"
+                    class="w-14 h-8 flex items-center rounded-full p-1 transition-colors duration-300 cursor-pointer toggle-track bg-primary">
+                    <div class="bg-white w-6 h-6 rounded-full shadow-md toggle-thumb translate-x-6"></div>
+                </button>
+            </div>
+
+            <!-- Daily Notification Time -->
+            <div
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md flex items-center justify-between shadow-sm">
+                <div class="flex items-center gap-stack-md">
+                    <div
+                        class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-[28px]">schedule</span>
+                    </div>
+                    <div>
+                        <span class="block font-label-lg text-label-lg text-on-surface">Daily Notification Time</span>
+                        <span class="block font-body-sm text-on-surface-variant">Scheduled summary delivery</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input id="notifTime" type="time" value="18:00" onchange="updateTime()"
+                        class="bg-secondary-container text-on-secondary-container px-3 py-2 rounded-full font-label-lg border border-outline-variant focus:outline-none focus:border-primary cursor-pointer text-sm" />
+                </div>
+            </div>
+
+            <!-- Delivery & Billing Toggles -->
+            <div
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl divide-y divide-outline-variant shadow-sm overflow-hidden">
+                <div class="p-stack-md flex items-center justify-between">
+                    <div>
+                        <span class="block font-label-lg text-label-lg text-on-surface">Send Delivery
+                            Notifications</span>
+                        <span class="block font-body-sm text-on-surface-variant">Notify customers upon drop-off</span>
+                    </div>
+                    <button id="deliveryToggle" onclick="toggleSetting('delivery')"
+                        class="w-12 h-6 flex items-center rounded-full p-1 transition-colors duration-300 cursor-pointer toggle-track bg-outline-variant">
+                        <div class="bg-white w-4 h-4 rounded-full shadow-sm toggle-thumb"></div>
+                    </button>
+                </div>
+                <div class="p-stack-md flex items-center justify-between">
+                    <div>
+                        <span class="block font-label-lg text-label-lg text-on-surface">Send Billing
+                            Notifications</span>
+                        <span class="block font-body-sm text-on-surface-variant">Weekly and monthly statement
+                            alerts</span>
+                    </div>
+                    <button id="billingToggle" onclick="toggleSetting('billing')"
+                        class="w-12 h-6 flex items-center rounded-full p-1 transition-colors duration-300 cursor-pointer toggle-track bg-primary">
+                        <div class="bg-white w-4 h-4 rounded-full shadow-sm toggle-thumb translate-x-6"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Preview Message Card -->
+            <details id="previewDetails"
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm group"
+                open>
+                <summary
+                    class="p-stack-md flex items-center justify-between cursor-pointer list-none hover:bg-surface-variant transition-colors">
+                    <div class="flex items-center gap-stack-sm">
+                        <span class="material-symbols-outlined text-on-surface-variant">visibility</span>
+                        <span class="font-label-lg text-label-lg text-on-surface">Preview Sample Message</span>
+                    </div>
+                    <span
+                        class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+                </summary>
+                <div class="p-stack-lg bg-surface-container-low border-t border-outline-variant">
+                    <div class="relative max-w-xs mx-auto">
+                        <div
+                            class="wa-bubble relative bg-[#DCF8C6] p-4 rounded-lg rounded-tl-none shadow-sm text-[#303030] text-sm">
+                            <p class="font-bold mb-1">🥛 DairyKhata Delivery Summary</p>
+                            <p class="text-[11px] opacity-60 mb-2" id="previewDate">Date: 15 Jan 2024</p>
+                            <p class="mb-1">Dear Priya Singh,</p>
+                            <p class="mb-1">Today's delivery:</p>
+                            <p class="pl-2 mb-2">• Cow Milk — 2.5 L — ₹150.00</p>
+                            <p class="font-bold border-t border-black/10 pt-1 mt-1">Total: ₹150.00</p>
+                            <p class="mt-2 italic">Thank you! 🙏</p>
+                            <span class="absolute right-2 bottom-1 text-[10px] opacity-50 flex items-center gap-1"
+                                id="previewTime">
+                                06:00 PM <span class="material-symbols-outlined text-[12px] text-blue-500"
+                                    style="font-variation-settings:'FILL' 1;">done_all</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <div class="mt-stack-lg">
+            <button onclick="saveSettings()"
+                class="w-full bg-primary text-on-primary hover:bg-primary/90 transition-all py-4 rounded-xl font-headline-sm text-headline-sm shadow-md active:scale-95 duration-200 flex items-center justify-center gap-2 cursor-pointer">
+                <span class="material-symbols-outlined">save</span>
+                Save Settings
+            </button>
+        </div>
+    </div>
+
+
+
+    <!-- Toast -->
+    <div id="toast"
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-on-surface text-surface px-5 py-3 rounded-full font-label-lg text-label-lg shadow-lg opacity-0 translate-y-5 transition-all pointer-events-none whitespace-nowrap">
+        Saved!
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════ -->
+    <script>
+
+        /* ── State ─────────────────────────────────────────── */
+        const state = {
+            currentScreen: 'home',
+            settings: {
+                wa: true,
+                delivery: false,
+                billing: true,
+                time: '18:00'
+            },
+            histFilter: 'all',
+            histSearch: '',
+            histShown: 4
+        };
+
+        const allNotifications = [
+            { date: 'Today, Oct 19', customer: 'Rajesh Kumar', type: 'delivery', status: 'sent', time: '08:15 AM', note: 'Morning supply confirmation' },
+            { date: 'Today, Oct 19', customer: 'Anita Sharma', type: 'billing', status: 'failed', time: '07:45 AM', note: 'Monthly invoice generated' },
+            { date: 'Yesterday, Oct 18', customer: 'Vikram Singh', type: 'delivery', status: 'sent', time: '09:30 PM', note: 'Delivery scheduled for 6 AM' },
+            { date: 'Yesterday, Oct 18', customer: 'Suresh Raina', type: 'billing', status: 'sent', time: '06:00 PM', note: 'Payment reminder sent' },
+            { date: 'Oct 17', customer: 'Meena Sharma', type: 'delivery', status: 'sent', time: '06:10 AM', note: 'Morning delivery confirmed' },
+            { date: 'Oct 17', customer: 'Sunit\'s Cafe', type: 'delivery', status: 'sent', time: '06:15 AM', note: 'Batch delivery completed' },
+            { date: 'Oct 16', customer: 'Amit Patel', type: 'billing', status: 'failed', time: '05:00 PM', note: 'Invoice failed to send' },
+            { date: 'Oct 16', customer: 'Preeti Verma', type: 'delivery', status: 'sent', time: '06:05 AM', note: 'Morning delivery done' },
+        ];
+
+        const recentActivity = [
+            { customer: 'Rajesh Kumar', type: 'delivery', time: '06:15 AM', status: 'sent' },
+            { customer: "Sunit's Cafe", type: 'delivery', time: '06:12 AM', status: 'sent' },
+            { customer: 'Meena Sharma', type: 'delivery', time: '06:08 AM', status: 'sent' },
+            { customer: 'Amit Patel', type: 'delivery', time: '06:05 AM', status: 'failed' },
+            { customer: 'Preeti Verma', type: 'delivery', time: '06:01 AM', status: 'sent' },
+        ];
+
+        /* ── Screen Switcher ───────────────────────────────── */
+        const screenMeta = {
+            home: { title: 'DairyKhata', back: false, search: false },
+            history: { title: 'Notification History', back: true, search: true },
+            settings: { title: 'Notification Settings', back: true, search: false }
+        };
+
+        function switchScreen(name) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            const map = { home: 'screen1', history: 'screenHistory', settings: 'screenSettings' };
+            document.getElementById(map[name]).classList.add('active');
+            state.currentScreen = name;
+
+            // Update top nav bar
+            const meta = screenMeta[name];
+            document.getElementById('navTitle').textContent = meta.title;
+            document.getElementById('backBtn').classList.toggle('hidden', !meta.back);
+            document.getElementById('searchBtn').classList.toggle('hidden', !meta.search);
+
+            if (name === 'history') renderHistory();
+            if (name === 'home') renderRecent();
+
+            window.scrollTo(0, 0);
+        }
+
+        function goBack() {
+            switchScreen('home');
+        }
+
+        /* ── Toggle Helper ─────────────────────────────────── */
+        function toggleSetting(key) {
+            state.settings[key] = !state.settings[key];
+            const on = state.settings[key];
+            const idMap = { wa: 'waToggle', delivery: 'deliveryToggle', billing: 'billingToggle' };
+            const btn = document.getElementById(idMap[key]);
+            const thumb = btn.querySelector('.toggle-thumb');
+
+            if (on) {
+                btn.classList.remove('bg-outline-variant');
+                btn.classList.add('bg-primary');
+                // big toggle (WhatsApp) has w-6 thumb
+                const isBig = key === 'wa';
+                thumb.classList.add(isBig ? 'translate-x-6' : 'translate-x-6');
+            } else {
+                btn.classList.add('bg-outline-variant');
+                btn.classList.remove('bg-primary');
+                thumb.classList.remove('translate-x-6');
+            }
+
+            // Reflect on home screen banner
+            updateWaBanner();
+            updateSettingsShortcut();
+        }
+
+        function updateWaBanner() {
+            const on = state.settings.wa;
+            const banner = document.getElementById('waBanner');
+            const text = document.getElementById('waBannerText');
+            const icon = document.getElementById('waBannerIcon');
+            if (on) {
+                banner.className = 'bg-green-50 border border-green-200 rounded-xl p-4 flex items-center justify-between';
+                text.textContent = 'WhatsApp Notifications Active';
+                icon.classList.replace('text-red-500', 'text-green-500');
+                icon.textContent = 'verified_user';
+            } else {
+                banner.className = 'bg-red-50 border border-red-200 rounded-xl p-4 flex items-center justify-between';
+                text.textContent = 'WhatsApp Notifications Paused';
+                icon.classList.replace('text-green-500', 'text-red-500');
+                icon.textContent = 'notifications_off';
+            }
+        }
+
+        function updateTime() {
+            const val = document.getElementById('notifTime').value;
+            state.settings.time = val;
+            // Convert 24h → 12h for preview
+            const [h, m] = val.split(':').map(Number);
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            const h12 = (h % 12 || 12).toString().padStart(2, '0');
+            const display = `${h12}:${m.toString().padStart(2, '0')} ${ampm}`;
+            document.getElementById('previewTime').innerHTML = `${display} <span class="material-symbols-outlined text-[12px] text-blue-500" style="font-variation-settings:'FILL' 1;">done_all</span>`;
+            updateSettingsShortcut();
+        }
+
+        function updateSettingsShortcut() {
+            const val = state.settings.time;
+            const [h, m] = val.split(':').map(Number);
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            const h12 = (h % 12 || 12).toString().padStart(2, '0');
+            const display = `${h12}:${m.toString().padStart(2, '0')} ${ampm}`;
+            const status = state.settings.wa ? '<span class="text-green-500 font-bold uppercase text-[12px]">Active</span>' : '<span class="text-red-500 font-bold uppercase text-[12px]">Paused</span>';
+            document.getElementById('settingsShortcutSub').innerHTML = `Scheduled for ${display} | ${status}`;
+        }
+
+        /* ── Broadcast ─────────────────────────────────────── */
+        function sendBroadcast() {
+            if (!state.settings.wa) {
+                showToast('⚠️ Enable WhatsApp first!');
+                return;
+            }
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('lastSentLabel').textContent = `Last sent at ${timeStr} today`;
+            const sent = parseInt(document.getElementById('statSent').textContent, 10);
+            document.getElementById('statSent').textContent = sent + 1;
+            document.getElementById('histStatSent').textContent = sent + 1;
+            document.getElementById('histStatTotal').textContent = sent + 4;
+            // Add to recent activity
+            recentActivity.unshift({ customer: 'Broadcast — All Customers', type: 'delivery', time: timeStr, status: 'sent' });
+            renderRecent();
+            showToast('✅ Broadcast sent to all customers!');
+        }
+
+        /* ── Save Settings ─────────────────────────────────── */
+        function saveSettings() {
+            updateSettingsShortcut();
+            showToast('✅ Settings saved!');
+        }
+
+        /* ── Toast ─────────────────────────────────────────── */
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('toast-show');
+            t.classList.remove('toast-hide');
+            setTimeout(() => {
+                t.classList.remove('toast-show');
+                t.classList.add('toast-hide');
+            }, 2500);
+        }
+
+        /* ── Render Recent Activity (Screen 1) ─────────────── */
+        function renderRecent() {
+            const list = document.getElementById('recentList');
+            list.innerHTML = recentActivity.slice(0, 5).map(item => {
+                const icon = item.status === 'sent'
+                    ? `<span class="material-symbols-outlined text-green-500" style="font-variation-settings:'FILL' 1;">check_circle</span>`
+                    : `<span class="material-symbols-outlined text-error" style="font-variation-settings:'FILL' 1;">error</span>`;
+                const badge = item.type === 'delivery'
+                    ? `<span class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">local_shipping</span> DELIVERY</span>`
+                    : `<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">receipt_long</span> BILLING</span>`;
+                return `
+        <div class="p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary">person</span>
+                </div>
+                <div>
+                    <p class="font-label-lg text-on-surface">${item.customer}</p>
+                    <div class="flex items-center gap-2 mt-1">${badge}<span class="text-label-md text-secondary">${item.time}</span></div>
+                </div>
+            </div>
+            ${icon}
+        </div>`;
+            }).join('');
+        }
+
+        /* ── History Rendering ─────────────────────────────── */
+        function setHistFilter(f) {
+            state.histFilter = f;
+            state.histShown = 4;
+            ['all', 'sent', 'failed', 'delivery', 'billing'].forEach(k => {
+                const c = document.getElementById('chip-' + k);
+                if (!c) return;
+                if (k === f) {
+                    c.classList.add('chip-active', 'bg-primary-container', 'text-on-primary-container', 'border-primary');
+                    c.classList.remove('bg-surface-container-lowest', 'text-secondary', 'border-outline-variant');
+                } else {
+                    c.classList.remove('chip-active', 'bg-primary-container', 'text-on-primary-container', 'border-primary');
+                    c.classList.add('bg-surface-container-lowest', 'text-secondary', 'border-outline-variant');
+                }
+            });
+            renderHistory();
+        }
+
+        function filterHistory() {
+            state.histSearch = document.getElementById('histSearch').value.toLowerCase();
+            state.histShown = 4;
+            renderHistory();
+        }
+
+        function getFilteredNotifs() {
+            return allNotifications.filter(n => {
+                const matchFilter =
+                    state.histFilter === 'all' ||
+                    (state.histFilter === 'sent' && n.status === 'sent') ||
+                    (state.histFilter === 'failed' && n.status === 'failed') ||
+                    (state.histFilter === 'delivery' && n.type === 'delivery') ||
+                    (state.histFilter === 'billing' && n.type === 'billing');
+                const matchSearch = !state.histSearch ||
+                    n.customer.toLowerCase().includes(state.histSearch) ||
+                    n.type.includes(state.histSearch) ||
+                    n.note.toLowerCase().includes(state.histSearch);
+                return matchFilter && matchSearch;
+            });
+        }
+
+        function loadMore() {
+            state.histShown += 4;
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const list = document.getElementById('historyList');
+            const items = getFilteredNotifs().slice(0, state.histShown);
+            const total = getFilteredNotifs().length;
+            document.getElementById('histCount').textContent = `Showing ${Math.min(items.length, total)} of ${total} entries`;
+
+            if (items.length === 0) {
+                list.innerHTML = '<p class="text-center text-secondary font-body-sm py-8 px-margin-mobile">No notifications match your filter.</p>';
+                return;
+            }
+
+            // Group by date
+            const groups = {};
+            items.forEach(n => {
+                if (!groups[n.date]) groups[n.date] = [];
+                groups[n.date].push(n);
+            });
+
+            list.innerHTML = Object.entries(groups).map(([date, notifs]) => {
+                const rows = notifs.map(n => {
+                    const isDelivery = n.type === 'delivery';
+                    const iconBg = isDelivery ? 'bg-surface-variant text-primary' : 'bg-secondary-container text-on-secondary-container';
+                    const iconName = isDelivery ? 'local_shipping' : 'receipt_long';
+                    const badge = isDelivery
+                        ? `<span class="bg-surface-container-high text-primary px-2 py-0.5 rounded text-[10px] font-bold flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">local_shipping</span> DELIVERY</span>`
+                        : `<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-0.5 rounded text-[10px] font-bold flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">receipt_long</span> BILLING</span>`;
+                    const right = n.status === 'sent'
+                        ? `<div class="text-right"><p class="font-label-md text-label-md text-secondary">${n.time}</p><span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings:'FILL' 1;">check_circle</span></div>`
+                        : `<div class="text-right flex flex-col items-end gap-1"><p class="font-label-md text-label-md text-secondary">${n.time}</p><div class="flex items-center gap-2"><button onclick="retryNotif('${n.customer}')" class="bg-yellow-400 text-white font-bold text-[10px] px-3 py-1 rounded-full uppercase active:scale-95 transition-transform cursor-pointer">Retry</button><span class="material-symbols-outlined text-error" style="font-variation-settings:'FILL' 1;">cancel</span></div></div>`;
+                    return `
+            <div class="px-margin-mobile py-stack-md flex items-center justify-between bg-surface-container-lowest hover:bg-surface-container transition-colors cursor-pointer">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full ${iconBg} flex items-center justify-center">
+                        <span class="material-symbols-outlined">${iconName}</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-body-md font-bold text-on-surface">${n.customer}</span>
+                            ${badge}
+                        </div>
+                        <p class="font-label-md text-label-md text-secondary mt-0.5">${n.note}</p>
+                    </div>
+                </div>
+                ${right}
+            </div>`;
+                }).join('');
+                return `
+        <div class="date-header bg-background/95 backdrop-blur-sm px-margin-mobile py-2 border-b border-outline-variant/30">
+            <h3 class="font-label-lg text-label-lg text-secondary uppercase tracking-wider">${date}</h3>
+        </div>
+        <div class="divide-y divide-outline-variant/20">${rows}</div>`;
+            }).join('');
+        }
+
+        function retryNotif(customer) {
+            showToast(`🔄 Retrying for ${customer}…`);
+            setTimeout(() => {
+                const idx = allNotifications.findIndex(n => n.customer === customer && n.status === 'failed');
+                if (idx !== -1) {
+                    allNotifications[idx].status = 'sent';
+                    const failed = parseInt(document.getElementById('statFailed').textContent, 10);
+                    document.getElementById('statFailed').textContent = Math.max(0, failed - 1);
+                    document.getElementById('histStatFailed').textContent = Math.max(0, failed - 1);
+                    renderHistory();
+                    showToast(`✅ Sent to ${customer}`);
+                }
+            }, 1500);
+        }
+
+        function focusSearch() {
+            const el = document.getElementById('histSearch');
+            if (el) el.focus();
+        }
+
+        function toggleMenu() {
+            showToast('Menu coming soon!');
+        }
+
+        /* ── Init ──────────────────────────────────────────── */
+        document.addEventListener('DOMContentLoaded', () => {
+            renderRecent();
+            switchScreen('home');
+            // Set today's date in preview
+            document.getElementById('previewDate').textContent = 'Date: ' + new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+        });
+    </script>
+</body>
+
+</html>
